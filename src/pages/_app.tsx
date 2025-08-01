@@ -1,4 +1,4 @@
-import Layout from "@/components/layouts/Layout";
+import { Layout } from "@/components";
 import "@/styles/globals.css";
 import "@/styles/uicons-regular-straight.css";
 import type { AppProps } from "next/app";
