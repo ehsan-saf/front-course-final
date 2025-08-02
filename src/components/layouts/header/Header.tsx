@@ -1,4 +1,5 @@
 import { ImageView } from "@/components/shared";
+import { Logo } from "@/components/shared/ui";
 import { ArrowDown, ArrowDownWideNarrow } from "lucide-react";
 
 export function Header() {
@@ -151,19 +152,7 @@ export function Header() {
         <div className="px-6 py-5 border-b border-border lg:hidden">
           <div className="container flex justify-between">
             {/* <!------ Logo ------> */}
-            <div className="flex items-center gap-1.5">
-              <ImageView
-                src="/icons/logo.png"
-                alt="logo"
-                width={42}
-                height={30}
-                className="w-10 h-7"
-              />
-              <div className="flex flex-col items-center">
-                <h1 className="text-brand-1 font-normal p-0">LOGO</h1>
-                <span className="text-[5px]">MART & GROCERY</span>
-              </div>
-            </div>
+            <Logo />
             {/* <!-----------------> */}
 
             <button className="navbar-toggler">
@@ -200,19 +189,7 @@ export function Header() {
         <div className="hidden lg:block p-8 border-b border-border">
           <div className="container flex justify-between items-center">
             {/* <!------ Logo ------> */}
-            <div className="flex items-center gap-1.5">
-              <ImageView
-                src="/icons/logo.png"
-                alt="logo"
-                width={84}
-                height={60}
-                className="w-20 h-16"
-              />
-              <div className="flex flex-col items-center">
-                <h1 className="text-5xl text-brand-1 font-normal p-0">LOGO</h1>
-                <span className="text-xs">MART & GROCERY</span>
-              </div>
-            </div>
+            <Logo />
 
             {/* <!-- Search bar --> */}
             <div className="relative lg:max-w-[400px] xl:max-w-[700px] flex-1">
