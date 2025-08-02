@@ -1,6 +1,7 @@
 import { ImageView } from "@/components/shared";
 import { Logo } from "@/components/shared/ui";
 import { ArrowDown, ArrowDownWideNarrow } from "lucide-react";
+import { SearchForm } from "./searchForm";
 
 export function Header() {
   return (
@@ -164,9 +165,7 @@ export function Header() {
         {/* <!-- Second header row --> */}
         <div className="p-6 border-b border-border lg:hidden">
           <div className="container flex justify-between">
-            <button>
-              <span className="fi-rs-search text-xl"></span>
-            </button>
+            <SearchForm />
             {/* <!-- --------------------- --> */}
             <div className="flex items-center gap-2.5">
               <button className="flex items-center gap-0.5">
@@ -192,16 +191,7 @@ export function Header() {
             <Logo />
 
             {/* <!-- Search bar --> */}
-            <div className="relative lg:max-w-[400px] xl:max-w-[700px] flex-1">
-              <input
-                className="w-full px-6 py-3.5 border-[1px] rounded-sm border-greenBorder font-montserrat text-[#B6B6B6]"
-                type="text"
-                name="search"
-                id="search-bar"
-                placeholder="Search for items"
-              />
-              <span className="fi-rs-search absolute top-1/2 right-3.5 -translate-y-1/2 -translate-x-full"></span>
-            </div>
+            <SearchForm />
 
             <div className="flex items-center gap-5 font-montserrat">
               <button className="flex items-center gap-0.5">
