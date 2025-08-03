@@ -115,3 +115,74 @@
     appearance: none;
   }
 }
+
+/* -------------- */
+
+.navbar-toggler,
+.navbar-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.offcanvas-body {
+  width: 80svw;
+  height: 100svh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 2;
+
+  overflow: auto;
+
+  padding: 16px 24px;
+  border-radius: 0 24px 24px 0;
+
+  background: #ffffff;
+
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.expanded .offcanvas-body {
+  transform: translateX(0%);
+  transition-timing-function: ease-in;
+}
+
+.offcanvas-backdrop {
+  visibility: hidden;
+  opacity: 0;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  width: 100svw;
+  height: 100svh;
+
+  background: #000000;
+
+  transition: opacity 0.3s, visibility 0.5s;
+}
+
+.expanded .offcanvas-backdrop {
+  visibility: visible;
+  opacity: 0.64;
+}
+
+/* ---------- Accordion --------- */
+
+.accordion-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.3s;
+}
+
+.accordion-item.expanded .accordion-collapse {
+  grid-template-rows: 1fr;
+}
+
+.accordion-body {
+  overflow: hidden;
+}
