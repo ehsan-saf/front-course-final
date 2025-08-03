@@ -1,7 +1,8 @@
-import { ImageView } from "@/components/shared";
-import { Logo } from "@/components/shared/ui";
+import { ImageView } from "@/components";
+import { Logo } from "@/components";
 import { ArrowDown, ArrowDownWideNarrow } from "lucide-react";
 import { SearchForm } from "./searchForm";
+import { IconBox } from "@/components";
 
 export function Header() {
   return (
@@ -168,17 +169,8 @@ export function Header() {
             <SearchForm />
             {/* <!-- --------------------- --> */}
             <div className="flex items-center gap-2.5">
-              <button className="flex items-center gap-0.5">
-                <span className="fi-rs-user text-2xl"></span>
-              </button>
-              <button>
-                <div className="relative">
-                  <span className="fi-rs-shopping-cart text-2xl"></span>
-                  <span className="absolute -top-2 -right-2.5 grid place-content-center w-5 h-5 p-1.5 rounded-full bg-brand-1 text-xs text-white">
-                    4
-                  </span>
-                </div>
-              </button>
+              <IconBox icon="user" />
+              <IconBox icon="shopping-cart" badge={4} />
             </div>
           </div>
         </div>
@@ -194,19 +186,8 @@ export function Header() {
             <SearchForm />
 
             <div className="flex items-center gap-5 font-montserrat">
-              <button className="flex items-center gap-0.5">
-                <span className="fi-rs-user text-2xl"></span>
-                <span className="font-lato text-body">Account</span>
-              </button>
-              <button className="flex items-center gap-2.5">
-                <div className="relative">
-                  <span className="fi-rs-shopping-cart text-2xl"></span>
-                  <span className="absolute -top-2 -right-2.5 grid place-content-center w-5 h-5 p-1.5 rounded-full bg-brand-1 text-xs text-white">
-                    4
-                  </span>
-                </div>
-                <span className="font-lato text-body">Cart</span>
-              </button>
+              <IconBox icon="user" title="Account" />
+              <IconBox icon="shopping-cart" title="Cart" badge={4} />
             </div>
           </div>
         </div>
