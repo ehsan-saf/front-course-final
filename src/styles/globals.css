@@ -67,7 +67,7 @@
 @layer components {
   .navbar-accordionButton {
     @apply flex justify-between items-center gap-2.5 bg-brand-1 text-white p-3 rounded-sm;
-    max-width: 245px;
+    max-width: 255px;
   }
   .accordion-item.expanded .accordion-button .arrow-icon {
     transform: rotate(180deg);

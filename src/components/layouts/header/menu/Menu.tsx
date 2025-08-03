@@ -1,5 +1,5 @@
 import { useMediaQuery } from "react-responsive";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowUp } from "lucide-react";
 import { ImageView } from "@/components";
 
 interface Props {
@@ -30,7 +30,7 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
             >
               <span className="fi-rs-apps"></span>
               <span>Browse All Categories</span>
-              <ArrowDown />
+              {categoryExpanded ? <ArrowUp /> : <ArrowDown />}
             </button>
           </h2>
           <div
@@ -166,13 +166,30 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
           isDisplayLarge ? "flex-row items-center" : "flex-col items-start"
         } gap-8`}
       >
-        <li className="flex items-center gap-2">
-          <span className="fi-rs-flame text-xl text-brand-1"></span>
-          <span>Hot Deals</span>
+        <li>
+          <Link
+            href="/deals"
+            className="flex items-center gap-2 hover:text-brand-1"
+          >
+            <span className="fi-rs-flame text-xl text-brand-1"></span>
+            <span>Hot Deals</span>
+          </Link>
         </li>
-        <li>Home</li>
-        <li>Vegetables</li>
-        <li>Drink</li>
+        <li>
+          <Link href={"/"} className="hover:text-brand-1">
+            Home
+          </Link>
+        </li>
+        <li>
+          <Link href="/vegetables" className="hover:text-brand-1">
+            Vegetables
+          </Link>{" "}
+        </li>
+        <li>
+          <Link href="/drink" className="hover:text-brand-1">
+            Drink
+          </Link>{" "}
+        </li>
       </ul>
     </>
   );
@@ -194,6 +211,7 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
 
 import dynamic from "next/dynamic";
 import { useState } from "react";
+import Link from "next/link";
 
 export const Menu = dynamic(() => Promise.resolve(MenuComponent), {
   ssr: false,
