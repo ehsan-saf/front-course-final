@@ -13,7 +13,7 @@ interface Props {
 
 export function IconBox({
   icon,
-  size = { mobile: 24, nonMobile: 32 },
+  size = { mobile: 24, nonMobile: 24 },
   color = "black",
   link,
   title,
@@ -21,7 +21,7 @@ export function IconBox({
   badge,
 }: Props) {
   const content = (
-    <div className="flex gap-1">
+    <div className="flex items-center gap-1">
       <div className="relative">
         <DynamicIcon
           name={icon}
