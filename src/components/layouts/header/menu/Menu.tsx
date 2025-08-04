@@ -1,6 +1,7 @@
 import { useMediaQuery } from "react-responsive";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { ImageView } from "@/components";
+import { BrowseCategoryMock } from "@/mock/browseCategory";
 
 interface Props {
   expanded: boolean;
@@ -46,116 +47,25 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
                   isDisplayLarge ? "grid grid-cols-2" : "flex flex-col"
                 } gap-4 pb-2`}
               >
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/031-groceries.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Milks and Dairies
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/044-dress.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Clothing & Beauty
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="icons/021-pet-food.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Pet Foods & Toy
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/006-dairy-products.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Baking material
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/009-fruit.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Fresh Fruit
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/004-drinks.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Wines & Drinks
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/026-crab.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Fresh Seafood
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/001-sweet.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Fast food
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/032-grocery.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Vegetables
-                </li>
-                <li className="flex items-center gap-9">
-                  <div className="w-12 h-8 flex-shrink-0">
-                    <ImageView
-                      src="/icons/010-milk-products.svg"
-                      width={30}
-                      height={30}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  Bread and Juice
-                </li>
+                {BrowseCategoryMock.map((cat, index) => {
+                  return (
+                    <Link
+                      key={index}
+                      href={`${cat.path}`}
+                      className="flex items-center gap-9"
+                    >
+                      <div className="w-12 h-8 flex-shrink-0">
+                        <ImageView
+                          src={`/icons/${cat.icon}`}
+                          width={30}
+                          height={30}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                      <span>{cat.title}</span>
+                    </Link>
+                  );
+                })}
               </ul>
             </div>
           </div>
