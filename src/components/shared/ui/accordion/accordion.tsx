@@ -1,11 +1,13 @@
+import { useMediaQuery } from "react-responsive";
 import { ArrowDown, ArrowUp } from "lucide-react";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 interface Props {
   title: string | ReactNode;
   children: ReactNode;
   isAbsolutePos?: boolean;
   className?: string;
+  expandOnLargeDisplay?: boolean;
 }
 
 export function Accordion({
@@ -13,8 +15,20 @@ export function Accordion({
   children,
   className = "",
   isAbsolutePos = false,
+  expandOnLargeDisplay = false,
 }: Props) {
+  const isDisplayLarge = useMediaQuery({ query: "(min-width: 64rem)" });
   const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    if (expandOnLargeDisplay) {
+      if (isDisplayLarge) {
+        setExpanded(true);
+      } else {
+        setExpanded(false);
+      }
+    }
+  }, [isDisplayLarge, expandOnLargeDisplay]);
 
   return (
     <div
@@ -23,19 +37,20 @@ export function Accordion({
       <div className={`accordion-item relative ${expanded ? "expanded" : ""}`}>
         <h2 className="accordion-header">
           <button
-            className="accordion-button flex gap-2 w-full text-left lg:pointer-events-none"
+            className="accordion-button flex gap-2 w-full text-left"
             onClick={() => setExpanded((stat) => !stat)}
           >
             <span>{title}</span>
-            {expanded ? <ArrowUp /> : <ArrowDown />}
+            {!expandOnLargeDisplay ||
+              (!isDisplayLarge && (expanded ? <ArrowUp /> : <ArrowDown />))}
           </button>
         </h2>
         <div
           className={`accordion-collapse ${
             isAbsolutePos ? "absolute z-2" : ""
-          } mt-7 lg:grid-rows-1!`}
+          }`}
         >
-          <div className="accordion-body">{children}</div>
+          <div className="accordion-body mt-3">{children}</div>
         </div>
       </div>
     </div>

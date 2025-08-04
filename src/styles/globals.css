@@ -76,10 +76,6 @@
     @apply flex justify-between items-center gap-2.5 bg-brand-1 text-white p-3 rounded-sm;
     max-width: 255px;
   }
-  .accordion-item.expanded .accordion-button .arrow-icon {
-    transform: rotate(180deg);
-    transition: 0.2s transform;
-  }
 
   /* Category */
 
