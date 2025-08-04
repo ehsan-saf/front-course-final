@@ -4,18 +4,26 @@ import { ReactNode, useState } from "react";
 interface Props {
   title: string | ReactNode;
   children: ReactNode;
-  isAbsolutePos: boolean;
+  isAbsolutePos?: boolean;
+  className?: string;
 }
 
-export function Accordion({ title, children, isAbsolutePos }: Props) {
+export function Accordion({
+  title,
+  children,
+  className = "",
+  isAbsolutePos = false,
+}: Props) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="accordion border-b-[1px] border-border lg:border-0">
+    <div
+      className={`accordion border-b-[1px] border-border lg:border-0 ${className}`}
+    >
       <div className={`accordion-item relative ${expanded ? "expanded" : ""}`}>
         <h2 className="accordion-header">
           <button
-            className="accordion-button w-full text-left lg:pointer-events-none"
+            className="accordion-button flex gap-2 w-full text-left lg:pointer-events-none"
             onClick={() => setExpanded((stat) => !stat)}
           >
             <span>{title}</span>

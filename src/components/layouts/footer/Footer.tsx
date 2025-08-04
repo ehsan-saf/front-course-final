@@ -1,4 +1,4 @@
-import { ImageView, Logo } from "@/components/shared";
+import { Accordion, ImageView, Logo } from "@/components/shared";
 import Link from "next/link";
 
 export function Footer() {
@@ -54,48 +54,28 @@ export function Footer() {
           </address>
         </div>
         {/* <!-- ----------- --> */}
-        <div className="accordion border-b-[1px] border-border lg:border-0">
-          <div className="accordion-item pt-4">
-            <h2 className="accordion-header">
-              <button className="accordion-button w-full text-left lg:pointer-events-none">
-                <span>Company</span>
-                <span className="fi-rs-arrow-down arrow-icon inline-block lg:hidden"></span>
-              </button>
-            </h2>
-            <div className="accordion-collapse mt-7 lg:grid-rows-1!">
-              <div className="accordion-body flex flex-col gap-2.5 font-lato text-base">
-                <Link href="#">About Us</Link>
-                <Link href="#">Delivery Information</Link>
-                <Link href="#">Privacy Policy</Link>
-                <Link href="#">Terms & Conditions</Link>
-                <Link href="#">Contact Us</Link>
-                <Link href="#">Support Center</Link>
-                <Link href="#">Careers</Link>
-              </div>
-            </div>
+        <Accordion title="Company" className="mt-4">
+          <div className="flex flex-col gap-2.5 font-lato text-base">
+            <Link href="#">About Us</Link>
+            <Link href="#">Delivery Information</Link>
+            <Link href="#">Privacy Policy</Link>
+            <Link href="#">Terms & Conditions</Link>
+            <Link href="#">Contact Us</Link>
+            <Link href="#">Support Center</Link>
+            <Link href="#">Careers</Link>
           </div>
-        </div>
+        </Accordion>
         {/* <!-- ----------- --> */}
-        <div className="accordion border-b-[1px] border-border lg:border-0">
-          <div className="accordion-item pt-4">
-            <h2 className="accordion-header">
-              <button className="accordion-button w-full text-left lg:pointer-events-none">
-                <span>Company</span>
-                <span className="fi-rs-arrow-down arrow-icon inline-block lg:hidden"></span>
-              </button>
-            </h2>
-            <div className="accordion-collapse mt-7 lg:grid-rows-1!">
-              <div className="accordion-body flex flex-col gap-2.5 font-lato text-base">
-                <Link href="#">Search Terms</Link>
-                <Link href="#">Advanced Search</Link>
-                <Link href="#">Help & FAQ&apos;s</Link>
-                <Link href="#">Store Location</Link>
-                <Link href="#">Orders & Returns</Link>
-                <Link href="#">Feedback for us</Link>
-              </div>
-            </div>
+        <Accordion title="Information" className="mt-4">
+          <div className="flex flex-col gap-2.5 font-lato text-base">
+            <Link href="#">Search Terms</Link>
+            <Link href="#">Advanced Search</Link>
+            <Link href="#">Help & FAQ&apos;s</Link>
+            <Link href="#">Store Location</Link>
+            <Link href="#">Orders & Returns</Link>
+            <Link href="#">Feedback for us</Link>
           </div>
-        </div>
+        </Accordion>
         {/* <!-- ------------- --> */}
         <div className="flex flex-col gap-4 pt-4">
           <h4>App & Payment</h4>
