@@ -45,7 +45,7 @@ export function IconBox({
         <span
           className={`${
             hideTitleOnMobile && "hidden"
-          } xl:inline-block font-lato text-body`}
+          } lg:inline-block font-lato text-body`}
         >
           {title}
         </span>
