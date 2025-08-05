@@ -41,8 +41,14 @@ export function Accordion({
             onClick={() => setExpanded((stat) => !stat)}
           >
             <span>{title}</span>
-            {!expandOnLargeDisplay ||
-              (!isDisplayLarge && (expanded ? <ArrowUp /> : <ArrowDown />))}
+            {(expandOnLargeDisplay && !isDisplayLarge) ||
+            !expandOnLargeDisplay ? (
+              expanded ? (
+                <ArrowUp />
+              ) : (
+                <ArrowDown />
+              )
+            ) : null}
           </button>
         </h2>
         <div
