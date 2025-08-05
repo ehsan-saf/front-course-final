@@ -4,6 +4,54 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="container mt-16">
+      <div className="container mt-8 lg:mt-[75px]">
+        <div className="relative rounded-xl overflow-hidden">
+          {/* <!-- Background --> */}
+          <div className="absolute -z-1 inset-0 h-full opacity-10 bg-[url(/images/hero-bg.png)] bg-cover bg-center bg-no-repeat"></div>
+          <div className="absolute -z-2 inset-0 h-full bg-[#d8f4e4] opacity-80"></div>
+          {/* <!-- -------- --> */}
+          <div className="flex">
+            <div className="max-w-1/2 flex flex-col gap-3 p-16">
+              <h3 className="text-xl lg:text-5xl">
+                Stay home & get your daily needs from our shop
+              </h3>
+              <p>Start Your Daily Shopping with Nest Mart</p>
+            </div>
+
+            <div className="ml-auto relative flex">
+              <ImageView
+                className=""
+                src="/images/delivery-guy.png"
+                alt="delivery guy"
+                width={415}
+                height={359}
+              />
+              <ImageView
+                className="hidden lg:block absolute top-8"
+                src="/images/hero-cucumber.png"
+                alt=""
+                width={172}
+                height={172}
+              />
+              <ImageView
+                className="hidden lg:block absolute top-36 w-[172px] -translate-x-20"
+                src="/images/hero-onion.png"
+                alt=""
+                width={172}
+                height={172}
+              />
+              <ImageView
+                className="hidden lg:block absolute bottom-0 -translate-x-44 w-[172px]"
+                src="/images/hero-pepper.png"
+                alt=""
+                width={172}
+                height={172}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* ----------------------------------- */}
       <div className="flex flex-col lg:flex-row justify-between pb-8">
         <div className="max-w-80 flex flex-col gap-3 pb-8 border-b-[1px] border-border lg:border-0">
           <div className="flex items-center gap-1.5">
