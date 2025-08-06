@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { DynamicIcon, IconName } from "lucide-react/dynamic";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
   icon: IconName;
@@ -9,6 +10,7 @@ interface Props {
   title?: string;
   hideTitleOnMobile?: boolean;
   badge?: string | number;
+  className?: string;
 }
 
 export function IconBox({
@@ -19,9 +21,10 @@ export function IconBox({
   title,
   hideTitleOnMobile = false,
   badge,
+  className = "",
 }: Props) {
   const content = (
-    <div className="flex items-center gap-1">
+    <div className={twMerge("flex items-center gap-1", className)}>
       <div className="relative">
         <DynamicIcon
           name={icon}
