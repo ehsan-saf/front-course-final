@@ -39,7 +39,10 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
           </form>
         </div>
         <div
-          className={`absolute inset-0 h-full opacity-10 bg-[url(/images/${bgImage})] bg-cover bg-center bg-no-repeat"></div>`}
+          className={`absolute inset-0 h-full opacity-10 bg-cover bg-center bg-no-repeat"`}
+          style={{
+            backgroundImage: `url(/images/${bgImage})`,
+          }}
         />
         <div className="absolute inset-0 h-full bg-[#FDC04033] opacity-80"></div>
         <ImageView

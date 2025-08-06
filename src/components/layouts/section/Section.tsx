@@ -4,11 +4,15 @@ import { twMerge } from "tailwind-merge";
 interface Props {
   className?: string;
   children: ReactNode;
+  ariaLabel?: string;
 }
 
-export function Section({ className = "", children }: Props) {
+export function Section({ className = "", ariaLabel = "", children }: Props) {
   return (
-    <section className={twMerge("container mb-16", className)}>
+    <section
+      aria-label={ariaLabel}
+      className={twMerge("container mb-16", className)}
+    >
       {children}
     </section>
   );
