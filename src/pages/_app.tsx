@@ -1,8 +1,10 @@
-import { Layout } from "@/components";
 import "@/styles/globals.css";
+import "swiper/css";
+import "swiper/css/autoplay";
 import "@/styles/uicons-regular-straight.css";
 import type { AppProps } from "next/app";
 import { Quicksand, Lato, Montserrat } from "next/font/google";
+import { Layout } from "@/components";
 
 const quicksand = Quicksand({
   subsets: ["latin"],

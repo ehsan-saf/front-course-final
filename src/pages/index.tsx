@@ -1,4 +1,9 @@
-import { Banner, Section, FeaturedCategories } from "@/components";
+import {
+  Banner,
+  Section,
+  FeaturedCategories,
+  MiniProductSlider,
+} from "@/components";
 
 export default function Home() {
   return (
@@ -13,6 +18,9 @@ export default function Home() {
       </Section>
       <Section ariaLabel="featured categories">
         <FeaturedCategories />
+      </Section>
+      <Section>
+        <MiniProductSlider />
       </Section>
     </>
   );
