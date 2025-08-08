@@ -3,6 +3,7 @@ import {
   Section,
   FeaturedCategories,
   MiniProductSlider,
+  SimpleProductCard,
 } from "@/components";
 
 export default function Home() {
@@ -21,6 +22,10 @@ export default function Home() {
       </Section>
       <Section>
         <MiniProductSlider />
+      </Section>
+
+      <Section>
+        <SimpleProductCard />
       </Section>
     </>
   );
