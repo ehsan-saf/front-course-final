@@ -16,7 +16,7 @@ interface Props {
 export function IconBox({
   icon,
   size = { mobile: 24, nonMobile: 24 },
-  color = "black",
+  color,
   link,
   title,
   hideTitleOnMobile = false,
@@ -39,7 +39,7 @@ export function IconBox({
           }
         />
         {badge && (
-          <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 grid place-content-center w-5 h-5 p-1.5 rounded-full bg-brand-1 text-xs text-white">
+          <span className="absolute top-0 right-0 grid h-5 w-5 translate-x-1/2 -translate-y-1/2 place-content-center rounded-full bg-brand-1 p-1.5 text-xs text-white">
             {badge}
           </span>
         )}
@@ -48,7 +48,7 @@ export function IconBox({
         <span
           className={`${
             hideTitleOnMobile && "hidden"
-          } lg:inline-block font-lato text-body`}
+          } font-lato text-body lg:inline-block`}
         >
           {title}
         </span>

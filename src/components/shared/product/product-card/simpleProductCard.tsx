@@ -1,5 +1,6 @@
-import { ImageView } from "../../imageView";
-import { RatingStars } from "../rating-stars";
+import { ImageView } from "@/components";
+import { QuantityInput } from "@/components";
+import { RatingStars } from "@/components";
 
 interface Props {
   data?: unknown;
@@ -45,30 +46,7 @@ export function SimpleProductCard({ data }: Props) {
           <div className="text-sm text-brand-1 md:text-xl">$2.51</div>
           <div className="text-xs text-body line-through">$2.80</div>
         </div>
-        {/* <!-- ----- Add Product button and Number input ----- --> */}
-        <button className="add-btn flex items-center justify-center gap-2.5 rounded-sm bg-[#DEF9EC] p-1.5 group-[.added]:hidden md:px-2.5 md:py-1">
-          <span className="hidden text-sm text-brand-1 md:inline">Add</span>
-          <span className="fi-rs-plus-small h-4 w-4 -translate-y-0.5 text-base text-brand-1"></span>
-        </button>
-        {/* <!-- Input number when added ---- --> */}
-        <div className="input-container hidden h-6 w-6 items-center justify-between rounded-sm border-[1px] border-brand-1 group-[.added]:flex md:h-7 md:w-16">
-          <input
-            type="number"
-            value="1"
-            className="no-spinner h-full w-full text-center text-sm text-brand-1"
-          />
-          <div className="hidden flex-col gap-1 pr-1.5 text-brand-1 md:flex">
-            <span
-              role="button"
-              className="plus-count fi-rs-angle-small-up h-2.5 w-2.5 text-xs"
-            ></span>
-            <span
-              role="button"
-              className="minus-count fi-rs-angle-small-down h-2.5 w-2.5 text-xs"
-            ></span>
-          </div>
-        </div>
-        {/* <!-- End of add buttn and input --> */}
+        <QuantityInput />
       </div>
     </div>
   );

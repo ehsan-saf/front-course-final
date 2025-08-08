@@ -40,7 +40,7 @@ export default function App({ Component, pageProps }: AppProps) {
           font-family: "montserrat";
         }
       `}</style>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </Layout>
   );
 }
