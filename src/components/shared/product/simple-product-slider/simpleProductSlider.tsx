@@ -1,13 +1,13 @@
-import { miniProductSliderMock } from "@/mock/miniProductSlider";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { SimpleProductCard } from "@/components";
+import { Product } from "@/types/Product";
 
 interface Props {
-  sliderData: Array<unknown>;
+  sliderData: Array<Product>;
 }
 
-export function simpleProductSlider({ sliderData }: Props) {
+export function SimpleProductSlider({ sliderData }: Props) {
   return (
     <Swiper
       modules={[Autoplay]}
@@ -32,7 +32,7 @@ export function simpleProductSlider({ sliderData }: Props) {
       {sliderData.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <SimpleProductCard data={item} />
+            <SimpleProductCard key={index} data={item} />
           </SwiperSlide>
         );
       })}

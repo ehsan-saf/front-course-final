@@ -3,8 +3,9 @@ import {
   Section,
   FeaturedCategories,
   MiniProductSlider,
-  SimpleProductCard,
+  SimpleProductSlider,
 } from "@/components";
+import { productsMock } from "@/mock/products";
 
 export default function Home() {
   return (
@@ -25,7 +26,7 @@ export default function Home() {
       </Section>
 
       <Section>
-        <SimpleProductCard />
+        <SimpleProductSlider sliderData={productsMock} />
       </Section>
     </>
   );
