@@ -26,12 +26,12 @@ export default function Home() {
       </Section>
 
       <Section>
-        <h2 className="mb-11 text-base md:text-3xl">Popular Products</h2>
+        <h2 className="text-base md:text-3xl">Popular Products</h2>
         <SimpleProductSlider sliderData={popularProductsMock} />
       </Section>
 
       <Section>
-        <h2 className="mb-11 text-base md:text-3xl">Popular Fruits</h2>
+        <h2 className="text-base md:text-3xl">Popular Fruits</h2>
         <SimpleProductSlider sliderData={popularFruitsMock} />
       </Section>
     </>
