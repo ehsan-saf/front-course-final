@@ -16,7 +16,11 @@ interface Props {
 export function SimpleProductCard({ data }: Props) {
   return (
     <div className="group flex flex-col gap-1.5 p-3 md:p-4 md:pt-14">
-      <ProductLabel label={data.label} />
+      <ProductLabel
+        label={data.label}
+        price={data.price}
+        sale_price={data.sale_price}
+      />
       <div className="relative flex h-24 justify-center md:h-44">
         <Link href="/">
           <ImageView

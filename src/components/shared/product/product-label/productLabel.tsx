@@ -1,19 +1,26 @@
 interface Props {
   label: string | undefined;
+  price?: number;
+  sale_price?: number;
 }
 
-export function ProductLabel({ label }: Props) {
-  if (!label) return null;
-
-  const trimmedLabel = label.trim().toLowerCase();
-
-  if (!Number.isNaN(Number(label))) {
-    return <div className="product-label bg-brand-1">-{label}%</div>;
-  } else if (trimmedLabel === "sale") {
-    return <div className="product-label bg-brand-2">{label}</div>;
-  } else if (trimmedLabel === "hot") {
-    return <div className="product-label bg-danger">{label}</div>;
+export function ProductLabel({ label, price, sale_price }: Props) {
+  if (label) {
+    label = label.trim().toLowerCase();
+    if (label === "sale") {
+      return <div className="product-label bg-brand-2">{label}</div>;
+    } else if (label === "hot") {
+      return <div className="product-label bg-danger">{label}</div>;
+    }
   }
 
+  if (price && sale_price) {
+    const discountPercentage = (((price - sale_price) / price) * 100).toFixed(
+      0,
+    );
+    return (
+      <div className="product-label bg-brand-1">-{discountPercentage}%</div>
+    );
+  }
   return <div></div>;
 }
