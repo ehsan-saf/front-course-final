@@ -33,7 +33,7 @@ export function SimpleProductCard({ data }: Props) {
       <Link href="/">
         <h4 className="ellipsis-2 text-xs md:text-base">{data.title}</h4>
       </Link>
-      <RatingStars rating={data.rating} />
+      <RatingStars rating={data.rating} showNumber />
       <div
         aria-label="weight of the product"
         className="font-lato text-xs text-body"

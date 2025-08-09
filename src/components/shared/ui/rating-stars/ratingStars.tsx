@@ -2,9 +2,10 @@ import { Star } from "lucide-react";
 
 interface Props {
   rating: number;
+  showNumber?: boolean;
 }
 
-export function RatingStars({ rating }: Props) {
+export function RatingStars({ rating, showNumber = false }: Props) {
   const stars = Array.from({ length: 5 }, (_, i) => {
     const fillPercentage = Math.min(Math.max(rating - i, 0), 1) * 100;
 
@@ -21,5 +22,14 @@ export function RatingStars({ rating }: Props) {
     );
   });
 
-  return <div className="flex">{stars}</div>;
+  return (
+    <div className="flex items-center gap-2.5">
+      <div className="flex gap-[3px]">{stars}</div>
+      {showNumber && (
+        <span className="font-lato text-xs text-body">
+          ({rating.toFixed(1)})
+        </span>
+      )}
+    </div>
+  );
 }
