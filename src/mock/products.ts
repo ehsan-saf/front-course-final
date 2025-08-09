@@ -1,6 +1,6 @@
 import { Product } from "@/types/Product";
 
-export const productsMock: Array<Product> = [
+export const popularProductsMock: Array<Product> = [
   {
     category: "Hodo Foods",
     title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
@@ -9,7 +9,6 @@ export const productsMock: Array<Product> = [
     unit: "gram",
     price: 2.51,
     sale_price: 2,
-    label: "17",
     image: "/images/18.jpg",
   },
   {
@@ -37,6 +36,62 @@ export const productsMock: Array<Product> = [
   {
     category: "Hodo Foods",
     title: "Foster Farms Takeout Crispy Classic Buffalo Wings",
+    rating: 4,
+    weight: 500,
+    unit: "gram",
+    price: 2.51,
+    sale_price: 2,
+    image: "/images/5.png",
+  },
+  {
+    category: "Hodo Foods",
+    title: "Blue Diamond Almonds Lightly Salted Vegetables",
+    rating: 4,
+    weight: 500,
+    unit: "gram",
+    price: 2.51,
+    sale_price: 2,
+    image: "/images/7.png",
+  },
+];
+
+// -----------------------------------------------------
+
+export const popularFruitsMock: Array<Product> = [
+  {
+    category: "Hodo Foods",
+    title: "Blue Diamond Almonds Lightly Salted Vegetables",
+    rating: 4,
+    weight: 500,
+    unit: "gram",
+    price: 2.51,
+    sale_price: 2,
+    image: "/images/7.png",
+  },
+  {
+    category: "Hodo Foods",
+    title: "Seeds of Change Organic Quinoa, Brown, & Red Rice",
+    rating: 4,
+    weight: 500,
+    unit: "gram",
+    price: 2.51,
+    sale_price: 2,
+    image: "/images/1.png",
+  },
+  {
+    category: "Hodo Foods",
+    title: "All Natural Italian-Style Chicken Meatballs",
+    rating: 4,
+    weight: 500,
+    unit: "gram",
+    price: 2.51,
+    sale_price: 2,
+    label: "Sale",
+    image: "/images/3.png",
+  },
+  {
+    category: "Hodo Foods",
+    title: "Angie’s Boomchickapop Sweet & Salty Kettle Corn",
     rating: 4,
     weight: 500,
     unit: "gram",

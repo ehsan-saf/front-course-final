@@ -15,7 +15,7 @@ interface Props {
 
 export function SimpleProductCard({ data }: Props) {
   return (
-    <div className="group flex flex-col gap-1.5 p-3 md:p-4 md:pt-14">
+    <div className="product-card group flex flex-col gap-1.5 p-3 md:p-4 md:pt-14">
       <ProductLabel
         label={data.label}
         price={data.price}
@@ -28,7 +28,7 @@ export function SimpleProductCard({ data }: Props) {
             width={200}
             height={200}
             alt="product image"
-            wrapperClassName="w-[150px] h-[150px]"
+            wrapperClassName="w-[130px] h-[130px] lg:w-[160px] lg:h-[160px]"
           />
         </Link>
         <ProductActions />

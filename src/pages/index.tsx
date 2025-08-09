@@ -5,7 +5,7 @@ import {
   MiniProductSlider,
   SimpleProductSlider,
 } from "@/components";
-import { productsMock } from "@/mock/products";
+import { popularFruitsMock, popularProductsMock } from "@/mock/products";
 
 export default function Home() {
   return (
@@ -26,7 +26,13 @@ export default function Home() {
       </Section>
 
       <Section>
-        <SimpleProductSlider sliderData={productsMock} />
+        <h2 className="mb-11 text-base md:text-3xl">Popular Products</h2>
+        <SimpleProductSlider sliderData={popularProductsMock} />
+      </Section>
+
+      <Section>
+        <h2 className="mb-11 text-base md:text-3xl">Popular Fruits</h2>
+        <SimpleProductSlider sliderData={popularFruitsMock} />
       </Section>
     </>
   );
