@@ -1,9 +1,13 @@
-import { ImageView, ProductPrice } from "@/components";
-import { QuantityInput } from "@/components";
-import { RatingStars } from "@/components";
+import {
+  QuantityInput,
+  ProductLabel,
+  RatingStars,
+  ImageView,
+  ProductPrice,
+  ProductActions,
+} from "@/components";
 import { Product } from "@/types/Product";
 import Link from "next/link";
-import { ProductLabel } from "@/components";
 
 interface Props {
   data: Product;
@@ -11,9 +15,9 @@ interface Props {
 
 export function SimpleProductCard({ data }: Props) {
   return (
-    <div className="flex flex-col gap-1.5 p-3 md:p-4 md:pt-14">
+    <div className="group flex flex-col gap-1.5 p-3 md:p-4 md:pt-14">
       <ProductLabel label={data.label} />
-      <div className="flex h-24 justify-center md:h-44">
+      <div className="relative flex h-24 justify-center md:h-44">
         <Link href="/">
           <ImageView
             src={data.image}
@@ -23,17 +27,7 @@ export function SimpleProductCard({ data }: Props) {
             wrapperClassName="w-[150px] h-[150px]"
           />
         </Link>
-        <div className="absolute top-1/2 left-1/2 hidden w-24 -translate-x-1/2 -translate-y-1/2 grid-cols-3 rounded-[5px] border-[1px] border-greenBorder bg-white text-brand-1 group-hover:grid">
-          <button className="cursor-pointer border-r-[1px] border-[inherit]">
-            <span className="fi-rs-shuffle mt-1.5 inline-block text-sm"></span>
-          </button>
-          <button className="cursor-pointer border-r-[1px] border-[inherit]">
-            <span className="fi-rs-heart mt-1.5 inline-block text-sm"></span>
-          </button>
-          <button className="cursor-pointer">
-            <span className="fi-rs-eye mt-1.5 inline-block text-sm"></span>
-          </button>
-        </div>
+        <ProductActions />
       </div>
       <h3 className="font-lato text-xs text-body">{data.category}</h3>
       <Link href="/">

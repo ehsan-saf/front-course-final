@@ -24,7 +24,9 @@ export function IconBox({
   className = "",
 }: Props) {
   const content = (
-    <div className={twMerge("flex items-center gap-1", className)}>
+    <div
+      className={twMerge("flex items-center justify-center gap-1", className)}
+    >
       <div className="relative">
         <DynamicIcon
           name={icon}
