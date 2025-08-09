@@ -45,24 +45,24 @@
 
 @layer components {
   .navbar-accordionButton {
-    @apply flex justify-between items-center gap-2.5 bg-brand-1 text-white p-3 rounded-sm;
+    @apply flex items-center justify-between gap-2.5 rounded-sm bg-brand-1 p-3 text-white;
     max-width: 255px;
   }
 
   /* Category */
 
   .category {
-    @apply flex flex-col items-center p-2.5 pt-0 rounded-[10px];
+    @apply flex flex-col items-center rounded-[10px] p-2.5 pt-0;
   }
 
   /* Popular Item */
 
   .popular-item {
-    @apply relative w-min md:w-full md:max-w-72 h-64 md:h-96 shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] lg:shadow-none lg:hover:shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] lg:border-[1px] rounded-[10px] lg:border-border hover:border-brand-1;
+    @apply relative h-64 w-min rounded-[10px] shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] hover:border-brand-1 md:h-96 md:w-full md:max-w-72 lg:border-[1px] lg:border-border lg:shadow-none lg:hover:shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)];
   }
 
   .product-label {
-    @apply absolute z-1 top-0 left-0 lg:top-5 rounded-tl-[inherit] rounded-tr-4xl rounded-br-4xl px-3.5 py-2.5 font-lato text-xs text-white;
+    @apply absolute top-0 left-0 z-1 rounded-tl-[inherit] rounded-tr-4xl rounded-br-4xl px-3.5 py-2.5 font-lato text-xs text-white lg:top-5;
   }
 
   /* Text ellipsis */
@@ -138,7 +138,9 @@
 
   background: #000000;
 
-  transition: opacity 0.3s, visibility 0.5s;
+  transition:
+    opacity 0.3s,
+    visibility 0.5s;
 }
 
 .expanded .offcanvas-backdrop {

@@ -3,6 +3,7 @@ import { QuantityInput } from "@/components";
 import { RatingStars } from "@/components";
 import { Product } from "@/types/Product";
 import Link from "next/link";
+import { ProductLabel } from "@/components";
 
 interface Props {
   data: Product;
@@ -11,10 +12,8 @@ interface Props {
 export function SimpleProductCard({ data }: Props) {
   return (
     <div className="flex flex-col gap-1.5 p-3 md:p-4 md:pt-14">
-      {data.label && (
-        <div className="product-label bg-brand-1">{data.label}</div>
-      )}
-      <div className="relative flex h-24 justify-center md:h-44">
+      <ProductLabel label={data.label} />
+      <div className="flex h-24 justify-center md:h-44">
         <Link href="/">
           <ImageView
             src={data.image}

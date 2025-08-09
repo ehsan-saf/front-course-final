@@ -2,3 +2,4 @@ export * from "./product-card";
 export * from "./simple-product-slider";
 export * from "./quantity-input";
 export * from "./product-price";
+export * from "./product-label";
