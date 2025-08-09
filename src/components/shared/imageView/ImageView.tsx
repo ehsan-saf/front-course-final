@@ -3,9 +3,11 @@ import Image from "next/image";
 interface Props {
   src: string;
   alt?: string;
-  width: number | undefined;
-  height: number | undefined;
-  className?: string;
+  width?: number | undefined;
+  height?: number | undefined;
+  fill?: boolean | undefined;
+  imageClassName?: string;
+  wrapperClassName?: string;
 }
 
 export function ImageView({
@@ -13,15 +15,20 @@ export function ImageView({
   alt = "",
   width,
   height,
-  className = "",
+  fill,
+  imageClassName = "",
+  wrapperClassName = "",
 }: Props) {
   return (
-    <Image
-      className={className}
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-    />
+    <div className={wrapperClassName}>
+      <Image
+        className={imageClassName}
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        fill={fill}
+      />
+    </div>
   );
 }

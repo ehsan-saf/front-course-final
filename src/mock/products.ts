@@ -10,7 +10,7 @@ export const productsMock: Array<Product> = [
     price: 2,
     sale_price: 2.51,
     label: "17",
-    image: "/images/18.png",
+    image: "/images/18.jpg",
   },
   {
     category: "Hodo Foods",

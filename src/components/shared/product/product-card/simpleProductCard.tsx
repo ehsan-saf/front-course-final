@@ -17,11 +17,11 @@ export function SimpleProductCard({ data }: Props) {
       <div className="relative flex h-24 justify-center md:h-44">
         <Link href="/">
           <ImageView
-            width={200}
-            height={144}
             src={data.image}
+            width={200}
+            height={200}
             alt="product image"
-            className="h-full"
+            wrapperClassName="w-[150px] h-[150px]"
           />
         </Link>
         <div className="absolute top-1/2 left-1/2 hidden w-24 -translate-x-1/2 -translate-y-1/2 grid-cols-3 rounded-[5px] border-[1px] border-greenBorder bg-white text-brand-1 group-hover:grid">
