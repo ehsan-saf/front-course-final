@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
-import { SimpleProductCard } from "@/components";
+import { IconBox, SimpleProductCard } from "@/components";
 import { Product } from "@/types/Product";
 
 interface Props {
@@ -19,13 +19,21 @@ export function SimpleProductSlider({ sliderData }: Props) {
           ref={prevRef}
           className="flex items-center justify-center rounded-full bg-grey-1 p-3"
         >
-          <span className="fi-rs-arrow-small-left flex h-3 w-3 items-center justify-center text-body"></span>
+          <IconBox
+            icon="arrow-left"
+            size={{ mobile: 12, nonMobile: 12 }}
+            className="text-body"
+          />
         </button>
         <button
           ref={nextRef}
           className="flex items-center justify-center rounded-full bg-brand-1 p-3"
         >
-          <span className="fi-rs-arrow-small-right flex h-3 w-3 items-center justify-center text-white"></span>
+          <IconBox
+            icon="arrow-right"
+            size={{ mobile: 12, nonMobile: 12 }}
+            className="text-white"
+          />
         </button>
       </div>
       <Swiper
