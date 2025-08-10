@@ -12,14 +12,14 @@ export function ProductPrice({ price, sale_price }: Props) {
     return (
       <div className="flex items-center gap-1">
         <div className="text-sm text-brand-1 md:text-xl">
-          {formatNumber(sale_price)}
+          ${formatNumber(sale_price)}
         </div>
         <div className="text-xs text-body line-through">
-          {formatNumber(price)}
+          ${formatNumber(price)}
         </div>
       </div>
     );
   } else {
-    return <div className="text-xs text-body">{formatNumber(price)}</div>;
+    return <div className="text-xs text-body">${formatNumber(price)}</div>;
   }
 }

@@ -4,8 +4,12 @@ import {
   FeaturedCategories,
   MiniProductSlider,
   SimpleProductSlider,
+  IconBox,
 } from "@/components";
+import { OffersSlider } from "@/components/pages/homePage/offers";
+import { offersMock } from "@/mock/offers";
 import { popularFruitsMock, popularProductsMock } from "@/mock/products";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -33,6 +37,26 @@ export default function Home() {
       <Section>
         <h2 className="text-base md:text-3xl">Popular Fruits</h2>
         <SimpleProductSlider sliderData={popularFruitsMock} />
+      </Section>
+
+      <Section>
+        <h2 className="mb-12 text-base md:text-3xl">Our-offers</h2>
+        <div className="flex gap-2">
+          <div className="hidden max-w-[370px] flex-col justify-between self-stretch rounded-[10px] bg-[#3BB77E] bg-[url(/images/leaf-bg.jpg)] bg-contain bg-bottom bg-no-repeat p-12 pt-[38px] shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] xl:flex">
+            <h3 className="text-heading2 text-blue-300">
+              Bring nature into your home
+            </h3>
+            <Link
+              href="#"
+              className="mt-6 inline-flex max-w-max cursor-pointer items-center gap-2.5 rounded-[3px] bg-brand-1 py-2 pr-2.5 pl-[15px] text-white hover:bg-brand-2"
+            >
+              <div className="text-xs">Shop now</div>
+              <IconBox icon="arrow-right" />
+            </Link>
+          </div>
+
+          <OffersSlider sliderData={offersMock} />
+        </div>
       </Section>
     </>
   );

@@ -8,4 +8,6 @@ export interface Product {
   price: number;
   sale_price?: number;
   label?: string;
+  total?: number;
+  sold?: number;
 }

@@ -5,21 +5,24 @@ import {
   ImageView,
   ProductPrice,
   ProductActions,
+  LinearBar,
 } from "@/components";
 import { Product } from "@/types/Product";
 import Link from "next/link";
 
 interface Props {
   data: Product;
+  showSaveLabel: boolean;
 }
 
-export function SimpleProductCard({ data }: Props) {
+export function SimpleProductCard({ data, showSaveLabel }: Props) {
   return (
     <div className="product-card group flex flex-col gap-1.5 p-3 md:p-4 md:pt-14">
       <ProductLabel
         label={data.label}
         price={data.price}
         sale_price={data.sale_price}
+        showSaveText={showSaveLabel}
       />
       <div className="relative flex h-24 justify-center md:h-44">
         <Link href="/">
@@ -44,10 +47,23 @@ export function SimpleProductCard({ data }: Props) {
       >
         {`${data.weight} ${data.unit}s`}
       </div>
-      <div className="datas-center mt-auto flex justify-between">
-        <ProductPrice price={data.price} sale_price={data.sale_price} />
-        <QuantityInput />
-      </div>
+      {!(data.total && data.sold) ? (
+        <div className="mt-auto flex items-center justify-between">
+          <ProductPrice price={data.price} sale_price={data.sale_price} />
+          <QuantityInput />
+        </div>
+      ) : (
+        <>
+          <ProductPrice price={data.price} sale_price={data.sale_price} />
+          <div className="flex w-full flex-col gap-3">
+            <LinearBar current={data.sold} total={data.total} />
+            <div className="font-lato text-xs text-heading">
+              Sold: {`${data.sold}/${data.total}`}
+            </div>
+            <QuantityInput showAddToCart />
+          </div>
+        </>
+      )}
     </div>
   );
 }

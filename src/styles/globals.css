@@ -57,8 +57,8 @@
 
   /* Popular Item */
 
-  .product-item {
-    @apply relative h-64 w-min rounded-[10px] shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] hover:border-brand-1 md:h-96 md:w-full md:max-w-72 lg:border-[1px] lg:border-border lg:shadow-none lg:hover:shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)];
+  .product-card {
+    @apply relative w-min rounded-[10px] shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] hover:border-brand-1 hover:shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] md:w-full md:max-w-72 lg:border-[1px] lg:border-border lg:shadow-none;
   }
 
   .product-label {

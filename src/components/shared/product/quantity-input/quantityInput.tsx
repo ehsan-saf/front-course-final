@@ -1,7 +1,11 @@
 import { useState } from "react";
 import { IconBox } from "@/components";
 
-export function QuantityInput() {
+interface Props {
+  showAddToCart?: boolean;
+}
+
+export function QuantityInput({ showAddToCart = false }: Props) {
   const [quantity, setQuantity] = useState(0);
 
   function increment() {
@@ -16,14 +20,26 @@ export function QuantityInput() {
     <>
       {/* <!-- ----- Add Product button and Number input ----- --> */}
       <button
-        className="add-btn flex items-center justify-center gap-2.5 rounded-sm bg-[#DEF9EC] p-1.5 text-brand-1 hover:bg-brand-2 hover:text-white md:px-2.5 md:py-1"
+        className={`flex items-center justify-center gap-2.5 rounded-sm ${showAddToCart ? "bg-brand-1 p-2 p-2.5 text-white" : "bg-[#DEF9EC] p-1.5 hover:text-white md:px-2.5 md:py-1"} text-brand-1 hover:bg-brand-2`}
         style={{
           display: `${quantity < 1 ? "flex" : "none"}`,
         }}
         onClick={increment}
       >
-        <span className="hidden text-sm md:inline">Add</span>
-        <IconBox icon="plus" size={{ mobile: 10, nonMobile: 14 }}></IconBox>
+        {!showAddToCart ? (
+          <>
+            <span className="hidden text-sm md:inline">Add</span>
+            <IconBox icon="plus" size={{ mobile: 10, nonMobile: 14 }}></IconBox>
+          </>
+        ) : (
+          <>
+            <span className="hidden text-sm md:inline">Add To Cart</span>
+            <IconBox
+              icon="shopping-cart"
+              size={{ mobile: 16, nonMobile: 16 }}
+            ></IconBox>
+          </>
+        )}
       </button>
       {/* <!-- Input number when added ---- --> */}
       <div

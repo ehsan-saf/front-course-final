@@ -2,9 +2,15 @@ interface Props {
   label: string | undefined;
   price?: number;
   sale_price?: number;
+  showSaveText?: boolean;
 }
 
-export function ProductLabel({ label, price, sale_price }: Props) {
+export function ProductLabel({
+  label,
+  price,
+  sale_price,
+  showSaveText = false,
+}: Props) {
   if (label) {
     label = label.trim().toLowerCase();
     if (label === "sale") {
@@ -19,7 +25,12 @@ export function ProductLabel({ label, price, sale_price }: Props) {
       0,
     );
     return (
-      <div className="product-label bg-brand-1">-{discountPercentage}%</div>
+      <div
+        className={`product-label ${showSaveText ? "bg-danger" : "bg-brand-1"}`}
+      >
+        {showSaveText ? "Save " : "- "}
+        {discountPercentage}%
+      </div>
     );
   }
   return <div></div>;
