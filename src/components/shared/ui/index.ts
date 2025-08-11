@@ -4,3 +4,4 @@ export * from "./accordion";
 export * from "./banner";
 export * from "./rating-stars";
 export * from "./linearBar";
+export * from "./countDown";

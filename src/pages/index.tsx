@@ -5,8 +5,10 @@ import {
   MiniProductSlider,
   SimpleProductSlider,
   IconBox,
+  DealSlider,
 } from "@/components";
 import { OffersSlider } from "@/components/pages/homePage/offers";
+import { dealsMock } from "@/mock/deals";
 import { offersMock } from "@/mock/offers";
 import { popularFruitsMock, popularProductsMock } from "@/mock/products";
 import Link from "next/link";
@@ -30,12 +32,12 @@ export default function Home() {
       </Section>
 
       <Section>
-        <h2 className="text-base md:text-3xl">Popular Products</h2>
+        <h2 className="mb-12 text-base md:text-3xl">Popular Products</h2>
         <SimpleProductSlider sliderData={popularProductsMock} />
       </Section>
 
       <Section>
-        <h2 className="text-base md:text-3xl">Popular Fruits</h2>
+        <h2 className="mb-12 text-base md:text-3xl">Popular Fruits</h2>
         <SimpleProductSlider sliderData={popularFruitsMock} />
       </Section>
 
@@ -57,6 +59,11 @@ export default function Home() {
 
           <OffersSlider sliderData={offersMock} />
         </div>
+      </Section>
+
+      <Section>
+        <h2 className="mb-12 text-base md:text-3xl">Deals of the Days</h2>
+        <DealSlider sliderData={dealsMock} />
       </Section>
     </>
   );
