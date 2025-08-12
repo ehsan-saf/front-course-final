@@ -17,15 +17,19 @@ export function DealSlider({ sliderData }: Props) {
       autoplay={true}
       breakpoints={{
         768: {
-          slidesPerView: 3,
+          slidesPerView: 2,
           spaceBetween: 18,
         },
         1024: {
-          slidesPerView: 3,
+          slidesPerView: 2,
           spaceBetween: 22,
         },
         1280: {
           slidesPerView: 3,
+          spaceBetween: 24,
+        },
+        1400: {
+          slidesPerView: 4,
           spaceBetween: 24,
         },
       }}
