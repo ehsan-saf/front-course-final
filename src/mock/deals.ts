@@ -9,6 +9,7 @@ export const dealsMock: Array<Product> = [
     price: 3,
     sale_price: 2.5,
     image: "/images/deal-1-bg.jpg",
+    deadline: "2025-08-20",
   },
 
   {
@@ -19,6 +20,7 @@ export const dealsMock: Array<Product> = [
     price: 3,
     sale_price: 2.5,
     image: "/images/deal-2-bg.jpg",
+    deadline: "2025-10-25",
   },
   {
     title: "Signature Wood-Fired Mushroom and Caramelized Red Onion",
@@ -28,6 +30,7 @@ export const dealsMock: Array<Product> = [
     price: 3,
     sale_price: 2.5,
     image: "/images/deal-3-bg.jpg",
+    deadline: "2025-08-15",
   },
   {
     title: "Simply Lemonade with Raspberry Juice",
@@ -37,5 +40,6 @@ export const dealsMock: Array<Product> = [
     price: 3,
     sale_price: 2.5,
     image: "/images/deal-4-bg.jpg",
+    deadline: "2025-08-14",
   },
 ];

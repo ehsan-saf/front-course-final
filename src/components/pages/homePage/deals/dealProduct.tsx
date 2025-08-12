@@ -24,7 +24,7 @@ export function DealProduct({ data }: Props) {
       />
 
       <div className="-mt-[50%] flex flex-col gap-3">
-        <CountDown />
+        {data.deadline && <CountDown endDate={data.deadline} />}
         <div className="mx-auto flex w-10/12 flex-col gap-1.5 rounded-[10px] bg-white p-6 shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)]">
           <Link href="/">
             <h4 className="ellipsis-2 text-xs md:text-base">{data.title}</h4>

@@ -10,4 +10,5 @@ export interface Product {
   label?: string;
   total?: number;
   sold?: number;
+  deadline?: string;
 }
