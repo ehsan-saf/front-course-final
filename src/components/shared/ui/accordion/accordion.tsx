@@ -37,18 +37,17 @@ export function Accordion({
       <div className={`accordion-item relative ${expanded ? "expanded" : ""}`}>
         <h2 className="accordion-header">
           <button
-            className="accordion-button flex gap-2 w-full text-left"
+            className="accordion-button flex w-full gap-2 text-left"
             onClick={() => setExpanded((stat) => !stat)}
           >
             <span>{title}</span>
-            {(expandOnLargeDisplay && !isDisplayLarge) ||
-            !expandOnLargeDisplay ? (
-              expanded ? (
+            {expanded ? (
+              expandOnLargeDisplay && isDisplayLarge ? null : (
                 <ArrowUp />
-              ) : (
-                <ArrowDown />
               )
-            ) : null}
+            ) : (
+              <ArrowDown />
+            )}
           </button>
         </h2>
         <div
