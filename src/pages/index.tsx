@@ -6,6 +6,7 @@ import {
   SimpleProductSlider,
   IconBox,
   DealSlider,
+  FeaturedListsSlider,
 } from "@/components";
 import { OffersSlider } from "@/components/pages/homePage/offers";
 import { dealsMock } from "@/mock/deals";
@@ -64,6 +65,10 @@ export default function Home() {
       <Section>
         <h2 className="mb-12 text-base md:text-3xl">Deals of the Days</h2>
         <DealSlider sliderData={dealsMock} />
+      </Section>
+
+      <Section>
+        <FeaturedListsSlider />
       </Section>
     </>
   );

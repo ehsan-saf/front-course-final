@@ -4,3 +4,4 @@ export * from "./quantity-input";
 export * from "./product-price";
 export * from "./product-label";
 export * from "./product-actions";
+export * from "./product-vertical-list";
