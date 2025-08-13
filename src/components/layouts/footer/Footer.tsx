@@ -5,43 +5,43 @@ export function Footer() {
   return (
     <footer className="container mt-16">
       <div className="container mt-8 lg:mt-[75px]">
-        <div className="relative rounded-xl overflow-hidden">
+        <div className="relative overflow-hidden rounded-xl">
           {/* <!-- Background --> */}
-          <div className="absolute -z-1 inset-0 h-full opacity-10 bg-[url(/images/hero-bg.png)] bg-cover bg-center bg-no-repeat"></div>
-          <div className="absolute -z-2 inset-0 h-full bg-[#d8f4e4] opacity-80"></div>
+          <div className="absolute inset-0 -z-1 h-full bg-[url(/images/hero-bg.png)] bg-cover bg-center bg-no-repeat opacity-10"></div>
+          <div className="absolute inset-0 -z-2 h-full bg-[#d8f4e4] opacity-80"></div>
           {/* <!-- -------- --> */}
           <div className="flex">
-            <div className="max-w-1/2 flex flex-col gap-3 p-16">
+            <div className="flex max-w-1/2 flex-col gap-3 p-16">
               <h3 className="text-xl lg:text-5xl">
                 Stay home & get your daily needs from our shop
               </h3>
               <p>Start Your Daily Shopping with Nest Mart</p>
             </div>
 
-            <div className="ml-auto relative flex">
+            <div className="relative ml-auto flex">
               <ImageView
-                className=""
+                wrapperClassName=""
                 src="/images/delivery-guy.png"
                 alt="delivery guy"
                 width={415}
                 height={359}
               />
               <ImageView
-                className="hidden lg:block absolute top-8"
+                wrapperClassName="hidden lg:block absolute top-8"
                 src="/images/hero-cucumber.png"
                 alt=""
                 width={172}
                 height={172}
               />
               <ImageView
-                className="hidden lg:block absolute top-36 w-[172px] -translate-x-20"
+                wrapperClassName="hidden lg:block absolute top-36 w-[172px] -translate-x-20"
                 src="/images/hero-onion.png"
                 alt=""
                 width={172}
                 height={172}
               />
               <ImageView
-                className="hidden lg:block absolute bottom-0 -translate-x-44 w-[172px]"
+                wrapperClassName="hidden lg:block absolute bottom-0 -translate-x-44 w-[172px]"
                 src="/images/hero-pepper.png"
                 alt=""
                 width={172}
@@ -52,19 +52,19 @@ export function Footer() {
         </div>
       </div>
       {/* ----------------------------------- */}
-      <div className="flex flex-col lg:flex-row justify-between pb-8">
-        <div className="max-w-80 flex flex-col gap-3 pb-8 border-b-[1px] border-border lg:border-0">
+      <div className="flex flex-col justify-between pb-8 lg:flex-row">
+        <div className="flex max-w-80 flex-col gap-3 border-b-[1px] border-border pb-8 lg:border-0">
           <div className="flex items-center gap-1.5">
             <Logo />
             <div className="flex flex-col items-start">
-              <h2 className="text-brand-1 font-normal p-0">LOGO</h2>
+              <h2 className="p-0 font-normal text-brand-1">LOGO</h2>
               <span className="text-[8px]">MART & GROCERY</span>
             </div>
           </div>
           <p className="mb-2">Pellentesque posuere orci lobortis</p>
           <address className="flex flex-col gap-2.5 font-lato not-italic">
             <div className="flex gap-2">
-              <span className="fi-rs-marker h-4 mt-0.5 text-brand-1"></span>
+              <span className="fi-rs-marker mt-0.5 h-4 text-brand-1"></span>
               <div>
                 <span className="font-bold">Address:</span>
                 <span className="" aria-label="address">
@@ -74,7 +74,7 @@ export function Footer() {
             </div>
             {/* <!-- ----------------- --> */}
             <a className="flex gap-2" href="tel:+91540025124553">
-              <span className="fi-rs-headset h-4 mt-0.5 text-brand-1"></span>
+              <span className="fi-rs-headset mt-0.5 h-4 text-brand-1"></span>
               <div>
                 <span className="font-bold">Call Us</span>
                 <span>(+91) - 540-025-1245553</span>
@@ -82,7 +82,7 @@ export function Footer() {
             </a>
             {/* <!-- ------------ --> */}
             <a className="flex gap-2" href="mailto:contact@nestmart.com">
-              <span className="fi-rs-paper-plane h-4 mt-0.5 text-brand-1"></span>
+              <span className="fi-rs-paper-plane mt-0.5 h-4 text-brand-1"></span>
               <div>
                 <span className="font-bold">Email:</span>
                 <span>contact@nestmart.com</span>
@@ -90,7 +90,7 @@ export function Footer() {
             </a>
             {/* <!-- ------------ --> */}
             <div className="flex gap-2">
-              <span className="fi-rs-time-fast h-4 mt-0.5 text-brand-1"></span>
+              <span className="fi-rs-time-fast mt-0.5 h-4 text-brand-1"></span>
               <div>
                 <span className="font-bold">Hours:</span>
                 <span className="" aria-label="address">
@@ -130,7 +130,7 @@ export function Footer() {
           <p className="font-lato text-sm text-body">
             Install NetMart App from App Store or Google Play
           </p>
-          <div className="flex justify-center lg:justify-between gap-4">
+          <div className="flex justify-center gap-4 lg:justify-between">
             <Link
               href="#"
               aria-label="Download NetMart app from app store on iphone"
@@ -156,7 +156,7 @@ export function Footer() {
         </div>
         {/* <!-- ------------ --> */}
       </div>
-      <div className="pt-8 border-t-[1px] border-border text-center">
+      <div className="border-t-[1px] border-border pt-8 text-center">
         All rights reserved
       </div>
     </footer>
