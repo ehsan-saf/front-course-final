@@ -4,7 +4,7 @@ import Link from "next/link";
 export function Footer() {
   return (
     <footer className="container mt-16">
-      <div className="container mt-8 lg:mt-[75px]">
+      <div className="container mt-8 mb-16 lg:mt-[75px]">
         <div className="relative overflow-hidden rounded-xl">
           {/* <!-- Background --> */}
           <div className="absolute inset-0 -z-1 h-full bg-[url(/images/hero-bg.png)] bg-cover bg-center bg-no-repeat opacity-10"></div>
