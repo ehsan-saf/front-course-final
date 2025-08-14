@@ -1,9 +1,13 @@
-import { Accordion, ImageView, Logo } from "@/components/shared";
+import { Accordion, IconBox, ImageView, Logo } from "@/components/shared";
 import Link from "next/link";
 
 export function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="container mt-16">
+    <footer className="container mt-16 grid">
       <div className="container mt-8 mb-16 lg:mt-[75px]">
         <div className="relative overflow-hidden rounded-xl">
           {/* <!-- Background --> */}
@@ -52,7 +56,7 @@ export function Footer() {
         </div>
       </div>
       {/* ----------------------------------- */}
-      <div className="flex flex-col justify-between pb-8 lg:flex-row">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 xl:justify-items-center">
         <div className="flex max-w-80 flex-col gap-3 border-b-[1px] border-border pb-8 lg:border-0">
           <div className="flex items-center gap-1.5">
             <Logo />
@@ -130,7 +134,7 @@ export function Footer() {
           <p className="font-lato text-sm text-body">
             Install NetMart App from App Store or Google Play
           </p>
-          <div className="flex justify-center gap-4 lg:justify-between">
+          <div className="flex w-fit justify-center gap-4">
             <Link
               href="#"
               aria-label="Download NetMart app from app store on iphone"
@@ -156,7 +160,17 @@ export function Footer() {
         </div>
         {/* <!-- ------------ --> */}
       </div>
-      <div className="border-t-[1px] border-border pt-8 text-center">
+      <button
+        onClick={scrollToTop}
+        className="ml-auto rounded-full border-2 border-heading p-1"
+      >
+        <IconBox
+          icon="arrow-up"
+          className="text-heading"
+          size={{ mobile: 20, nonMobile: 20 }}
+        />
+      </button>
+      <div className="mt-1 border-t-[1px] border-border pt-8 text-center font-lato">
         All rights reserved
       </div>
     </footer>
