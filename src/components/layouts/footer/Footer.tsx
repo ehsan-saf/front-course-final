@@ -15,16 +15,18 @@ export function Footer() {
           <div className="absolute inset-0 -z-2 h-full bg-[#d8f4e4] opacity-80"></div>
           {/* <!-- -------- --> */}
           <div className="flex">
-            <div className="flex max-w-1/2 flex-col gap-3 p-16">
+            <div className="flex max-w-2/3 flex-col gap-10 p-3 text-heading md:p-16 lg:max-w-1/2">
               <h3 className="text-xl lg:text-5xl">
                 Stay home & get your daily needs from our shop
               </h3>
-              <p>Start Your Daily Shopping with Nest Mart</p>
+              <p className="hidden md:inline lg:text-2xl">
+                Start Your Daily Shopping with Nest Mart
+              </p>
             </div>
 
             <div className="relative ml-auto flex">
               <ImageView
-                wrapperClassName=""
+                wrapperClassName="w-fit h-fit mt-auto"
                 src="/images/delivery-guy.png"
                 alt="delivery guy"
                 width={415}
