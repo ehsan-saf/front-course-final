@@ -10,7 +10,6 @@ interface Props {
 export function DealSlider({ sliderData }: Props) {
   return (
     <Swiper
-      className="w-full"
       modules={[Autoplay]}
       slidesPerView={1}
       spaceBetween={16}

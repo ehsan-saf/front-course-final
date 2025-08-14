@@ -14,7 +14,7 @@ interface Props {
 
 export function DealProduct({ data }: Props) {
   return (
-    <div className="w-fit">
+    <div className="mx-auto w-fit">
       <ImageView
         imageClassName="h-[200px] w-full max-w-sm rounded-2xl lg:h-[328px]"
         width={378}
