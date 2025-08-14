@@ -12,12 +12,12 @@ import Link from "next/link";
 
 interface Props {
   data: Product;
-  showSaveLabel: boolean;
+  showSaveLabel?: boolean;
 }
 
-export function SimpleProductCard({ data, showSaveLabel }: Props) {
+export function SimpleProductCard({ data, showSaveLabel = false }: Props) {
   return (
-    <div className="product-card group flex flex-col gap-1.5 p-3 md:p-4 md:pt-14">
+    <div className="product-card group flex w-full flex-col gap-1.5 p-3 md:p-4 md:pt-14">
       <ProductLabel
         label={data.label}
         price={data.price}
