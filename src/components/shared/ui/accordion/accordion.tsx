@@ -30,6 +30,12 @@ export function Accordion({
     }
   }, [isDisplayLarge, expandOnLargeDisplay]);
 
+  const expandAccordion = () => {
+    if (!(isDisplayLarge && expandOnLargeDisplay)) {
+      setExpanded((stat) => !stat);
+    }
+  };
+
   return (
     <div
       className={`accordion border-b-[1px] border-border lg:border-0 ${className}`}
@@ -38,7 +44,7 @@ export function Accordion({
         <h2 className="accordion-header">
           <button
             className="accordion-button flex w-full gap-2 text-left"
-            onClick={() => setExpanded((stat) => !stat)}
+            onClick={expandAccordion}
           >
             <span>{title}</span>
             {expanded ? (

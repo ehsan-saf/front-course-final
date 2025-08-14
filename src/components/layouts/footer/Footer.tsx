@@ -59,7 +59,7 @@ export function Footer() {
       </div>
       {/* ----------------------------------- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 xl:justify-items-center">
-        <div className="flex max-w-80 flex-col gap-3 border-b-[1px] border-border pb-8 lg:border-0">
+        <div className="flex max-w-80 flex-col gap-3 pb-8 lg:border-0">
           <div className="flex items-center gap-1.5">
             <Logo />
             <div className="flex flex-col items-start">
