@@ -32,18 +32,51 @@ export default function Home() {
         <MiniProductSlider />
       </Section>
 
+      {/* -------------------------------------------------------------------- */}
+
       <Section>
-        <h2 className="mb-12 text-base md:text-3xl">Popular Products</h2>
+        <div className="mb-12 flex">
+          <Link href={"#"}>
+            <h2 className="text-base md:text-3xl">Popular Products</h2>
+          </Link>
+          <IconBox
+            icon="chevron-right"
+            className="ml-auto text-body lg:hidden"
+            link={"#"}
+          />
+        </div>
         <SimpleProductSlider sliderData={popularProductsMock} />
       </Section>
 
+      {/* -------------------------------------------------------------------- */}
+
       <Section>
-        <h2 className="mb-12 text-base md:text-3xl">Popular Fruits</h2>
+        <div className="mb-12 flex">
+          <Link href={"#"}>
+            <h2 className="text-base md:text-3xl">Popular Fruits</h2>
+          </Link>
+          <IconBox
+            icon="chevron-right"
+            className="ml-auto text-body lg:hidden"
+            link={"#"}
+          />
+        </div>
         <SimpleProductSlider sliderData={popularFruitsMock} />
       </Section>
 
+      {/* -------------------------------------------------------------------- */}
+
       <Section>
-        <h2 className="mb-12 text-base md:text-3xl">Our-offers</h2>
+        <div className="mb-12 flex">
+          <Link href={"#"}>
+            <h2 className="text-base md:text-3xl">Our Offers</h2>
+          </Link>
+          <IconBox
+            icon="chevron-right"
+            className="ml-auto text-body lg:hidden"
+            link={"#"}
+          />
+        </div>
         <div className="flex gap-2">
           <div className="hidden max-w-[370px] flex-col justify-between self-stretch rounded-[10px] bg-[#3BB77E] bg-[url(/images/leaf-bg.jpg)] bg-contain bg-bottom bg-no-repeat p-12 pt-[38px] shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] xl:flex">
             <h3 className="text-heading2 text-blue-300">
@@ -62,10 +95,23 @@ export default function Home() {
         </div>
       </Section>
 
+      {/* ------------------------------------------------------------------- */}
+
       <Section>
-        <h2 className="mb-12 text-base md:text-3xl">Deals of the Days</h2>
+        <div className="mb-12 flex">
+          <Link href={"#"}>
+            <h2 className="text-base md:text-3xl">Deals of the Days</h2>
+          </Link>
+          <IconBox
+            icon="chevron-right"
+            className="ml-auto text-body lg:hidden"
+            link={"#"}
+          />
+        </div>
         <DealSlider sliderData={dealsMock} />
       </Section>
+
+      {/* ----------------------------------------------------------------- */}
 
       <Section>
         <FeaturedListsSlider />
