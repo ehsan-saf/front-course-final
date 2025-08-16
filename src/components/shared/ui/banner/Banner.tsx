@@ -11,35 +11,35 @@ interface Props {
 export function Banner({ title, subtitle, bgImage, image }: Props) {
   return (
     <>
-      <div className="relative flex justify-between items-center pt-5 pl-2 pb-4 md:pl-24 md:pb-16 rounded-lg overflow-hidden">
+      <div className="relative flex items-center justify-between overflow-hidden rounded-lg pt-5 pb-4 pl-2 md:pb-16 md:pl-24">
         <div className="relative z-1 flex flex-col">
           <h2 className="md:text-3xl xl:text-4xl 2xl:text-7xl">{title}</h2>
-          <p className="hidden md:block mt-8 font-lato text-xl xl:text-2xl text-body">
+          <p className="mt-8 hidden font-lato text-xl text-body md:block xl:text-2xl">
             {subtitle}
           </p>
           {/* <!-- ----- Desktop subscribe form ----- --> */}
-          <form action="" className="hidden md:block mt-14">
-            <div className="flex pl-3 bg-white rounded-4xl">
+          <form action="" className="mt-14 hidden md:block">
+            <div className="flex rounded-4xl bg-white pl-3">
               <IconBox
                 icon="send"
                 size={{ mobile: 16, nonMobile: 16 }}
-                className="mr-2 pt-0.5 self-center"
+                className="mr-2 self-center pt-0.5 text-body"
               />
               <input
                 type="text"
                 name=""
                 id=""
                 placeholder="Your email address"
-                className="flex-3 p-2.5 rounded-4xl border-none font-lato"
+                className="flex-3 rounded-4xl border-none p-2.5 font-lato"
               />
-              <button className="flex-1 ml-auto px-2 rounded-4xl bg-brand-1 text-white text-sm">
+              <button className="ml-auto flex-1 rounded-4xl bg-brand-1 px-2 text-sm text-white">
                 Subscribe
               </button>
             </div>
           </form>
         </div>
         <div
-          className={`absolute inset-0 h-full opacity-10 bg-cover bg-center bg-no-repeat"`}
+          className={`bg-no-repeat" absolute inset-0 h-full bg-cover bg-center opacity-10`}
           style={{
             backgroundImage: `url(/images/${bgImage})`,
           }}
@@ -50,25 +50,25 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
           alt=""
           width={878}
           height={538}
-          className="max-w-1/2 ml-auto right-0"
+          className="right-0 ml-auto max-w-1/2"
         />
       </div>
       {/* Mobile subscribe form  */}
-      <form className="lg:hidden mt-4">
-        <div className="flex pl-3 bg-muted rounded-4xl">
+      <form className="mt-4 lg:hidden">
+        <div className="flex rounded-4xl bg-muted pl-3">
           <IconBox
             icon="send"
             size={{ mobile: 16, nonMobile: 16 }}
-            className="mr-2 pt-0.5 self-center"
+            className="mr-2 self-center pt-0.5"
           />
           <input
             type="text"
             name=""
             id=""
             placeholder="Your email address"
-            className="flex-3 p-2.5 rounded-4xl border-none font-lato"
+            className="flex-3 rounded-4xl border-none p-2.5 font-lato"
           />
-          <button className="flex-1 ml-auto px-2 rounded-4xl bg-brand-1 text-white text-sm">
+          <button className="ml-auto flex-1 rounded-4xl bg-brand-1 px-2 text-sm text-white">
             Subscribe
           </button>
         </div>

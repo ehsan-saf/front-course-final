@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useState } from "react";
 import { BrowseCategory } from "./browseCategory";
+import { IconBox } from "@/components/shared";
 
 interface Props {
   expanded: boolean;
@@ -31,7 +32,11 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
             href="/deals"
             className="flex items-center gap-2 hover:text-brand-1"
           >
-            <span className="fi-rs-flame text-xl text-brand-1"></span>
+            <IconBox
+              icon="flame"
+              size={{ mobile: 20, nonMobile: 22 }}
+              className="mb-1 text-brand-1"
+            />
             <span>Hot Deals</span>
           </Link>
         </li>

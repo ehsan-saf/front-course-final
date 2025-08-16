@@ -10,42 +10,72 @@ export function Header() {
   return (
     <header>
       <div className="flex flex-col">
-        <div className="p-6 border-b border-border">
+        <div className="border-b border-border p-6">
           <div className="container flex justify-between">
             <Logo />
-            <div className="hidden lg:flex flex-1">
+            <div className="hidden flex-1 lg:flex">
               <SearchForm containerClass="ml-auto" />
 
               {/* <!-- --------------------- --> */}
               <div className="ml-auto flex items-center gap-2.5">
-                <IconBox icon="user" title="Account" />
-                <IconBox icon="shopping-cart" badge={4} title="Cart" />
+                <IconBox
+                  icon="user"
+                  title="Account"
+                  size={{
+                    mobile: 24,
+                    nonMobile: 24,
+                  }}
+                />
+                <IconBox
+                  icon="shopping-cart"
+                  badge={4}
+                  title="Cart"
+                  size={{
+                    mobile: 24,
+                    nonMobile: 24,
+                  }}
+                />
               </div>
             </div>
             <button
               className="navbar-toggler lg:hidden"
               onClick={() => setMenuExpanded(true)}
             >
-              <span className="fi-rs-burger-menu text-2xl"></span>
+              <IconBox icon="menu" size={{ mobile: 24, nonMobile: 24 }} />
             </button>
           </div>
         </div>
 
         {/* <!--  -- Second header row --> */}
-        <div className="p-6 border-b border-border">
+        <div className="border-b border-border p-6">
           <div className="container flex justify-between">
             <Menu expanded={menuExpanded} setExpanded={setMenuExpanded} />
-            <div className="lg:hidden flex-1 flex justify-between">
+            <div className="flex flex-1 justify-between lg:hidden">
               <SearchForm />
               {/* <!-- --------------------- --> */}
               <div className="flex items-center gap-2.5">
-                <IconBox icon="user" />
-                <IconBox icon="shopping-cart" badge={4} />
+                <IconBox
+                  icon="user"
+                  title="Account"
+                  size={{
+                    mobile: 24,
+                    nonMobile: 24,
+                  }}
+                />
+                <IconBox
+                  icon="shopping-cart"
+                  badge={4}
+                  title="Cart"
+                  size={{
+                    mobile: 24,
+                    nonMobile: 24,
+                  }}
+                />
               </div>
             </div>
 
-            <div className="hidden lg:flex items-center gap-3">
-              <span className="fi-rs-headset text-4xl"></span>
+            <div className="hidden items-center gap-3 lg:flex">
+              <IconBox icon="headset" size={{ nonMobile: 36, mobile: 16 }} />
               <div className="flex flex-col">
                 <h3 className="text-brand-1">1900 - 8888</h3>
                 <div className="font-lato text-body">24/7 Support Center</div>

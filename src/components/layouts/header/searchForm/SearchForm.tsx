@@ -1,3 +1,5 @@
+import { IconBox } from "@/components";
+
 export function SearchForm({ containerClass }: { containerClass?: string }) {
   return (
     <div
@@ -5,9 +7,7 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
     >
       <form className="relative flex">
         <input
-          className={`
-            w-full px-6 py-3.5 border-[1px] rounded-sm border-greenBorder  font-montserrat text-[#B6B6B6]
-          `}
+          className={`w-full rounded-sm border-[1px] border-greenBorder px-6 py-3.5 font-montserrat text-[#B6B6B6]`}
           type="text"
           name="search"
           id="search-bar"
@@ -15,9 +15,13 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
         />
         <button
           type="submit"
-          className={`absolute pt-1 top-1/2 right-3.5 -translate-y-1/2 -translate-x-full`}
+          className={`absolute top-1/2 right-3.5 -translate-x-full -translate-y-1/2 pt-1`}
         >
-          <span className="fi-rs-search"></span>
+          <IconBox
+            icon="search"
+            size={{ mobile: 20, nonMobile: 20 }}
+            className="text-body"
+          />
         </button>
       </form>
     </div>
