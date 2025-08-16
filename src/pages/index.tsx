@@ -35,7 +35,7 @@ export default function Home() {
       {/* -------------------------------------------------------------------- */}
 
       <Section>
-        <div className="mb-12 flex">
+        <div className="mb-5 flex lg:mb-0">
           <Link href={"#"}>
             <h2 className="text-base md:text-3xl">Popular Products</h2>
           </Link>
@@ -51,7 +51,7 @@ export default function Home() {
       {/* -------------------------------------------------------------------- */}
 
       <Section>
-        <div className="mb-12 flex">
+        <div className="mb-5 flex lg:mb-0">
           <Link href={"#"}>
             <h2 className="text-base md:text-3xl">Popular Fruits</h2>
           </Link>
