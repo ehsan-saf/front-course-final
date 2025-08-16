@@ -7,19 +7,19 @@ export function FeaturedCategories() {
   return (
     <>
       <h2 className="mb-11 text-base md:text-3xl">Feautred Categories</h2>
-      <div className="grid grid-cols-3 lg:grid-cols-9 gap-5">
+      <div className="grid grid-cols-3 gap-5 lg:grid-cols-9">
         {FeaturedCategoriesMock.map((cat: FeaturedCategory, index) => {
           return (
             <Link
               key={index}
               href={cat.link}
-              className="category"
+              className="flex flex-col items-center rounded-[10px] p-2.5 pt-0 hover:border-1 hover:border-brand-1-light hover:shadow-md"
               style={{
                 backgroundColor: cat.color,
               }}
             >
               <ImageView src={cat.img} width={120} height={120} />
-              <div aria-label="category" className="text-xs text-center">
+              <div aria-label="category" className="text-center text-xs">
                 {cat.title}
               </div>
               <div

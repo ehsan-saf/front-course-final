@@ -49,12 +49,6 @@
     max-width: 255px;
   }
 
-  /* Category */
-
-  .category {
-    @apply flex flex-col items-center rounded-[10px] p-2.5 pt-0;
-  }
-
   /* Popular Item */
 
   .product-card {
