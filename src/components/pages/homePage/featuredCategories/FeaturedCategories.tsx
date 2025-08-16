@@ -13,7 +13,7 @@ export function FeaturedCategories() {
             <Link
               key={index}
               href={cat.link}
-              className="flex flex-col items-center rounded-[10px] p-2.5 pt-0 hover:border-1 hover:border-brand-1-light hover:shadow-md"
+              className="flex flex-col items-center rounded-[10px] p-2.5 pt-0 hover:shadow-md hover:outline-1 hover:outline-brand-1-light"
               style={{
                 backgroundColor: cat.color,
               }}
