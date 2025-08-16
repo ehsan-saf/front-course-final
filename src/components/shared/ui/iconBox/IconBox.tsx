@@ -15,7 +15,7 @@ interface Props {
 
 export function IconBox({
   icon,
-  size = { mobile: 24, nonMobile: 24 },
+  size = { mobile: 16, nonMobile: 16 },
   color,
   link,
   title,
