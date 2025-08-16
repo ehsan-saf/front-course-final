@@ -17,7 +17,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <Section>
+      <Section className="mt-4 lg:mt-8">
         <Banner
           title="Don't miss amazing grocery deals"
           subtitle="Sign up for the daily newsletter"
