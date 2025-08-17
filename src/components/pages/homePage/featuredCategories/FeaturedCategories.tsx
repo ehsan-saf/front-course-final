@@ -10,25 +10,27 @@ export function FeaturedCategories() {
       <div className="grid grid-cols-3 gap-5 lg:grid-cols-9">
         {FeaturedCategoriesMock.map((cat: FeaturedCategory, index) => {
           return (
-            <Link
-              key={index}
-              href={cat.link}
-              className="flex flex-col items-center rounded-[10px] p-2.5 pt-0 hover:shadow-md hover:outline-1 hover:outline-brand-1-light"
-              style={{
-                backgroundColor: cat.color,
-              }}
-            >
-              <ImageView src={cat.img} width={120} height={120} />
-              <div aria-label="category" className="text-center text-xs">
-                {cat.title}
-              </div>
-              <div
-                aria-label="items"
-                className="font-lato text-xs text-text-muted"
+            <>
+              <Link
+                key={index}
+                href={cat.link}
+                className="category-link flex flex-col items-center rounded-[10px] p-2.5 pt-0 transition-all duration-150 ease-out hover:scale-110 hover:shadow-md"
+                style={{
+                  backgroundColor: cat.color,
+                }}
               >
-                {`${cat.items} items`}
-              </div>
-            </Link>
+                <ImageView src={cat.img} width={120} height={120} />
+                <div aria-label="category" className="text-center text-xs">
+                  {cat.title}
+                </div>
+                <div
+                  aria-label="items"
+                  className="font-lato text-xs text-text-muted"
+                >
+                  {`${cat.items} items`}
+                </div>
+              </Link>
+            </>
           );
         })}
       </div>
