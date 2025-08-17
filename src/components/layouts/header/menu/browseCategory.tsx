@@ -31,9 +31,9 @@ export function BrowseCategory({
           </button>
         </h2>
         <div
-          className={`absolute ${expanded ? "h-[400px]" : "h-0"} z-2 w-lg translate-y-7 overflow-hidden`}
+          className={`absolute ${expanded ? "h-[500px]" : "h-0"} z-2 w-lg translate-y-7 overflow-hidden`}
         >
-          <div className="rounded-md border-1 border-greenBorder bg-white p-8">
+          <div className="flex flex-col gap-6 rounded-md border-1 border-greenBorder bg-white p-8">
             <ul
               className={`${
                 isDisplayLarge ? "grid grid-cols-2" : "flex flex-col"
@@ -44,7 +44,7 @@ export function BrowseCategory({
                   <Link
                     key={index}
                     href={`${cat.path}`}
-                    className="flex items-center justify-start gap-2.5 rounded-md border-1 border-greenBorder p-3.5"
+                    className="flex items-center justify-start gap-2.5 rounded-md border-1 border-greenBorder p-3.5 hover:bg-green-100"
                   >
                     <div className="h-8 w-12 flex-shrink-0">
                       <ImageView
@@ -58,6 +58,17 @@ export function BrowseCategory({
                 );
               })}
             </ul>
+            <Link
+              href={"/categories"}
+              className="flex items-center gap-3.5 self-center"
+            >
+              <IconBox
+                icon="circle-plus"
+                className="text-brand-1"
+                size={{ mobile: 24, nonMobile: 24 }}
+              />
+              <span className="text-sm text-body">More Categories</span>
+            </Link>
           </div>
         </div>
       </div>
