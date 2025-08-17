@@ -78,8 +78,8 @@ export default function Home() {
           />
         </div>
         <div className="flex gap-2">
-          <div className="hidden max-w-[370px] flex-col justify-between self-stretch rounded-[10px] bg-[#3BB77E] bg-[url(/images/leaf-bg.jpg)] bg-contain bg-bottom bg-no-repeat p-12 pt-[38px] shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] xl:flex">
-            <h3 className="text-heading2 text-blue-300">
+          <div className="hidden max-w-[330px] flex-col justify-between self-stretch rounded-[10px] border-2 border-brand-1 bg-[#3BB77E] bg-[url(/images/leaf-bg.jpg)] bg-cover bg-bottom bg-no-repeat p-12 pt-[38px] shadow-[20px_20px_40px_0_rgba(24,24,24,0.07)] xl:flex">
+            <h3 className="text-heading-300 text-3xl">
               Bring nature into your home
             </h3>
             <Link
