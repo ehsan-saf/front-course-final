@@ -60,13 +60,7 @@ export function Footer() {
       {/* ----------------------------------- */}
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 xl:justify-items-center">
         <div className="flex max-w-80 flex-col gap-3 pb-8 lg:border-0">
-          <div className="flex items-center gap-1.5">
-            <Logo />
-            <div className="flex flex-col items-start">
-              <h2 className="p-0 font-normal text-brand-1">LOGO</h2>
-              <span className="text-[8px]">MART & GROCERY</span>
-            </div>
-          </div>
+          <Logo />
           <p className="mb-2">Pellentesque posuere orci lobortis</p>
           <address className="flex flex-col gap-2.5 font-lato not-italic">
             <div className="flex gap-2">
