@@ -1,4 +1,5 @@
 import { IconBox, ImageView } from "@/components";
+import { useOverlay } from "@/hooks";
 import { BrowseCategoryMock } from "@/mock/browseCategory";
 import Link from "next/link";
 import { useState, useEffect, MouseEvent } from "react";
@@ -10,12 +11,11 @@ interface Props {
 export function BrowseCategory({ isDisplayLarge }: Props) {
   const [expanded, setExpanded] = useState(false);
 
-  useEffect(() => {
-    const closeMenu = () => setExpanded(false);
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, []);
+  useOverlay({
+    onClick: () => {
+      setExpanded(false);
+    },
+  });
 
   function toggleExpanded(e: MouseEvent) {
     e.stopPropagation();

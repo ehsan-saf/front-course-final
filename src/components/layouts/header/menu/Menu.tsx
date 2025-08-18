@@ -1,12 +1,12 @@
 import { useMediaQuery } from "react-responsive";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useState } from "react";
 import { BrowseCategory } from "./browseCategory";
 import { IconBox } from "@/components/shared";
 import { useQuery } from "@tanstack/react-query";
 import { getMenuApi } from "@/api/menu";
 import { Entity, type MenuType, MenuItemType, Populate } from "@/types";
+import { useOverlay } from "@/hooks";
 
 interface Props {
   expanded: boolean;
@@ -15,6 +15,13 @@ interface Props {
 
 export function MenuComponent({ expanded, setExpanded }: Props) {
   const isDisplayLarge = useMediaQuery({ query: "(min-width: 64rem)" });
+
+  useOverlay({
+    onClick: () => {
+      setExpanded(false);
+    },
+    isOverflowHidden: true,
+  });
 
   const { data: menuData } = useQuery({
     queryKey: [getMenuApi.name],
@@ -78,11 +85,15 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
   } else {
     return (
       <div className={`offcanvas ${expanded ? "expanded" : ""}`}>
-        <div className="offcanvas-body">{content}</div>
         <div
-          className="offcanvas-backdrop"
-          onClick={() => setExpanded(false)}
-        ></div>
+          className="offcanvas-body"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          {content}
+        </div>
+        <div className="offcanvas-backdrop"></div>
       </div>
     );
   }

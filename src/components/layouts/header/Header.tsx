@@ -39,7 +39,10 @@ export function Header() {
             </div>
             <button
               className="navbar-toggler lg:hidden"
-              onClick={() => setMenuExpanded(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setMenuExpanded(true);
+              }}
             >
               <IconBox icon="menu" size={{ mobile: 24, nonMobile: 24 }} />
             </button>
