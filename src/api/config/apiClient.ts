@@ -21,7 +21,7 @@ export default apiClient;
 apiClient.interceptors.response.use(
   function (response) {
     // Do something with response data
-    return response;
+    return response.data;
   },
   function (error: AxiosError) {
     const msg = getErrorMessage(error);

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { BrowseCategory } from "./browseCategory";
 import { IconBox } from "@/components/shared";
+import { useQuery } from "@tanstack/react-query";
+import { getMenuApi } from "@/api/menu";
 
 interface Props {
   expanded: boolean;
@@ -12,8 +14,14 @@ interface Props {
 
 export function MenuComponent({ expanded, setExpanded }: Props) {
   const isDisplayLarge = useMediaQuery({ query: "(min-width: 64rem)" });
-
   const [categoryExpanded, setCategoryExpanded] = useState(false);
+
+  const { data: menuData } = useQuery({
+    queryKey: [getMenuApi.name],
+    queryFn: getMenuApi,
+  });
+
+  console.log(menuData);
 
   const content = (
     <>
