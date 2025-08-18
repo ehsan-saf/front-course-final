@@ -15,7 +15,6 @@ interface Props {
 
 export function MenuComponent({ expanded, setExpanded }: Props) {
   const isDisplayLarge = useMediaQuery({ query: "(min-width: 64rem)" });
-  const [categoryExpanded, setCategoryExpanded] = useState(false);
 
   const { data: menuData } = useQuery({
     queryKey: [getMenuApi.name],
@@ -36,11 +35,7 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
 
   const content = (
     <>
-      <BrowseCategory
-        expanded={categoryExpanded}
-        setExpanded={setCategoryExpanded}
-        isDisplayLarge={isDisplayLarge}
-      />
+      <BrowseCategory isDisplayLarge={isDisplayLarge} />
       <ul
         className={`flex ${
           isDisplayLarge ? "flex-row items-center" : "flex-col items-start"
