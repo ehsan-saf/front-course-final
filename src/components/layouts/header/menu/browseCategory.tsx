@@ -1,25 +1,38 @@
 import { IconBox, ImageView } from "@/components";
 import { BrowseCategoryMock } from "@/mock/browseCategory";
 import Link from "next/link";
+import { useState, useEffect, MouseEvent } from "react";
 
 interface Props {
-  expanded: boolean;
-  setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
   isDisplayLarge: boolean;
 }
 
-export function BrowseCategory({
-  expanded,
-  setExpanded,
-  isDisplayLarge,
-}: Props) {
+export function BrowseCategory({ isDisplayLarge }: Props) {
+  const [expanded, setExpanded] = useState(false);
+
+  useEffect(() => {
+    const closeMenu = () => setExpanded(false);
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, []);
+
+  function toggleExpanded(e: MouseEvent) {
+    e.stopPropagation();
+    setExpanded((stat) => !stat);
+  }
+
+  function handleMenuBodyClick(e: MouseEvent) {
+    e.stopPropagation();
+  }
+
   const desktop = (
     <div className="border-b-[1px] border-border">
       <div>
         <h2>
           <button
             className="accordion-button navbar-accordionButton"
-            onClick={() => setExpanded((stat) => !stat)}
+            onClick={toggleExpanded}
           >
             <IconBox icon="layout-grid" />
             <span>Browse All Categories</span>
@@ -32,6 +45,7 @@ export function BrowseCategory({
         </h2>
         <div
           className={`absolute ${expanded ? "h-[500px]" : "h-0"} z-2 w-lg translate-y-7 overflow-hidden`}
+          onClick={handleMenuBodyClick}
         >
           <div className="flex flex-col gap-6 rounded-md border-1 border-greenBorder bg-white p-8">
             <ul
@@ -81,7 +95,7 @@ export function BrowseCategory({
         <h2>
           <button
             className="accordion-button navbar-accordionButton"
-            onClick={() => setExpanded((stat) => !stat)}
+            onClick={toggleExpanded}
           >
             <IconBox icon="layout-grid" />
             <span>Browse All Categories</span>
@@ -92,7 +106,7 @@ export function BrowseCategory({
             )}
           </button>
         </h2>
-        <div className="accordion-collapse p-3">
+        <div className="accordion-collapse p-3" onClick={handleMenuBodyClick}>
           <div className="accordion-body">
             <ul className="flex flex-col gap-4">
               {BrowseCategoryMock.map((cat, index) => {
