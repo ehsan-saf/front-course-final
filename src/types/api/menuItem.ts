@@ -1,4 +1,4 @@
-export interface MenuItem {
+export interface MenuItemType {
   link: string;
   icon_name?: string;
   title: string;

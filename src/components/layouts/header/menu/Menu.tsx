@@ -6,6 +6,7 @@ import { BrowseCategory } from "./browseCategory";
 import { IconBox } from "@/components/shared";
 import { useQuery } from "@tanstack/react-query";
 import { getMenuApi } from "@/api/menu";
+import { Entity, type MenuType, MenuItemType, Populate } from "@/types";
 
 interface Props {
   expanded: boolean;
@@ -21,7 +22,17 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
     queryFn: getMenuApi,
   });
 
-  console.log(menuData);
+  let mainMenuItems: null | Populate<MenuItemType> = null;
+
+  if (menuData) {
+    const findMenu = menuData.data.filter(
+      (item: Entity<MenuType>) => item.attributes.position === "main_menu",
+    );
+    if (findMenu.length > 0) {
+      mainMenuItems = findMenu[0].attributes.menu_items;
+      console.log(mainMenuItems);
+    }
+  }
 
   const content = (
     <>
