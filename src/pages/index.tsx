@@ -26,6 +26,7 @@ export default function Home() {
         />
       </Section>
       <Section ariaLabel="featured categories">
+        <h2 className="mb-11 text-base md:text-3xl">Feautred Categories</h2>
         <FeaturedCategories />
       </Section>
       <Section>

@@ -21,5 +21,5 @@ export function useOverlay({ onClick, isOverflowHidden = false }: Props) {
       document.removeEventListener("click", clickHandler);
       document.body.style.overflowY = "auto";
     };
-  }, [onClick]);
+  }, [onClick, isOverflowHidden]);
 }

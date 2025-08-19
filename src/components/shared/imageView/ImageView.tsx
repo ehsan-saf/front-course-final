@@ -19,11 +19,19 @@ export function ImageView({
   imageClassName = "",
   wrapperClassName = "",
 }: Props) {
+  const getImageSrc = (src: string) => {
+    console.log(src);
+    if (src.startsWith("/uploads")) {
+      return `https://nest.navaxcollege.com${src}`;
+    }
+    return src;
+  };
+
   return (
     <div className={wrapperClassName}>
       <Image
         className={imageClassName}
-        src={src}
+        src={getImageSrc(src)}
         alt={alt}
         width={width}
         height={height}

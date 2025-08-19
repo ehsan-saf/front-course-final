@@ -20,7 +20,7 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
     onClick: () => {
       setExpanded(false);
     },
-    isOverflowHidden: true,
+    isOverflowHidden: expanded,
   });
 
   const { data: menuData } = useQuery({
@@ -36,7 +36,6 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
     );
     if (findMenu.length > 0) {
       mainMenuItems = findMenu[0].attributes.menu_items;
-      console.log(mainMenuItems);
     }
   }
 
