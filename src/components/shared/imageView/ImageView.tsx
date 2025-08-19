@@ -20,7 +20,6 @@ export function ImageView({
   wrapperClassName = "",
 }: Props) {
   const getImageSrc = (src: string) => {
-    console.log(src);
     if (src.startsWith("/uploads")) {
       return `https://nest.navaxcollege.com${src}`;
     }

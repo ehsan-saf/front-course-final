@@ -1,3 +1,4 @@
+import { getProductsApi } from "@/api/product";
 import {
   Banner,
   Section,
@@ -8,13 +9,26 @@ import {
   DealSlider,
   FeaturedListsSlider,
 } from "@/components";
-import { OffersSlider } from "@/components/pages/homePage/offers";
+import { OffersSlider } from "@/components";
 import { dealsMock } from "@/mock/deals";
 import { offersMock } from "@/mock/offers";
 import { popularFruitsMock, popularProductsMock } from "@/mock/products";
+import { ApiResponse, ProductType } from "@/types";
+import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
 export default function Home() {
+  const { data: popularProducts } = useQuery<ApiResponse<ProductType>>({
+    queryKey: [getProductsApi.name],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { is_popular: true },
+      }),
+  });
+
+  console.log(popularProducts);
+
   return (
     <>
       <Section className="mt-4 lg:mt-8">
