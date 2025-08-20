@@ -1,7 +1,7 @@
 interface Props {
-  label: string | undefined;
-  price?: number;
-  sale_price?: number;
+  label: string | null;
+  price: number | null;
+  sale_price: number | null;
   showSaveText?: boolean;
 }
 
@@ -33,5 +33,5 @@ export function ProductLabel({
       </div>
     );
   }
-  return <div></div>;
+  return null;
 }

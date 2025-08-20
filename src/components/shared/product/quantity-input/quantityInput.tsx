@@ -52,6 +52,7 @@ export function QuantityInput({ showAddToCart = false }: Props) {
           type="number"
           value={quantity}
           min={0}
+          onChange={(e) => setQuantity(Number(e.target.value))}
           className="no-spinner h-full w-full text-center text-sm text-brand-1"
         />
         <div className="hidden flex-col gap-1 pr-1.5 text-brand-1 md:flex">

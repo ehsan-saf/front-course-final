@@ -1,17 +1,17 @@
 import Image from "next/image";
 
 interface Props {
-  src: string;
-  alt?: string;
-  width?: number | undefined;
-  height?: number | undefined;
-  fill?: boolean | undefined;
+  src?: string | null;
+  alt?: string | null;
+  width?: number;
+  height?: number;
+  fill?: boolean;
   imageClassName?: string;
   wrapperClassName?: string;
 }
 
 export function ImageView({
-  src,
+  src = "",
   alt = "",
   width,
   height,
@@ -19,11 +19,15 @@ export function ImageView({
   imageClassName = "",
   wrapperClassName = "",
 }: Props) {
-  const getImageSrc = (src: string) => {
-    if (src.startsWith("/uploads")) {
-      return `https://nest.navaxcollege.com${src}`;
+  const getImageSrc = (src: string | null) => {
+    if (src) {
+      if (src.startsWith("/uploads")) {
+        return `https://nest.navaxcollege.com${src}`;
+      }
+      return src;
+    } else {
+      return "";
     }
-    return src;
   };
 
   return (
@@ -31,7 +35,7 @@ export function ImageView({
       <Image
         className={imageClassName}
         src={getImageSrc(src)}
-        alt={alt}
+        alt={alt ? alt : ""}
         width={width}
         height={height}
         fill={fill}

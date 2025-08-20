@@ -12,14 +12,13 @@ import {
 import { OffersSlider } from "@/components";
 import { dealsMock } from "@/mock/deals";
 import { offersMock } from "@/mock/offers";
-import { popularFruitsMock, popularProductsMock } from "@/mock/products";
 import { ApiResponse, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
 export default function Home() {
   const { data: popularProducts } = useQuery<ApiResponse<ProductType>>({
-    queryKey: [getProductsApi.name],
+    queryKey: [getProductsApi.name, "popular_product"],
     queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
@@ -27,7 +26,14 @@ export default function Home() {
       }),
   });
 
-  console.log(popularProducts);
+  const { data: popularFruits } = useQuery<ApiResponse<ProductType>>({
+    queryKey: [getProductsApi.name, "popular_fruit"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { is_popular_fruit: true },
+      }),
+  });
 
   return (
     <>
@@ -60,7 +66,9 @@ export default function Home() {
             link={"#"}
           />
         </div>
-        <SimpleProductSlider sliderData={popularProductsMock} />
+        {popularProducts && (
+          <SimpleProductSlider sliderData={popularProducts.data} />
+        )}
       </Section>
 
       {/* -------------------------------------------------------------------- */}
@@ -76,12 +84,14 @@ export default function Home() {
             link={"#"}
           />
         </div>
-        <SimpleProductSlider sliderData={popularFruitsMock} />
+        {popularFruits && (
+          <SimpleProductSlider sliderData={popularFruits.data} />
+        )}
       </Section>
 
       {/* -------------------------------------------------------------------- */}
 
-      <Section>
+      {/* <Section>
         <div className="mb-12 flex">
           <Link href={"#"}>
             <h2 className="text-base md:text-3xl">Our Offers</h2>

@@ -8,6 +8,7 @@ interface Props {
     is_trending?: boolean;
     is_top_selling?: boolean;
     is_best_seller?: boolean;
+    is_popular_fruit?: boolean;
   };
 }
 

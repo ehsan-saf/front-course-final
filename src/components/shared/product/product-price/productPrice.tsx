@@ -1,6 +1,6 @@
 interface Props {
-  price: number;
-  sale_price?: number;
+  price: number | null;
+  sale_price?: number | null;
 }
 
 export function ProductPrice({ price, sale_price }: Props) {
@@ -8,7 +8,7 @@ export function ProductPrice({ price, sale_price }: Props) {
     return num.toFixed(2);
   };
 
-  if (sale_price) {
+  if (sale_price && price) {
     return (
       <div className="flex items-center gap-1">
         <div className="text-sm text-brand-1 md:text-xl">
@@ -20,6 +20,10 @@ export function ProductPrice({ price, sale_price }: Props) {
       </div>
     );
   } else {
-    return <div className="text-xs text-body">${formatNumber(price)}</div>;
+    return price ? (
+      <div className="text-xs text-body">${formatNumber(price)}</div>
+    ) : (
+      <div className="text-xs text-red-500">Out of stock</div>
+    );
   }
 }

@@ -1,6 +1,6 @@
 export interface ImageType {
   name: string;
-  alternativeText?: string;
+  alternativeText: string | null;
   caption: string;
   width: number;
   height: number;
@@ -9,8 +9,8 @@ export interface ImageType {
   ext: string;
   mime: string;
   size: number;
-  url: string;
-  previewUrl?: string;
+  url: string | null;
+  previewUrl: string | null;
   provider: string;
   provider_metadata: string;
 }

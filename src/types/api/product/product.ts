@@ -2,29 +2,27 @@ import { CategoryType, Entity, ImageType, Populate } from "@/types";
 
 export interface ProductType {
   title: string;
-  description: string | null;
+  description: string;
   quantity: number | null;
-  price: number;
+  price: number | null;
   sell_price: number | null;
-  discount_expire_date: string | null;
+  discount_expire_date: string;
   rate: number;
-  weight: number;
+  weight: number | null;
   is_popular: boolean;
   is_top_selling: boolean;
   is_trending: boolean;
-  SKU: string;
+  SKU: string | null;
   label: string | null;
   unit: string;
-  total: number;
-  sold: number;
+  total: number | null;
+  sold: number | null;
   is_popular_fruit: boolean;
   is_best_seller: boolean;
-  thumbnail: {
+  thumbnail?: {
     data: Entity<ImageType>;
   };
-  categories: {
-    data: Populate<CategoryType>;
-  };
+  categories?: Populate<CategoryType>;
   gallery: Populate<ImageType>;
 }
 

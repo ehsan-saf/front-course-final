@@ -2,10 +2,10 @@ import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
 import { IconBox, SimpleProductCard } from "@/components";
-import { Product } from "@/types/Product";
+import { Entity, ProductType } from "@/types";
 
 interface Props {
-  sliderData: Array<Product>;
+  sliderData: Array<Entity<ProductType>>;
 }
 
 export function SimpleProductSlider({ sliderData }: Props) {
@@ -64,13 +64,14 @@ export function SimpleProductSlider({ sliderData }: Props) {
             slidesPerView: 4,
             spaceBetween: 22,
           },
-          1280: {
+          1400: {
             slidesPerView: 5,
             spaceBetween: 24,
           },
         }}
       >
         {sliderData.map((item, index) => {
+          console.log(item);
           return (
             <SwiperSlide key={index}>
               <SimpleProductCard key={index} data={item} />
