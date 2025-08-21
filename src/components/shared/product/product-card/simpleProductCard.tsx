@@ -9,15 +9,26 @@ import {
 } from "@/components";
 import { Entity, ProductType } from "@/types";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
   data: Entity<ProductType>;
   showSaveLabel?: boolean;
+  className?: string;
 }
 
-export function SimpleProductCard({ data, showSaveLabel = false }: Props) {
+export function SimpleProductCard({
+  data,
+  showSaveLabel = false,
+  className,
+}: Props) {
   return (
-    <div className="product-card group flex w-full flex-col gap-1.5 p-3 md:p-4 md:pt-14">
+    <div
+      className={twMerge(
+        "product-card group flex w-full flex-col justify-between gap-1.5 p-3 md:p-4 md:pt-14",
+        className,
+      )}
+    >
       <ProductLabel
         label={data.attributes.label}
         price={data.attributes.price}

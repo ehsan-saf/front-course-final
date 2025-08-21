@@ -11,7 +11,6 @@ import {
 } from "@/components";
 import { OffersSlider } from "@/components";
 import { dealsMock } from "@/mock/deals";
-import { offersMock } from "@/mock/offers";
 import { ApiResponse, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
@@ -22,7 +21,7 @@ export default function Home() {
     queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
-        filters: { is_popular: true },
+        filters: { is_popular: { $eq: true } },
       }),
   });
 
@@ -31,7 +30,25 @@ export default function Home() {
     queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
-        filters: { is_popular_fruit: true },
+        filters: { is_popular_fruit: { $eq: true } },
+      }),
+  });
+
+  const { data: bestSellerProducts } = useQuery<ApiResponse<ProductType>>({
+    queryKey: [getProductsApi.name, "best_seller"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { is_best_seller: { $eq: true } },
+      }),
+  });
+
+  const { data: dealsOfDayProducts } = useQuery<ApiResponse<ProductType>>({
+    queryKey: [getProductsApi.name, "best_seller"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { discount_expire_date: { $notNull: true } },
       }),
   });
 
@@ -91,10 +108,10 @@ export default function Home() {
 
       {/* -------------------------------------------------------------------- */}
 
-      {/* <Section>
+      <Section>
         <div className="mb-12 flex">
           <Link href={"#"}>
-            <h2 className="text-base md:text-3xl">Our Offers</h2>
+            <h2 className="text-base md:text-3xl">Best Seller</h2>
           </Link>
           <IconBox
             icon="chevron-right"
@@ -116,7 +133,12 @@ export default function Home() {
             </Link>
           </div>
 
-          <OffersSlider sliderData={offersMock} />
+          {bestSellerProducts && (
+            <OffersSlider
+              sliderData={bestSellerProducts.data}
+              cardClassName="h-[320px] md:h-[500px]"
+            />
+          )}
         </div>
       </Section>
 
@@ -133,7 +155,9 @@ export default function Home() {
             link={"#"}
           />
         </div>
-        <DealSlider sliderData={dealsMock} />
+        {dealsOfDayProducts && (
+          <DealSlider sliderData={dealsOfDayProducts.data} />
+        )}
       </Section>
 
       {/* ----------------------------------------------------------------- */}

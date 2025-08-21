@@ -6,9 +6,10 @@ import { Entity, ProductType } from "@/types";
 
 interface Props {
   sliderData: Array<Entity<ProductType>>;
+  cardClassName?: string;
 }
 
-export function SimpleProductSlider({ sliderData }: Props) {
+export function SimpleProductSlider({ sliderData, cardClassName = "" }: Props) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 

@@ -5,11 +5,11 @@ import {
   RatingStars,
 } from "@/components";
 import { CountDown } from "@/components";
-import { Product } from "@/types/Product";
+import { Entity, ProductType } from "@/types";
 import Link from "next/link";
 
 interface Props {
-  data: Product;
+  data: Entity<ProductType>;
 }
 
 export function DealProduct({ data }: Props) {
@@ -17,27 +17,34 @@ export function DealProduct({ data }: Props) {
     <div className="mx-auto w-fit">
       <ImageView
         imageClassName="h-[200px] w-full max-w-sm rounded-2xl lg:h-[328px]"
-        width={378}
-        height={335}
-        src={data.image}
+        width={data.attributes.thumbnail?.data?.attributes.width}
+        height={data.attributes.thumbnail?.data?.attributes.height}
+        src={data.attributes.thumbnail?.data?.attributes.url}
         alt=""
       />
 
       <div className="-mt-[50%] flex flex-col gap-3">
-        {data.deadline && <CountDown endDate={data.deadline} />}
+        {data.attributes.discount_expire_date && (
+          <CountDown endDate={data.attributes.discount_expire_date} />
+        )}
         <div className="mx-auto flex max-w-[300px] flex-col gap-1.5 rounded-[10px] bg-white p-6 shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] lg:max-w-[325px]">
           <Link href="/">
-            <h4 className="ellipsis-2 text-xs md:text-base">{data.title}</h4>
+            <h4 className="ellipsis-2 text-xs md:text-base">
+              {data.attributes.title}
+            </h4>
           </Link>
-          <RatingStars rating={data.rating} showNumber />
+          <RatingStars rating={data.attributes.rate} showNumber />
           <div
             aria-label="weight of the product"
             className="font-lato text-xs text-body"
           >
-            {`${data.weight} ${data.unit}s`}
+            {`${data.attributes.weight} ${data.attributes.unit}s`}
           </div>
           <div className="flex items-center justify-between">
-            <ProductPrice price={data.price} sale_price={data.price} />
+            <ProductPrice
+              price={data.attributes.price}
+              sale_price={data.attributes.sell_price}
+            />
             <QuantityInput />
           </div>
         </div>

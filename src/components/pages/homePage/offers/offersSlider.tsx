@@ -1,13 +1,14 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { SimpleProductCard } from "@/components";
-import { Product } from "@/types/Product";
+import { Entity, ProductType } from "@/types";
 
 interface Props {
-  sliderData: Array<Product>;
+  sliderData: Array<Entity<ProductType>>;
+  cardClassName?: string;
 }
 
-export function OffersSlider({ sliderData }: Props) {
+export function OffersSlider({ sliderData, cardClassName }: Props) {
   return (
     <Swiper
       className="w-full"
@@ -29,7 +30,12 @@ export function OffersSlider({ sliderData }: Props) {
       {sliderData.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <SimpleProductCard key={index} data={item} showSaveLabel={true} />
+            <SimpleProductCard
+              key={index}
+              data={item}
+              showSaveLabel={true}
+              className={cardClassName}
+            />
           </SwiperSlide>
         );
       })}

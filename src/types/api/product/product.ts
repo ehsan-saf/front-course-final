@@ -26,8 +26,32 @@ export interface ProductType {
   gallery: Populate<ImageType>;
 }
 
-export interface ProductFilters {
-  [key: string]: {
-    $eq: boolean | string | number;
+export type ProductFilters = {
+  [K in keyof ProductType]?: {
+    $eq?: ProductType[K];
+    $eqi?: string;
+    $ne?: ProductType[K] | null;
+    $nei?: string;
+    $lt?: number;
+    $lte?: number;
+    $gt?: number;
+    $gte?: number;
+    $in?: ProductType[K][];
+    $notIn?: ProductType[K][];
+    $contains?: string;
+    $notContains?: string;
+    $containsi?: string;
+    $notContainsi?: string;
+    $null?: boolean;
+    $notNull?: boolean;
+    $between?: [number, number];
+    $startsWith?: string;
+    $startsWithi?: string;
+    $endsWith?: string;
+    $endsWithi?: string;
   };
-}
+} & {
+  $or?: ProductFilters[];
+  $and?: ProductFilters[];
+  $not?: ProductFilters;
+};
