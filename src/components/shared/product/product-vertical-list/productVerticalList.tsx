@@ -1,14 +1,9 @@
-import { Product } from "@/types/Product";
-import {
-  ImageView,
-  MiniProductCard,
-  ProductPrice,
-  RatingStars,
-} from "@/components";
+import { MiniProductCard } from "@/components";
+import { Entity, ProductType } from "@/types";
 
 interface Props {
   title: string;
-  data: Array<Product>;
+  data: Array<Entity<ProductType>>;
 }
 
 export function ProductVerticalList({ title, data }: Props) {

@@ -1,9 +1,9 @@
-import { Product } from "@/types/Product";
+import { Entity, Populate, ProductType } from "@/types";
 import { ImageView, RatingStars, ProductPrice } from "@/components";
 import Link from "next/link";
 
 interface Props {
-  data: Product;
+  data: Entity<ProductType>;
 }
 
 export function MiniProductCard({ data }: Props) {
@@ -12,20 +12,24 @@ export function MiniProductCard({ data }: Props) {
       <Link href={"#"}>
         <ImageView
           wrapperClassName="max-[88px] max-[88px] rounded-xl md:h-[120px] md:w-[120px]"
-          width={120}
-          height={120}
-          src={data.image}
+          imageClassName="w-full"
+          width={data.attributes.thumbnail?.data?.attributes?.height}
+          height={data.attributes.thumbnail?.data?.attributes?.height}
+          src={data.attributes.thumbnail?.data?.attributes.url}
           alt=""
         />
       </Link>
       <div className="flex max-w-40 flex-col gap-1 md:max-w-60">
         <Link href={"#"}>
           <h4 className="ellipsis-2 overflow-hidden text-xs text-ellipsis whitespace-nowrap md:text-base md:whitespace-normal">
-            {data.title}
+            {data.attributes.title}
           </h4>
         </Link>
-        <RatingStars rating={data.rating} />
-        <ProductPrice price={data.price} sale_price={data.sale_price} />
+        <RatingStars rating={data.attributes.rate} />
+        <ProductPrice
+          price={data.attributes.price}
+          sale_price={data.attributes.sell_price}
+        />
       </div>
     </div>
   );

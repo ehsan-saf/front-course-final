@@ -28,30 +28,60 @@ export interface ProductType {
 
 export type ProductFilters = {
   [K in keyof ProductType]?: {
+    /** Equal */
     $eq?: ProductType[K];
+    /** Equal (case-insensitive) */
     $eqi?: string;
+    /** Not equal */
     $ne?: ProductType[K] | null;
+    /** Not equal (case-insensitive) */
     $nei?: string;
+    /** Less than */
     $lt?: number;
+    /** Less than or equal to */
     $lte?: number;
+    /** Greater than */
     $gt?: number;
+    /** Greater than or equal to */
     $gte?: number;
+    /** Included in an array */
     $in?: ProductType[K][];
+    /** Not included in an array */
     $notIn?: ProductType[K][];
+    /** Contains */
     $contains?: string;
+    /** Does not contain */
     $notContains?: string;
+    /** Contains (case-insensitive) */
     $containsi?: string;
+    /** Does not contain (case-insensitive) */
     $notContainsi?: string;
+    /** Is null */
     $null?: boolean;
+    /** Is not null */
     $notNull?: boolean;
+    /** Is between two values */
     $between?: [number, number];
+    /** Starts with */
     $startsWith?: string;
+    /** Starts with (case-insensitive) */
     $startsWithi?: string;
+    /** Ends with */
     $endsWith?: string;
+    /** Ends with (case-insensitive) */
     $endsWithi?: string;
   };
 } & {
+  /** Joins the filters in an "or" expression */
   $or?: ProductFilters[];
+  /** Joins the filters in an "and" expression */
   $and?: ProductFilters[];
+  /** Joins the filters in a "not" expression */
   $not?: ProductFilters;
 };
+
+export type ProductSort = Array<`${keyof ProductType}:${"asc" | "desc"}`>;
+
+export type PaginationProp =
+  | { start: number; limit: number; withCount?: boolean }
+  | { page: number; pageSize: number; withCount?: boolean };

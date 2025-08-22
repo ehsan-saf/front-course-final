@@ -17,7 +17,7 @@ import Link from "next/link";
 
 export default function Home() {
   const { data: popularProducts } = useQuery<ApiResponse<ProductType>>({
-    queryKey: [getProductsApi.name, "popular_product"],
+    queryKey: [getProductsApi.name, "popular_products"],
     queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
@@ -26,7 +26,7 @@ export default function Home() {
   });
 
   const { data: popularFruits } = useQuery<ApiResponse<ProductType>>({
-    queryKey: [getProductsApi.name, "popular_fruit"],
+    queryKey: [getProductsApi.name, "popular_fruits"],
     queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
@@ -35,7 +35,7 @@ export default function Home() {
   });
 
   const { data: bestSellerProducts } = useQuery<ApiResponse<ProductType>>({
-    queryKey: [getProductsApi.name, "best_seller"],
+    queryKey: [getProductsApi.name, "best_seller_products"],
     queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
@@ -44,7 +44,7 @@ export default function Home() {
   });
 
   const { data: dealsOfDayProducts } = useQuery<ApiResponse<ProductType>>({
-    queryKey: [getProductsApi.name, "best_seller"],
+    queryKey: [getProductsApi.name, "deal_products"],
     queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],

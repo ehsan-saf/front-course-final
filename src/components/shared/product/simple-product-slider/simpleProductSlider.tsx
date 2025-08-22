@@ -72,7 +72,6 @@ export function SimpleProductSlider({ sliderData, cardClassName = "" }: Props) {
         }}
       >
         {sliderData.map((item, index) => {
-          console.log(item);
           return (
             <SwiperSlide key={index}>
               <SimpleProductCard key={index} data={item} />

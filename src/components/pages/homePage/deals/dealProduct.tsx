@@ -16,7 +16,7 @@ export function DealProduct({ data }: Props) {
   return (
     <div className="mx-auto w-fit">
       <ImageView
-        imageClassName="h-[200px] w-full max-w-sm rounded-2xl lg:h-[328px]"
+        imageClassName="h-[200px] w-full rounded-2xl lg:h-[328px]"
         width={data.attributes.thumbnail?.data?.attributes.width}
         height={data.attributes.thumbnail?.data?.attributes.height}
         src={data.attributes.thumbnail?.data?.attributes.url}

@@ -1,12 +1,43 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { ProductVerticalList } from "@/components";
-import { topSellingMock } from "@/mock/topSelling";
-import { trendingProductsMock } from "@/mock/trendingProducts";
-import { topRatedMock } from "@/mock/topRated";
-import { recentlyAddedMock } from "@/mock/recentlyAdded";
+import { useQuery } from "@tanstack/react-query";
+import { getProductsApi } from "@/api/product";
+import { ApiResponse, ProductType } from "@/types";
 
 export function FeaturedListsSlider() {
+  const { data: topSellingProducts } = useQuery<ApiResponse<ProductType>>({
+    queryKey: [getProductsApi.name, "top_selling_products"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { is_top_selling: { $eq: true } },
+        pagination: { start: 0, limit: 3, withCount: false },
+      }),
+  });
+
+  const { data: trendingProducts } = useQuery<ApiResponse<ProductType>>({
+    queryKey: [getProductsApi.name, "trending_products"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { is_trending: { $eq: true } },
+        pagination: { start: 0, limit: 3, withCount: false },
+      }),
+  });
+
+  const { data: topRatedProducts } = useQuery<ApiResponse<ProductType>>({
+    queryKey: [getProductsApi.name, "top_rated_products"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail"],
+        sort: ["rate:desc"],
+        pagination: { start: 0, limit: 3, withCount: false },
+      }),
+  });
+
+  console.log(topRatedProducts);
+
   return (
     <Swiper
       className="w-full"
@@ -15,8 +46,13 @@ export function FeaturedListsSlider() {
       spaceBetween={16}
       autoplay={true}
       breakpoints={{
-        768: {
+        500: {
+          slidesPerView: 1.2,
+        },
+
+        900: {
           slidesPerView: 2,
+          spaceBetween: 22,
         },
 
         1024: {
@@ -26,22 +62,39 @@ export function FeaturedListsSlider() {
       }}
     >
       <SwiperSlide>
-        <ProductVerticalList title="Top Selling" data={topSellingMock} />
+        {topSellingProducts && (
+          <ProductVerticalList
+            title="Top Selling"
+            data={topSellingProducts?.data}
+          />
+        )}
       </SwiperSlide>
+      {/* ------------------------------------------------- */}
       <SwiperSlide>
-        {" "}
-        <ProductVerticalList
-          title="Trending Products"
-          data={trendingProductsMock}
-        />
+        {trendingProducts && (
+          <ProductVerticalList
+            title="Trending Products"
+            data={trendingProducts.data}
+          />
+        )}
       </SwiperSlide>
+      {/* ------------------------------------------------- */}
       <SwiperSlide>
-        {" "}
-        <ProductVerticalList title="Recently added" data={recentlyAddedMock} />
+        {topSellingProducts && (
+          <ProductVerticalList
+            title="Recently added"
+            data={topSellingProducts?.data}
+          />
+        )}
       </SwiperSlide>
+      {/* ------------------------------------------------- */}
       <SwiperSlide>
-        {" "}
-        <ProductVerticalList title="Top Rated" data={topRatedMock} />
+        {topRatedProducts && (
+          <ProductVerticalList
+            title="Top Rated"
+            data={topRatedProducts?.data}
+          />
+        )}
       </SwiperSlide>
     </Swiper>
   );

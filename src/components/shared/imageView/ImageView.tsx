@@ -19,6 +19,8 @@ export function ImageView({
   imageClassName = "",
   wrapperClassName = "",
 }: Props) {
+  if (src === undefined || src === null) return null;
+
   const getImageSrc = (src: string | null) => {
     if (src) {
       if (src.startsWith("/uploads")) {
