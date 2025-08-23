@@ -50,7 +50,7 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
           alt=""
           width={878}
           height={538}
-          className="right-0 ml-auto max-w-1/2"
+          wrapperClassName="right-0 ml-auto max-w-1/2"
         />
       </div>
       {/* Mobile subscribe form  */}
