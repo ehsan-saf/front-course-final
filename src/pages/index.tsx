@@ -10,7 +10,6 @@ import {
   FeaturedListsSlider,
 } from "@/components";
 import { OffersSlider } from "@/components";
-import { dealsMock } from "@/mock/deals";
 import { ApiResponse, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
