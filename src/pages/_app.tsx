@@ -10,6 +10,7 @@ import { Layout } from "@/components";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
+import { useState } from "react";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -31,16 +32,18 @@ const montserrat = Montserrat({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-        refetchIntervalInBackground: false,
-        retry: 0,
-      },
-    },
-  });
-
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            refetchOnWindowFocus: false,
+            refetchIntervalInBackground: false,
+            retry: 0,
+          },
+        },
+      }),
+  );
   return (
     <>
       <style jsx global>{`

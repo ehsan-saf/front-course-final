@@ -14,7 +14,7 @@ import { ApiResponse, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
-export default function Home() {
+export default function Home(props) {
   const { data: popularProducts } = useQuery<ApiResponse<ProductType>>({
     queryKey: [getProductsApi.name, "popular_products"],
     queryFn: () =>
@@ -22,6 +22,7 @@ export default function Home() {
         populate: ["thumbnail", "categories"],
         filters: { is_popular: { $eq: true } },
       }),
+    initialData: props.popularProducts,
   });
 
   const { data: popularFruits } = useQuery<ApiResponse<ProductType>>({
@@ -167,4 +168,12 @@ export default function Home() {
       </Section>
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const popularProducts = await getProductsApi({
+    populate: ["thumbnail", "categories"],
+    filters: { is_popular: { $eq: true } },
+  });
+  return { props: { popularProducts } };
 }
