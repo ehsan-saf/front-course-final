@@ -155,6 +155,7 @@ export default function Home() {
             link={"#"}
           />
         </div>
+
         {dealsOfDayProducts && (
           <DealSlider sliderData={dealsOfDayProducts.data} />
         )}

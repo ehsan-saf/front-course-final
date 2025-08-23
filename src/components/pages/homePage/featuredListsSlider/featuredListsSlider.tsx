@@ -4,6 +4,7 @@ import { ProductVerticalList } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 import { getProductsApi } from "@/api/product";
 import { ApiResponse, ProductType } from "@/types";
+import { InView } from "react-intersection-observer";
 
 export function FeaturedListsSlider() {
   const { data: topSellingProducts } = useQuery<ApiResponse<ProductType>>({
@@ -26,7 +27,9 @@ export function FeaturedListsSlider() {
       }),
   });
 
-  const { data: topRatedProducts } = useQuery<ApiResponse<ProductType>>({
+  const { data: topRatedProducts, refetch: refetchTopRatedProducts } = useQuery<
+    ApiResponse<ProductType>
+  >({
     queryKey: [getProductsApi.name, "top_rated_products"],
     queryFn: () =>
       getProductsApi({
@@ -34,6 +37,8 @@ export function FeaturedListsSlider() {
         sort: ["rate:desc"],
         pagination: { start: 0, limit: 3, withCount: false },
       }),
+
+    enabled: false,
   });
 
   console.log(topRatedProducts);
@@ -89,12 +94,17 @@ export function FeaturedListsSlider() {
       </SwiperSlide>
       {/* ------------------------------------------------- */}
       <SwiperSlide>
-        {topRatedProducts && (
-          <ProductVerticalList
-            title="Top Rated"
-            data={topRatedProducts?.data}
-          />
-        )}
+        <InView
+          as="div"
+          onChange={(inView) => inView && refetchTopRatedProducts()}
+        >
+          {topRatedProducts && (
+            <ProductVerticalList
+              title="Top Rated"
+              data={topRatedProducts?.data}
+            />
+          )}
+        </InView>
       </SwiperSlide>
     </Swiper>
   );
