@@ -8,7 +8,11 @@ import type { AppProps } from "next/app";
 import { Quicksand, Lato, Montserrat } from "next/font/google";
 import { Layout } from "@/components";
 
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import {
+  HydrationBoundary,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 
@@ -40,6 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
             refetchOnWindowFocus: false,
             refetchIntervalInBackground: false,
             retry: 0,
+            staleTime: 60 * 1000,
           },
         },
       }),
@@ -59,17 +64,19 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <QueryClientProvider client={queryClient}>
-        <Layout>
-          <Component {...pageProps} />
-          <ToastContainer
-            autoClose={false}
-            hideProgressBar={false}
-            closeOnClick={true}
-            draggable={false}
-            theme="light"
-            position="top-right"
-          />
-        </Layout>
+        <HydrationBoundary state={pageProps.dehydratedState}>
+          <Layout>
+            <Component {...pageProps} />
+            <ToastContainer
+              autoClose={false}
+              hideProgressBar={false}
+              closeOnClick={true}
+              draggable={false}
+              theme="light"
+              position="top-right"
+            />
+          </Layout>
+        </HydrationBoundary>
       </QueryClientProvider>
     </>
   );

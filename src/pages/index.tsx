@@ -11,10 +11,10 @@ import {
 } from "@/components";
 import { OffersSlider } from "@/components";
 import { ApiResponse, ProductType } from "@/types";
-import { useQuery } from "@tanstack/react-query";
+import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 
-export default function Home(props) {
+export default function Home() {
   const { data: popularProducts } = useQuery<ApiResponse<ProductType>>({
     queryKey: [getProductsApi.name, "popular_products"],
     queryFn: () =>
@@ -22,7 +22,6 @@ export default function Home(props) {
         populate: ["thumbnail", "categories"],
         filters: { is_popular: { $eq: true } },
       }),
-    initialData: props.popularProducts,
   });
 
   const { data: popularFruits } = useQuery<ApiResponse<ProductType>>({
@@ -171,9 +170,27 @@ export default function Home(props) {
 }
 
 export async function getServerSideProps() {
-  const popularProducts = await getProductsApi({
-    populate: ["thumbnail", "categories"],
-    filters: { is_popular: { $eq: true } },
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: [getProductsApi.name, "top_selling_products"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { is_top_selling: { $eq: true } },
+        pagination: { start: 0, limit: 3, withCount: false },
+      }),
   });
-  return { props: { popularProducts } };
+
+  await queryClient.prefetchQuery({
+    queryKey: [getProductsApi.name, "popular_products"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { is_popular: { $eq: true } },
+      }),
+  });
+  return {
+    props: { dehydratedState: dehydrate(queryClient) },
+  };
 }
