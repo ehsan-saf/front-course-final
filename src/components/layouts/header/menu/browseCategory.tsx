@@ -2,7 +2,7 @@ import { IconBox, ImageView } from "@/components";
 import { useOverlay } from "@/hooks";
 import { BrowseCategoryMock } from "@/mock/browseCategory";
 import Link from "next/link";
-import { useState, useEffect, MouseEvent } from "react";
+import { useState, MouseEvent } from "react";
 
 interface Props {
   isDisplayLarge: boolean;
