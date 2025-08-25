@@ -1,21 +1,54 @@
+import { getProductsApi } from "@/api/product";
 import { IconBox } from "@/components";
+import { Entity, ProductFilters, ProductType } from "@/types";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { twMerge } from "tailwind-merge";
+import { SearchItem } from "./searchItem";
+
+interface formInputs {
+  searchText: string;
+}
 
 export function SearchForm({ containerClass }: { containerClass?: string }) {
+  const [resultData, setResultData] = useState<Array<Entity<ProductType>>>([]);
+  const { register, handleSubmit } = useForm<formInputs>();
+
+  const mutation = useMutation({
+    mutationFn: (data: ProductFilters) =>
+      getProductsApi({ filters: data, populate: ["thumbnail"] }),
+  });
+
+  function onSubmit(data: formInputs) {
+    mutation.mutate(
+      { title: { $containsi: data.searchText } },
+      {
+        onSuccess: (response) => {
+          setResultData(response.data);
+        },
+      },
+    );
+  }
+
   return (
     <div
-      className={`${containerClass} ml-auto w-full lg:max-w-[400px] xl:max-w-[700px]`}
+      className={twMerge(
+        "relative ml-auto w-full lg:max-w-[400px] xl:max-w-[700px]",
+        containerClass,
+      )}
     >
-      <form className="relative flex">
+      <form className="relative flex" onSubmit={handleSubmit(onSubmit)}>
         <input
           className={`w-full rounded-sm border-[1px] border-greenBorder px-6 py-3.5 font-montserrat text-[#B6B6B6]`}
           type="text"
-          name="search"
           id="search-bar"
           placeholder="Search for items"
+          {...register("searchText")}
         />
         <button
           type="submit"
-          className={`absolute top-1/2 right-3.5 -translate-x-full -translate-y-1/2 pt-1`}
+          className="absolute top-1/2 right-3.5 -translate-x-full -translate-y-1/2 cursor-pointer pt-1"
         >
           <IconBox
             icon="search"
@@ -24,6 +57,15 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
           />
         </button>
       </form>
+      {resultData && (
+        <div className="absolute top-14 right-0 left-0 z-2 w-full rounded-xl bg-white p-2.5">
+          <ul>
+            {resultData.map((item, index) => (
+              <li key={index}>{<SearchItem data={item} />}</li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
