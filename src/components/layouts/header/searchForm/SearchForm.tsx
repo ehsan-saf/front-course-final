@@ -2,7 +2,7 @@ import { getProductsApi } from "@/api/product";
 import { IconBox } from "@/components";
 import { Entity, ProductFilters, ProductType } from "@/types";
 import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 import { SearchItem } from "./searchItem";
@@ -13,22 +13,35 @@ interface formInputs {
 
 export function SearchForm({ containerClass }: { containerClass?: string }) {
   const [resultData, setResultData] = useState<Array<Entity<ProductType>>>([]);
-  const { register, handleSubmit } = useForm<formInputs>();
+  const { register, handleSubmit, watch } = useForm<formInputs>();
 
   const mutation = useMutation({
     mutationFn: (data: ProductFilters) =>
       getProductsApi({ filters: data, populate: ["thumbnail"] }),
   });
 
-  function onSubmit(data: formInputs) {
+  const searchText = watch("searchText");
+  const searchByText = useCallback((text: string) => {
     mutation.mutate(
-      { title: { $containsi: data.searchText } },
+      { title: { $containsi: text } },
       {
         onSuccess: (response) => {
           setResultData(response.data);
         },
       },
     );
+  }, []);
+
+  useEffect(() => {
+    if (searchText && searchText.trim().length > 0) {
+      searchByText(searchText);
+    } else {
+      setResultData([]);
+    }
+  }, [searchText, searchByText]);
+
+  function onSubmit(data: formInputs) {
+    searchByText(data.searchText);
   }
 
   return (
