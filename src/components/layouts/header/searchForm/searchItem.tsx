@@ -14,10 +14,10 @@ export function SearchItem({ data }: Props) {
         alt={data.attributes.thumbnail?.data?.attributes.alternativeText}
         width={data.attributes.thumbnail?.data?.attributes.width}
         height={data.attributes.thumbnail?.data?.attributes.height}
-        wrapperClassName="w-[50px] h-[50px]"
-        imageClassName="rounded-[6px]"
+        wrapperClassName="grid content-center w-[50px] h-[50px]"
+        imageClassName="rounded-[6px] w-full"
       />
-      <p>{data.attributes.title}</p>
+      <p className="text-xs lg:text-base">{data.attributes.title}</p>
     </div>
   );
 }

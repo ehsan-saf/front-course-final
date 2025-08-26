@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { twMerge } from "tailwind-merge";
 import { SearchItem } from "./searchItem";
+import { useDebounce } from "use-debounce";
 
 interface formInputs {
   searchText: string;
@@ -21,6 +22,7 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
   });
 
   const searchText = watch("searchText");
+  const [debouncedSearchText] = useDebounce(searchText, 400);
   const searchByText = useCallback((text: string) => {
     mutation.mutate(
       { title: { $containsi: text } },
@@ -33,12 +35,12 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
   }, []);
 
   useEffect(() => {
-    if (searchText && searchText.trim().length > 0) {
-      searchByText(searchText);
+    if (debouncedSearchText && debouncedSearchText.trim().length >= 2) {
+      searchByText(debouncedSearchText);
     } else {
       setResultData([]);
     }
-  }, [searchText, searchByText]);
+  }, [debouncedSearchText, searchByText]);
 
   function onSubmit(data: formInputs) {
     searchByText(data.searchText);
@@ -57,6 +59,7 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
           type="text"
           id="search-bar"
           placeholder="Search for items"
+          autoComplete="off"
           {...register("searchText")}
         />
         <button
