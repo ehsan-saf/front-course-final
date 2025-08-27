@@ -5,3 +5,5 @@ export * from "./banner";
 export * from "./rating-stars";
 export * from "./linearBar";
 export * from "./countDown";
+export * from "./modal";
+export * from "./portal";

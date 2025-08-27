@@ -1,14 +1,18 @@
 import { useState } from "react";
-import { Logo } from "@/components";
+import { LoginModal, Logo } from "@/components";
 import { SearchForm } from "./searchForm";
 import { IconBox } from "@/components";
 import { Menu } from "./menu";
 
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const closeModal = () => setShowModal(false);
 
   return (
     <header>
+      {showModal && <LoginModal onClose={closeModal} />}
       <div className="flex flex-col">
         <div className="border-b border-border p-6">
           <div className="container flex justify-between">
@@ -77,7 +81,10 @@ export function Header() {
               </div>
             </div>
 
-            <div className="hidden items-center gap-3 lg:flex">
+            <div
+              className="hidden items-center gap-3 lg:flex"
+              onClick={() => setShowModal((s) => !s)}
+            >
               <IconBox icon="headset" size={{ nonMobile: 36, mobile: 16 }} />
               <div className="flex flex-col">
                 <h3 className="text-brand-1">1900 - 8888</h3>
