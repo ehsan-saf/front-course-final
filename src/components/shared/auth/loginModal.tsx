@@ -1,15 +1,23 @@
 import { Modal } from "@/components";
-import { createPortal } from "react-dom";
+import { Dispatch, SetStateAction } from "react";
 
 interface Props {
+  setShowModal: Dispatch<SetStateAction<"login" | "register" | null>>;
+
   onClose: () => void;
 }
 
-export function LoginModal({ onClose }: Props) {
+export function LoginModal({ setShowModal, onClose }: Props) {
   return (
     <Modal title="Login" onClose={onClose}>
       <form></form>
-      <h1>Open</h1>
+      <span>Don&apos;t have an account? </span>
+      <button
+        onClick={() => setShowModal("register")}
+        className="cursor-pointer hover:text-blue-700"
+      >
+        Sign up
+      </button>
     </Modal>
   );
 }

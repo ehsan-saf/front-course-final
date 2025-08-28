@@ -1,15 +1,36 @@
-import { Accordion, IconBox, ImageView, Logo } from "@/components/shared";
+import {
+  Accordion,
+  IconBox,
+  ImageView,
+  LoginModal,
+  Logo,
+  RegisterModal,
+} from "@/components";
 import Link from "next/link";
+import { useState } from "react";
 
 export function Footer() {
+  const [showModal, setShowModal] = useState<"login" | "register" | null>(null);
+
+  const onCloseHandler = () => {
+    setShowModal(null);
+  };
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer className="container mt-16 grid">
+      {showModal === "login" && (
+        <LoginModal setShowModal={setShowModal} onClose={onCloseHandler} />
+      )}
+      {showModal === "register" && <RegisterModal onClose={onCloseHandler} />}
       <div className="container mt-8 mb-16 lg:mt-[75px]">
-        <div className="relative overflow-hidden rounded-xl">
+        <div
+          className="relative overflow-hidden rounded-xl"
+          onClick={() => setShowModal("login")}
+        >
           {/* <!-- Background --> */}
           <div className="absolute inset-0 -z-1 h-full bg-[url(/images/hero-bg.png)] bg-cover bg-center bg-no-repeat opacity-10"></div>
           <div className="absolute inset-0 -z-2 h-full bg-[#d8f4e4] opacity-80"></div>
@@ -61,7 +82,9 @@ export function Footer() {
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 xl:justify-items-center">
         <div className="flex max-w-80 flex-col gap-3 pb-8 lg:border-0">
           <Logo />
-          <p className="mb-2">Pellentesque posuere orci lobortis</p>
+          <p className="mb-2" onClick={() => setShowModal("register")}>
+            Pellentesque posuere orci lobortis
+          </p>
           <address className="flex flex-col gap-2.5 font-lato not-italic">
             <div className="flex gap-2">
               <span className="fi-rs-marker mt-0.5 h-4 text-brand-1"></span>

@@ -1,25 +1,20 @@
 import { useState } from "react";
-import { LoginModal, Logo } from "@/components";
+import { Logo } from "@/components";
 import { SearchForm } from "./searchForm";
 import { IconBox } from "@/components";
 import { Menu } from "./menu";
 
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-
-  const closeModal = () => setShowModal(false);
 
   return (
     <header>
-      {showModal && <LoginModal onClose={closeModal} />}
       <div className="flex flex-col">
         <div className="border-b border-border p-6">
           <div className="container flex justify-between">
             <Logo />
             <div className="hidden flex-1 lg:flex">
               <SearchForm containerClass="ml-auto" />
-
               {/* <!-- --------------------- --> */}
               <div className="ml-auto flex items-center gap-2.5">
                 <IconBox
