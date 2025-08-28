@@ -1,19 +1,15 @@
 import { Modal } from "@/components";
-import { Dispatch, SetStateAction } from "react";
+import { useModal } from "@/store";
 
-interface Props {
-  setShowModal: Dispatch<SetStateAction<"login" | "register" | null>>;
+export function LoginModal() {
+  const { openModal, closeModal } = useModal();
 
-  onClose: () => void;
-}
-
-export function LoginModal({ setShowModal, onClose }: Props) {
   return (
-    <Modal title="Login" onClose={onClose}>
+    <Modal title="Login" onClose={closeModal}>
       <form></form>
       <span>Don&apos;t have an account? </span>
       <button
-        onClick={() => setShowModal("register")}
+        onClick={() => openModal("register")}
         className="cursor-pointer hover:text-blue-700"
       >
         Sign up

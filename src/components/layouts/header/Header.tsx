@@ -1,14 +1,19 @@
 import { useState } from "react";
-import { Logo } from "@/components";
+import { LoginModal, Logo, RegisterModal } from "@/components";
 import { SearchForm } from "./searchForm";
 import { IconBox } from "@/components";
 import { Menu } from "./menu";
+import { useModal } from "@/store";
 
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
 
+  const { currentModal, openModal, closeModal } = useModal();
+
   return (
     <header>
+      {currentModal === "login" && <LoginModal />}
+      {currentModal === "register" && <RegisterModal />}
       <div className="flex flex-col">
         <div className="border-b border-border p-6">
           <div className="container flex justify-between">
@@ -17,14 +22,17 @@ export function Header() {
               <SearchForm containerClass="ml-auto" />
               {/* <!-- --------------------- --> */}
               <div className="ml-auto flex items-center gap-2.5">
-                <IconBox
-                  icon="user"
-                  title="Account"
-                  size={{
-                    mobile: 24,
-                    nonMobile: 24,
-                  }}
-                />
+                <button onClick={() => openModal("login")}>
+                  <IconBox
+                    icon="user"
+                    title="Account"
+                    size={{
+                      mobile: 24,
+                      nonMobile: 24,
+                    }}
+                  />
+                </button>
+
                 <IconBox
                   icon="shopping-cart"
                   badge={4}
@@ -56,14 +64,16 @@ export function Header() {
               <SearchForm />
               {/* <!-- --------------------- --> */}
               <div className="flex items-center gap-2.5">
-                <IconBox
-                  icon="user"
-                  title="Account"
-                  size={{
-                    mobile: 24,
-                    nonMobile: 24,
-                  }}
-                />
+                <button onClick={() => openModal("login")}>
+                  <IconBox
+                    icon="user"
+                    title="Account"
+                    size={{
+                      mobile: 24,
+                      nonMobile: 24,
+                    }}
+                  />
+                </button>
                 <IconBox
                   icon="shopping-cart"
                   badge={4}
@@ -76,10 +86,7 @@ export function Header() {
               </div>
             </div>
 
-            <div
-              className="hidden items-center gap-3 lg:flex"
-              onClick={() => setShowModal((s) => !s)}
-            >
+            <div className="hidden items-center gap-3 lg:flex">
               <IconBox icon="headset" size={{ nonMobile: 36, mobile: 16 }} />
               <div className="flex flex-col">
                 <h3 className="text-brand-1">1900 - 8888</h3>

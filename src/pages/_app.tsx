@@ -15,6 +15,7 @@ import {
 } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
 import { useState } from "react";
+import { ModalContextProvider } from "@/store/modalContext";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -65,18 +66,20 @@ export default function App({ Component, pageProps }: AppProps) {
       `}</style>
       <QueryClientProvider client={queryClient}>
         <HydrationBoundary state={pageProps.dehydratedState}>
-          <div id="portal"></div>
-          <Layout>
-            <Component {...pageProps} />
-            <ToastContainer
-              autoClose={false}
-              hideProgressBar={false}
-              closeOnClick={true}
-              draggable={false}
-              theme="light"
-              position="top-right"
-            />
-          </Layout>
+          <ModalContextProvider>
+            <div id="portal"></div>
+            <Layout>
+              <Component {...pageProps} />
+              <ToastContainer
+                autoClose={false}
+                hideProgressBar={false}
+                closeOnClick={true}
+                draggable={false}
+                theme="light"
+                position="top-right"
+              />
+            </Layout>
+          </ModalContextProvider>
         </HydrationBoundary>
       </QueryClientProvider>
     </>

@@ -1,12 +1,11 @@
 import { Modal } from "@/components";
+import { useModal } from "@/store";
 
-interface Props {
-  onClose: () => void;
-}
+export function RegisterModal() {
+  const { closeModal } = useModal();
 
-export function RegisterModal({ onClose }: Props) {
   return (
-    <Modal title="register" onClose={onClose}>
+    <Modal title="register" onClose={closeModal}>
       <form></form>
     </Modal>
   );
