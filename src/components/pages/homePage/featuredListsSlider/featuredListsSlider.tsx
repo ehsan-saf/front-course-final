@@ -41,8 +41,6 @@ export function FeaturedListsSlider() {
     enabled: false,
   });
 
-  console.log(topRatedProducts);
-
   return (
     <Swiper
       className="w-full"

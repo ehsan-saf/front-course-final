@@ -8,7 +8,7 @@ import { useModal } from "@/store";
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
 
-  const { currentModal, openModal, closeModal } = useModal();
+  const { currentModal, openModal } = useModal();
 
   return (
     <header>

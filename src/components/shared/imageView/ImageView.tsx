@@ -19,17 +19,13 @@ export function ImageView({
   imageClassName = "",
   wrapperClassName = "",
 }: Props) {
-  if (src === undefined || src === null) return null;
+  if (src === undefined || src === null || src.trim().length === 0) return null;
 
-  const getImageSrc = (src: string | null) => {
-    if (src) {
-      if (src.startsWith("/uploads")) {
-        return `https://nest.navaxcollege.com${src}`;
-      }
-      return src;
-    } else {
-      return "";
+  const getImageSrc = (src: string) => {
+    if (src.startsWith("/uploads")) {
+      return `https://nest.navaxcollege.com${src}`;
     }
+    return src;
   };
 
   return (
