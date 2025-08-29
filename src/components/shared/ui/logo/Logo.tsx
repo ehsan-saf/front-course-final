@@ -10,7 +10,7 @@ export function Logo() {
           alt="logo"
           width={84}
           height={60}
-          wrapperClassName="h-7 w-10 lg:h-16 lg:w-20"
+          wrapperClassName="h-7 w-10 lg:h-16 lg:w-20 "
         />
         <div className="flex flex-col items-center">
           <h1 className="p-0 font-normal text-brand-1">LOGO</h1>
