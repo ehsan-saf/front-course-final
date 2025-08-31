@@ -7,3 +7,4 @@ export * from "./linearBar";
 export * from "./countDown";
 export * from "./modal";
 export * from "./portal";
+export * from "./form";

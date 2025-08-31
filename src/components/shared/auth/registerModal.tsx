@@ -1,7 +1,6 @@
-import { Modal } from "@/components";
+import { Input, Modal } from "@/components";
 import { useModal } from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Span } from "next/dist/trace";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -26,46 +25,21 @@ export function RegisterModal() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {};
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
     <Modal title="register" onClose={closeModal}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-7">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="username">Username* </label>
-            <input
-              id="username"
-              type="text"
-              placeholder="enter your username"
-              className="rounded-md bg-white p-2 focus:outline-1 focus:outline-blue-600"
-            />
-            {errors.username && (
-              <span className="text-[14px] text-red-600">
-                {errors.username.message}
-              </span>
-            )}
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <label htmlFor="email">Email*</label>
-            <input
-              id="email"
-              type="email"
-              placeholder="enter your email"
-              className="rounded-md bg-white p-2 focus:outline-1 focus:outline-blue-600"
-            />
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <label htmlFor="password">Password*</label>
-            <input
-              id="password"
-              type="password"
-              placeholder="enter your password"
-              className="rounded-md bg-white p-2 focus:outline-1 focus:outline-blue-600"
-            />
-          </div>
+          <Input register={register("username")} label="Username" />
+          <Input register={register("email")} label="Email" type="email" />
+          <Input
+            register={register("password")}
+            label="Password"
+            type="password"
+          />
           <button className="cursor-pointer self-stretch rounded-md bg-green-600 px-4 py-1 text-gray-50 hover:bg-green-700 md:self-start">
             Submit
           </button>
