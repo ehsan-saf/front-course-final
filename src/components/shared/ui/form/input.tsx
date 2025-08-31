@@ -1,9 +1,4 @@
-import {
-  HTMLAttributes,
-  HTMLInputTypeAttribute,
-  InputHTMLAttributes,
-  useId,
-} from "react";
+import { InputHTMLAttributes, useId } from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { ErrorMessage } from "./errorMessage";
 

@@ -1,8 +1,10 @@
+import { registerApiCall } from "@/api/auth";
 import { Input, Modal } from "@/components";
 import { useModal } from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { Schema, z } from "zod";
 
 const schema = z.object({
   username: z.string().min(1, "Please enter your username"),
@@ -25,8 +27,16 @@ export function RegisterModal() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {
+  const registerMutation = useMutation({ mutationFn: registerApiCall });
+
+  const onSubmit = (data: FormDataType) => {
     console.log(data);
+
+    registerMutation.mutate(data, {
+      onSuccess: (response) => {
+        console.log("Response :", response);
+      },
+    });
   };
 
   return (
