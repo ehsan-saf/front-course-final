@@ -36,18 +36,21 @@ export function RegisterModal() {
           <Input
             register={register("username")}
             label="Username"
+            placeholder="your username"
             error={errors.username}
           />
           <Input
+            type="email"
             register={register("email")}
             label="Email"
-            type="email"
+            placeholder="you@mail.com"
             error={errors.email}
           />
           <Input
+            type="password"
             register={register("password")}
             label="Password"
-            type="password"
+            placeholder="your password (must be atleast 8 characters)"
             error={errors.password}
           />
           <button className="cursor-pointer self-stretch rounded-md bg-green-600 px-4 py-1 text-gray-50 hover:bg-green-700 md:self-start">

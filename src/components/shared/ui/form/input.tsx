@@ -1,15 +1,25 @@
-import { HTMLInputTypeAttribute, useId } from "react";
+import {
+  HTMLAttributes,
+  HTMLInputTypeAttribute,
+  InputHTMLAttributes,
+  useId,
+} from "react";
 import { FieldError, UseFormRegisterReturn } from "react-hook-form";
 import { ErrorMessage } from "./errorMessage";
 
-interface Props {
-  type?: HTMLInputTypeAttribute;
+interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, "id"> {
   label?: string;
   register: UseFormRegisterReturn<string>;
   error?: FieldError;
 }
 
-export function Input({ type = "text", label, register, error }: Props) {
+export function Input({
+  type = "text",
+  label,
+  register,
+  error,
+  ...props
+}: Props) {
   const id = useId();
 
   return (
@@ -25,6 +35,7 @@ export function Input({ type = "text", label, register, error }: Props) {
               ? "rounded-md bg-white p-2 outline-red-600 focus:outline-1"
               : "rounded-md bg-white p-2 focus:outline-1 focus:outline-blue-600"
           }
+          {...props}
           {...register}
         />
       </div>
