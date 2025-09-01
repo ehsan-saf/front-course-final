@@ -12,13 +12,13 @@ interface Props {
 
 type ModalType = "login" | "register" | null;
 
-interface ContextProps {
+interface ModalContextType {
   currentModal: ModalType;
   openModal: (openModal: ModalType) => void;
   closeModal: () => void;
 }
 
-export const ModalContext = createContext<ContextProps>({
+export const ModalContext = createContext<ModalContextType>({
   currentModal: null,
   openModal: () => {},
   closeModal: () => {},

@@ -1,10 +1,10 @@
 import { registerApiCall } from "@/api/auth";
 import { Input, Modal } from "@/components";
-import { useModal } from "@/store";
+import { useUser, useModal } from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
-import { Schema, z } from "zod";
+import { z } from "zod";
 
 const schema = z.object({
   username: z.string().min(1, "Please enter your username"),
@@ -18,6 +18,7 @@ type FormDataType = z.infer<typeof schema>;
 
 export function RegisterModal() {
   const { closeModal } = useModal();
+  const { login } = useUser();
 
   const {
     register,
@@ -30,11 +31,10 @@ export function RegisterModal() {
   const registerMutation = useMutation({ mutationFn: registerApiCall });
 
   const onSubmit = (data: FormDataType) => {
-    console.log(data);
-
     registerMutation.mutate(data, {
       onSuccess: (response) => {
         console.log("Response :", response);
+        login(response.jwt, response.user);
       },
     });
   };
