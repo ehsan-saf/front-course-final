@@ -12,34 +12,46 @@ interface Props {
 }
 
 interface AuthContextType {
-  isLogin: boolean;
+  user: User | null;
   login: (jwt: string, user: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
-  isLogin: false,
+  user: null,
   login: () => {},
 });
 
 export const useUser = () => useContext(AuthContext);
 
 export function AuthContextProvider({ children }: Props) {
-  const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    if (window.localStorage.getItem("token")) {
-      setIsLogin(true);
+    const token = window.localStorage.getItem("token");
+    const savedUser = window.localStorage.getItem("user");
+
+    if (token && savedUser) {
+      try {
+        setUser(JSON.parse(savedUser));
+      } catch {
+        // Clear corrupted data
+        window.localStorage.removeItem("token");
+        window.localStorage.removeItem("user");
+      }
+    } else if (token && !savedUser) {
+      // Token exists but no user data - clear invalid token
+      window.localStorage.removeItem("token");
     }
   }, []);
 
   const loginHandler = (jwt: string, user: User) => {
     window.localStorage.setItem("token", jwt);
     window.localStorage.setItem("user", JSON.stringify(user));
-    setIsLogin(true);
+    setUser(user);
   };
 
   return (
-    <AuthContext.Provider value={{ isLogin: isLogin, login: loginHandler }}>
+    <AuthContext.Provider value={{ user, login: loginHandler }}>
       {children}
     </AuthContext.Provider>
   );

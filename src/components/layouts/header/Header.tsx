@@ -3,11 +3,11 @@ import { LoginModal, Logo, RegisterModal } from "@/components";
 import { SearchForm } from "./searchForm";
 import { IconBox } from "@/components";
 import { Menu } from "./menu";
-import { useModal } from "@/store";
+import { useModal, useUser } from "@/store";
 
 export function Header() {
+  const { user } = useUser();
   const [menuExpanded, setMenuExpanded] = useState(false);
-
   const { currentModal, openModal } = useModal();
 
   return (
@@ -25,7 +25,7 @@ export function Header() {
                 <button onClick={() => openModal("login")}>
                   <IconBox
                     icon="user"
-                    title="Account"
+                    title={user ? user.username : "Log in"}
                     size={{
                       mobile: 24,
                       nonMobile: 24,
@@ -67,7 +67,7 @@ export function Header() {
                 <button onClick={() => openModal("login")}>
                   <IconBox
                     icon="user"
-                    title="Account"
+                    title={user ? user.username : "Log in"}
                     size={{
                       mobile: 24,
                       nonMobile: 24,

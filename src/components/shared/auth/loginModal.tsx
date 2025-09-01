@@ -9,9 +9,7 @@ import { z } from "zod";
 
 const schema = z.object({
   identifier: z.string().min(1, "Please enter your username"),
-  password: z
-    .string("Please enter your password")
-    .min(8, "Password must be at least 8 characters"),
+  password: z.string().min(1, "Please enter your password"),
 });
 
 type FormDataType = z.infer<typeof schema>;
