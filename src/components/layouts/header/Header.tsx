@@ -6,9 +6,17 @@ import { Menu } from "./menu";
 import { useModal, useUser } from "@/store";
 
 export function Header() {
-  const { user } = useUser();
+  const { user, logout } = useUser();
   const [menuExpanded, setMenuExpanded] = useState(false);
   const { currentModal, openModal } = useModal();
+
+  const accountHandler = () => {
+    if (user) {
+      logout();
+    } else {
+      openModal("login");
+    }
+  };
 
   return (
     <header>
@@ -22,7 +30,7 @@ export function Header() {
               <SearchForm containerClass="ml-auto" />
               {/* <!-- --------------------- --> */}
               <div className="ml-auto flex items-center gap-2.5">
-                <button onClick={() => openModal("login")}>
+                <button onClick={accountHandler}>
                   <IconBox
                     icon="user"
                     title={user ? user.username : "Log in"}
@@ -64,7 +72,7 @@ export function Header() {
               <SearchForm />
               {/* <!-- --------------------- --> */}
               <div className="flex items-center gap-2.5">
-                <button onClick={() => openModal("login")}>
+                <button onClick={accountHandler}>
                   <IconBox
                     icon="user"
                     title={user ? user.username : "Log in"}

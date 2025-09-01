@@ -73,7 +73,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <Layout>
                 <Component {...pageProps} />
                 <ToastContainer
-                  autoClose={false}
+                  autoClose={4000}
                   hideProgressBar={false}
                   closeOnClick={true}
                   draggable={false}
