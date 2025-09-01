@@ -4,6 +4,7 @@ import { useUser, useModal } from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 const schema = z.object({
@@ -35,6 +36,8 @@ export function RegisterModal() {
       onSuccess: (response) => {
         console.log("Response :", response);
         login(response.jwt, response.user);
+        toast.success("Signed up and Loged in");
+        closeModal();
       },
     });
   };

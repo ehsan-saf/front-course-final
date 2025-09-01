@@ -2,9 +2,8 @@ import { AxiosError } from "axios";
 
 export function getErrorMessage(error: AxiosError) {
   let message = "";
-  if (error.response) {
-    // The request was made and the server responded with a status code
-    // that falls out of the range of 2xx
+  if (error.response?.data) {
+    console.log(error);
     const status = error.response.status;
     if (status === 400) {
       message = "Bad Request";
