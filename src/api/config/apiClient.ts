@@ -7,6 +7,14 @@ const apiClient = axios.create({
   timeout: 120000,
 });
 
+export interface errorDataType {
+  error: {
+    message: string;
+    name: string;
+    status: number;
+  };
+}
+
 export default apiClient;
 
 // apiClient.interceptors.request.use(function (config) {
@@ -23,7 +31,7 @@ apiClient.interceptors.response.use(
     // Do something with response data
     return response;
   },
-  function (error: AxiosError) {
+  function (error: AxiosError<errorDataType>) {
     const msg = getErrorMessage(error);
     toast.error(msg);
     return Promise.reject(error);
