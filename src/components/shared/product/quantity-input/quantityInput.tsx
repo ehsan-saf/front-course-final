@@ -1,19 +1,29 @@
-import { useState } from "react";
 import { IconBox } from "@/components";
+import { Entity, ProductType } from "@/types";
+import { useCart } from "@/store/cartContext";
 
 interface Props {
   showAddToCart?: boolean;
+  data: Entity<ProductType>;
 }
 
-export function QuantityInput({ showAddToCart = false }: Props) {
-  const [quantity, setQuantity] = useState(0);
+export function QuantityInput({ showAddToCart = false, data }: Props) {
+  const { cartItems, addItem, incrementItem, decrementItem, getItem } =
+    useCart();
+  const cartItem = getItem(data.id);
+  const quantity = cartItem?.quantity || 0;
+  console.log(cartItems);
 
   function increment() {
-    setQuantity((q) => q + 1);
+    if (!cartItem) {
+      addItem(data);
+    } else {
+      incrementItem(data.id);
+    }
   }
 
   function decrement() {
-    setQuantity((q) => q - 1);
+    decrementItem(data.id);
   }
 
   return (
@@ -43,18 +53,14 @@ export function QuantityInput({ showAddToCart = false }: Props) {
       </button>
       {/* <!-- Input number when added ---- --> */}
       <div
-        className="input-container h-6 w-6 items-center justify-between rounded-sm border-[1px] border-brand-1 md:h-7 md:w-16"
+        className="flex h-6 w-6 items-center justify-between rounded-sm border border-brand-1 md:h-7 md:w-16"
         style={{
           display: `${quantity > 0 ? "flex" : "none"}`,
         }}
       >
-        <input
-          type="number"
-          value={quantity}
-          min={0}
-          onChange={(e) => setQuantity(Number(e.target.value))}
-          className="no-spinner h-full w-full text-center text-sm text-brand-1"
-        />
+        <span className="flex-1 text-center text-sm text-brand-1">
+          {quantity}
+        </span>
         <div className="hidden flex-col gap-1 pr-1.5 text-brand-1 md:flex">
           <button onClick={increment}>
             <IconBox icon="chevron-up" size={{ mobile: 10, nonMobile: 10 }} />

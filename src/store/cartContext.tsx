@@ -1,6 +1,5 @@
 import { Entity, ImageType, ProductType } from "@/types";
-import { createContext, ReactNode, useState } from "react";
-import { Immer } from "";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { produce } from "immer";
 
 interface Props {
@@ -25,6 +24,7 @@ interface CartContextType {
   incrementItem: (id: number) => void;
   decrementItem: (id: number) => void;
   deleteItem: (id: number) => void;
+  getItem: (id: number) => undefined | CartItemType;
 }
 
 export const CartContext = createContext<CartContextType>({
@@ -33,7 +33,10 @@ export const CartContext = createContext<CartContextType>({
   incrementItem: () => {},
   decrementItem: () => {},
   deleteItem: () => {},
+  getItem: () => undefined,
 });
+
+export const useCart = () => useContext(CartContext);
 
 export function CartContextProvider({ children }: Props) {
   const [cartItems, setCartItems] = useState<Array<CartItemType>>([]);
@@ -86,6 +89,10 @@ export function CartContextProvider({ children }: Props) {
     );
   };
 
+  const getItemHandler = (productId: number) => {
+    return cartItems.find((item) => item.id === productId);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -94,6 +101,7 @@ export function CartContextProvider({ children }: Props) {
         incrementItem: incrementItemHandler,
         decrementItem: decrementItemHandler,
         deleteItem: deleteItemHandler,
+        getItem: getItemHandler,
       }}
     >
       {children}

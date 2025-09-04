@@ -45,7 +45,7 @@ export function DealProduct({ data }: Props) {
               price={data.attributes.price}
               sale_price={data.attributes.sell_price}
             />
-            <QuantityInput />
+            <QuantityInput data={data} />
           </div>
         </div>
       </div>

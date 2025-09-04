@@ -6,8 +6,8 @@ import { Menu } from "./menu";
 import { useModal, useUser } from "@/store";
 
 export function Header() {
-  const { user, logout } = useUser();
   const [menuExpanded, setMenuExpanded] = useState(false);
+  const { user, logout } = useUser();
   const { currentModal, openModal } = useModal();
 
   const accountHandler = () => {

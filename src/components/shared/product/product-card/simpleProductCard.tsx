@@ -70,7 +70,7 @@ export function SimpleProductCard({
             price={data.attributes.price}
             sale_price={data.attributes.sell_price}
           />
-          <QuantityInput />
+          <QuantityInput data={data} />
         </div>
       ) : (
         <>
@@ -86,7 +86,7 @@ export function SimpleProductCard({
             <div className="font-lato text-xs text-heading">
               Sold: {`${data.attributes.sold}/${data.attributes.total}`}
             </div>
-            <QuantityInput showAddToCart />
+            <QuantityInput showAddToCart data={data} />
           </div>
         </>
       )}
