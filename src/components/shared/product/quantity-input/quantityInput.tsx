@@ -8,11 +8,9 @@ interface Props {
 }
 
 export function QuantityInput({ showAddToCart = false, data }: Props) {
-  const { cartItems, addItem, incrementItem, decrementItem, getItem } =
-    useCart();
+  const { addItem, incrementItem, decrementItem, getItem } = useCart();
   const cartItem = getItem(data.id);
   const quantity = cartItem?.quantity || 0;
-  console.log(cartItems);
 
   function increment() {
     if (!cartItem) {

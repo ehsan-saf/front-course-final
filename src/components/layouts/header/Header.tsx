@@ -4,11 +4,15 @@ import { SearchForm } from "./searchForm";
 import { IconBox } from "@/components";
 import { Menu } from "./menu";
 import { useModal, useUser } from "@/store";
+import { useCart } from "@/store/cartContext";
 
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
   const { user, logout } = useUser();
   const { currentModal, openModal } = useModal();
+
+  const { cartItems } = useCart();
+  const cartQuantity = cartItems.length === 0 ? undefined : cartItems.length;
 
   const accountHandler = () => {
     if (user) {
@@ -43,7 +47,7 @@ export function Header() {
 
                 <IconBox
                   icon="shopping-cart"
-                  badge={4}
+                  badge={cartQuantity}
                   title="Cart"
                   size={{
                     mobile: 24,
@@ -84,7 +88,7 @@ export function Header() {
                 </button>
                 <IconBox
                   icon="shopping-cart"
-                  badge={4}
+                  badge={cartQuantity}
                   title="Cart"
                   size={{
                     mobile: 24,
