@@ -1,5 +1,5 @@
 import { Entity, ImageType, ProductType } from "@/types";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useReducer } from "react";
 import { produce } from "immer";
 
 interface Props {
@@ -27,6 +27,12 @@ interface CartContextType {
   getItem: (id: number) => undefined | CartItemType;
 }
 
+type CartAction =
+  | { type: "ADD_ITEM"; item: CartItemType }
+  | { type: "INCREMENT_ITEM"; id: number }
+  | { type: "DECREMENT_ITEM"; id: number }
+  | { type: "DELETE_ITEM"; id: number };
+
 export const CartContext = createContext<CartContextType>({
   cartItems: [],
   addItem: () => {},
@@ -38,8 +44,40 @@ export const CartContext = createContext<CartContextType>({
 
 export const useCart = () => useContext(CartContext);
 
+function cartReducer(
+  state: CartItemType[],
+  action: CartAction,
+): CartItemType[] {
+  switch (action.type) {
+    case "ADD_ITEM":
+      return [...state, action.item];
+    case "INCREMENT_ITEM":
+      return produce(state, (draft) => {
+        const item = draft.find((item) => item.id === action.id);
+        if (item && item.quantity < item.maxQuantity) {
+          item.quantity++;
+        }
+      });
+    case "DECREMENT_ITEM":
+      return produce(state, (draft) => {
+        const item = draft.find((item) => item.id === action.id);
+        if (item) {
+          if (item.quantity === 1) {
+            return draft.filter((item) => item.id !== action.id);
+          } else {
+            item.quantity--;
+          }
+        }
+      });
+    case "DELETE_ITEM":
+      return state.filter((item) => item.id !== action.id);
+    default:
+      return state;
+  }
+}
+
 export function CartContextProvider({ children }: Props) {
-  const [cartItems, setCartItems] = useState<Array<CartItemType>>([]);
+  const [cartItems, dispatch] = useReducer(cartReducer, []);
 
   const addItemHandler = (product: Entity<ProductType>) => {
     const cartItem: CartItemType = {
@@ -54,39 +92,18 @@ export function CartContextProvider({ children }: Props) {
       maxQuantity: product.attributes.quantity || 0,
     };
 
-    setCartItems((prevItems) => [...prevItems, cartItem]);
+    dispatch({ type: "ADD_ITEM", item: cartItem });
   };
 
   const incrementItemHandler = (productId: number) => {
-    setCartItems(
-      produce((prevItems) => {
-        const item = prevItems.find((item) => item.id === productId);
-        if (item && item.quantity < item.maxQuantity) {
-          item.quantity++;
-        }
-      }),
-    );
+    dispatch({ type: "INCREMENT_ITEM", id: productId });
   };
+
   const decrementItemHandler = (productId: number) => {
-    setCartItems(
-      produce((prevItems) => {
-        const item = prevItems.find((item) => item.id === productId);
-        if (item) {
-          if (item.quantity === 1) {
-            deleteItemHandler(item.id);
-          } else {
-            item.quantity--;
-          }
-        }
-      }),
-    );
+    dispatch({ type: "DECREMENT_ITEM", id: productId });
   };
   const deleteItemHandler = (productId: number) => {
-    setCartItems(
-      produce((prevItems) => {
-        return prevItems.filter((item) => item.id !== productId);
-      }),
-    );
+    dispatch({ type: "DELETE_ITEM", id: productId });
   };
 
   const getItemHandler = (productId: number) => {
