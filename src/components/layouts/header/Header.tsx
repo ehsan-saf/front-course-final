@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LoginModal, Logo, RegisterModal } from "@/components";
 import { SearchForm } from "./searchForm";
 import { IconBox } from "@/components";
 import { Menu } from "./menu";
 import { useModal, useUser } from "@/store";
-import { useCart } from "@/store/cartContext";
+import { CartContext } from "@/store/cartContext";
+import { useCart } from "@/hooks";
 
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
   const { user, logout } = useUser();
   const { currentModal, openModal } = useModal();
 
+  // const { cartItems } = useContext(CartContext);
   const { cartItems } = useCart();
+  console.log(cartItems);
   const cartQuantity = cartItems.length === 0 ? undefined : cartItems.length;
 
   const accountHandler = () => {

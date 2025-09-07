@@ -1,21 +1,9 @@
-import { Entity, ImageType, ProductType } from "@/types";
+import { CartItemType, Entity, ProductType } from "@/types";
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import { produce } from "immer";
 
 interface Props {
   children: ReactNode;
-}
-
-interface CartItemType {
-  id: number;
-  title: string;
-  price: number;
-  sell_price: number | null;
-  img?: Entity<ImageType>;
-  SKU: string | null;
-  unit: string;
-  quantity: number;
-  maxQuantity: number; // from product.quantity
 }
 
 interface CartContextType {

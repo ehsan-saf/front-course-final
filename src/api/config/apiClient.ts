@@ -17,13 +17,13 @@ export interface errorDataType {
 
 export default apiClient;
 
-// apiClient.interceptors.request.use(function (config) {
-//   const auth_token = localStorage.getItem("user");
-//   if (auth_token) {
-//     config.headers.Authorization = `Bearer ${auth_token}`;
-//   }
-//   return config;
-// });
+apiClient.interceptors.request.use(function (config) {
+  const auth_token = window.localStorage.getItem("token");
+  if (auth_token) {
+    config.headers.Authorization = `Bearer ${auth_token}`;
+  }
+  return config;
+});
 
 // Add a response interceptor
 apiClient.interceptors.response.use(
