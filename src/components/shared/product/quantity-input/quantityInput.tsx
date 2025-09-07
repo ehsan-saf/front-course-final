@@ -1,6 +1,6 @@
 import { IconBox } from "@/components";
 import { Entity, ProductType } from "@/types";
-import { useCart } from "@/store/cartContext";
+import { useCart } from "@/hooks";
 
 interface Props {
   showAddToCart?: boolean;
@@ -8,20 +8,21 @@ interface Props {
 }
 
 export function QuantityInput({ showAddToCart = false, data }: Props) {
-  const { addItem, incrementItem, decrementItem, getItem } = useCart();
-  const cartItem = getItem(data.id);
-  const quantity = cartItem?.quantity || 0;
+  const { cartItems, addItem } = useCart();
+  // const cartItem = getItem(data.id);
+  const quantity = 0;
 
   function increment() {
-    if (!cartItem) {
-      addItem(data);
-    } else {
-      incrementItem(data.id);
-    }
+    // if (!cartItem) {
+    //   addItem(data);
+    // } else {
+    //   incrementItem(data.id);
+    // }
+    addItem(data.id);
   }
 
   function decrement() {
-    decrementItem(data.id);
+    // decrementItem(data.id);
   }
 
   return (

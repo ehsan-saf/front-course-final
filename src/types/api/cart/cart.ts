@@ -1,4 +1,4 @@
-import { Entity, ImageType } from "@/types";
+import { Entity, ImageType, ProductType } from "@/types";
 
 export interface CartType {
   uuid: string | null;
@@ -6,24 +6,23 @@ export interface CartType {
 }
 
 export interface CartItemType {
-  id: number;
-  title: string;
-  price: number;
-  sell_price: number | null;
-  img?: Entity<ImageType>;
-  SKU: string | null;
-  unit: string;
   quantity: number;
-  maxQuantity: number; // from product.quantity
+  id: number;
+  product: { data: Entity<ProductType> };
+  // title: string;
+  // price: number;
+  // sell_price: number | null;
+  // img?: Entity<ImageType>;
+  // SKU: string | null;
+  // unit: string;
+  // maxQuantity: number; // from product.quantity
 }
 
-export interface CartRequestType {
-  data: {
-    basket_items: Array<{
-      product: {
-        connect: [{ id: number }];
-      };
-      quantity: number;
-    }>;
-  };
+export interface UpdateCartDataType {
+  basket_items: Array<{
+    product: {
+      connect: Array<{ id: number }>;
+    };
+    quantity: number;
+  }>;
 }
