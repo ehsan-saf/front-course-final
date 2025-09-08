@@ -42,7 +42,11 @@ export function SimpleProductSlider({ sliderData, cardClassName = "" }: Props) {
         modules={[Autoplay, Navigation]}
         slidesPerView={2}
         spaceBetween={16}
-        autoplay={true}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,

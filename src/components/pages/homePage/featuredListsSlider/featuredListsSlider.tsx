@@ -47,7 +47,10 @@ export function FeaturedListsSlider() {
       modules={[Autoplay]}
       slidesPerView={1.1}
       spaceBetween={16}
-      autoplay={true}
+      autoplay={{
+        delay: 2000,
+        pauseOnMouseEnter: true,
+      }}
       breakpoints={{
         500: {
           slidesPerView: 1.2,

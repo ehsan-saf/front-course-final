@@ -13,7 +13,11 @@ export function DealSlider({ sliderData }: Props) {
       modules={[Autoplay]}
       slidesPerView={1}
       spaceBetween={16}
-      autoplay={true}
+      autoplay={{
+        delay: 2000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }}
       breakpoints={{
         768: {
           slidesPerView: 2,
