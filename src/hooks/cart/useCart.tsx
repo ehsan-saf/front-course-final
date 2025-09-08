@@ -1,6 +1,7 @@
 import { cartApiCall, updateCartApiCall } from "@/api/cart";
-import { UpdateCartDataType } from "@/types";
+import { CartItemType, UpdateCartDataType } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export function useCart() {
   const queryClient = useQueryClient();
@@ -39,10 +40,49 @@ export function useCart() {
     cartMutation.mutate(updatedData, {
       onSuccess: (response) => {
         queryClient.invalidateQueries({ queryKey: ["get-cart"] });
-        console.log(response);
       },
     });
   };
 
-  return { cartItems, addItem: addItemHandler };
+  // =========== Update item quantity ===========
+
+  const updateItemHandler = (
+    productId: number,
+    operation: "increment" | "decrement",
+  ) => {
+    const prepareUpdateData = cartItems.map((item) => ({
+      product: {
+        connect: [{ id: item.product.data.id }],
+      },
+      quantity:
+        productId === item.product.data.id
+          ? operation === "increment"
+            ? item.quantity + 1
+            : item.quantity - 1
+          : item.quantity,
+    }));
+
+    const updatedData: UpdateCartDataType = {
+      basket_items: prepareUpdateData,
+    };
+
+    cartMutation.mutate(updatedData, {
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+      },
+    });
+  };
+
+  // =============== Get cart item ==============
+
+  const getItemHandler = (productId: number): CartItemType | undefined => {
+    return cartItems.find((item) => item.product.data.id === productId);
+  };
+
+  return {
+    cartItems,
+    getItem: getItemHandler,
+    addItem: addItemHandler,
+    updateItem: updateItemHandler,
+  };
 }

@@ -8,21 +8,20 @@ interface Props {
 }
 
 export function QuantityInput({ showAddToCart = false, data }: Props) {
-  const { cartItems, addItem } = useCart();
-  // const cartItem = getItem(data.id);
-  const quantity = 0;
+  const { getItem, addItem, updateItem } = useCart();
+  const item = getItem(data.id);
+  const quantity = item?.quantity || 0;
+
+  const add = () => {
+    addItem(data.id);
+  };
 
   function increment() {
-    // if (!cartItem) {
-    //   addItem(data);
-    // } else {
-    //   incrementItem(data.id);
-    // }
-    addItem(data.id);
+    updateItem(data.id, "increment");
   }
 
   function decrement() {
-    // decrementItem(data.id);
+    updateItem(data.id, "decrement");
   }
 
   return (
@@ -33,7 +32,7 @@ export function QuantityInput({ showAddToCart = false, data }: Props) {
         style={{
           display: `${quantity < 1 ? "flex" : "none"}`,
         }}
-        onClick={increment}
+        onClick={add}
       >
         {!showAddToCart ? (
           <>
