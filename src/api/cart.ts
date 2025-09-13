@@ -1,4 +1,4 @@
-import { ApiResponseSingle, CartType, UpdateCartData } from "@/types";
+import { ApiResponseSingle, CartType, UpdateCartDataType } from "@/types";
 import apiClient from "./config/apiClient";
 
 export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
@@ -8,7 +8,7 @@ export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
 }
 
 export async function updateCartApiCall(
-  data: UpdateCartData,
+  data: UpdateCartDataType,
 ): Promise<ApiResponseSingle<CartType>> {
   const response = await apiClient.put("/my-basket", { data });
 

@@ -1,7 +1,6 @@
 import { cartApiCall, updateCartApiCall } from "@/api/cart";
 import { CartItemType, UpdateCartDataType } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-toastify";
 
 export function useCart() {
   const queryClient = useQueryClient();
@@ -38,7 +37,7 @@ export function useCart() {
     };
 
     cartMutation.mutate(updatedData, {
-      onSuccess: (response) => {
+      onSuccess: () => {
         queryClient.invalidateQueries({ queryKey: ["get-cart"] });
       },
     });
