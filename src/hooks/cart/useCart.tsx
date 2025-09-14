@@ -1,4 +1,4 @@
-import { cartApiCall, updateCartApiCall } from "@/api/cart";
+import { cartApiCall, updateCartApiCall, uuid2UserApiCall } from "@/api/cart";
 import { CartItemType, UpdateCartDataType } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -13,6 +13,15 @@ export function useCart() {
   const cartMutation = useMutation({
     mutationKey: ["update-cart"],
     mutationFn: updateCartApiCall,
+  });
+
+  const uuid2UserMutation = useMutation({
+    mutationFn: uuid2UserApiCall,
+    onSuccess: (response) => {
+      console.log(response);
+      window.localStorage.removeItem("uuid");
+      queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+    },
   });
 
   const cartItems = cartData?.data.attributes.basket_items ?? [];
@@ -78,10 +87,25 @@ export function useCart() {
     return cartItems.find((item) => item.product.data.id === productId);
   };
 
+  const uuid2UserHandler = () => {
+    const token = window.localStorage.getItem("token");
+    const uuid = window.localStorage.getItem("uuid");
+
+    if (token && uuid) {
+      if (cartItems.length > 0) {
+        uuid2UserMutation.mutate(uuid);
+      } else {
+        window.localStorage.removeItem("uuid");
+        queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+      }
+    }
+  };
+
   return {
     cartItems,
     getItem: getItemHandler,
     addItem: addItemHandler,
     updateItem: updateItemHandler,
+    uuid2User: uuid2UserHandler,
   };
 }

@@ -45,3 +45,7 @@ export async function updateCartApiCall(
 
   return response.data;
 }
+
+export async function uuid2UserApiCall(uuid: string) {
+  return await apiClient.put(`/basket2User/${uuid}`);
+}

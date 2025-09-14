@@ -1,5 +1,6 @@
 import { LoginApiCall } from "@/api/auth";
 import { Input, Modal } from "@/components";
+import { useCart } from "@/hooks";
 import { useModal, useUser } from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
@@ -16,6 +17,7 @@ type FormDataType = z.infer<typeof schema>;
 export function LoginModal() {
   const { openModal, closeModal } = useModal();
 
+  const { uuid2User } = useCart();
   const { login } = useUser();
 
   const {
@@ -33,6 +35,7 @@ export function LoginModal() {
       onSuccess: (response) => {
         console.log("response", response);
         login(response.jwt, response.user);
+        uuid2User();
         closeModal();
       },
     });
