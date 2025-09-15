@@ -54,7 +54,7 @@ export function LoginModal() {
             type="password"
             register={register("password")}
             label="Password"
-            placeholder="your password (must be atleast 8 characters)"
+            placeholder="your password"
             error={errors.password}
           />
           <button className="cursor-pointer self-stretch rounded-md bg-green-600 px-4 py-1 text-gray-50 hover:bg-green-700 md:self-start">
