@@ -9,8 +9,8 @@ export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
       await apiClient.post("/my-basket")
     ).data;
     window.localStorage.setItem("uuid", response.data.attributes.uuid!);
-  }
-  if (uuid) {
+  } else if (uuid) {
+    console.log("UUID is present !");
     return (
       await apiClient.get("/my-basket", {
         params: {
@@ -19,7 +19,7 @@ export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
       })
     ).data;
   }
-  return (await apiClient.get("/my-basket")).data;
+  return (await apiClient.post("/my-basket")).data;
 }
 
 export async function updateCartApiCall(
@@ -46,7 +46,6 @@ export async function updateCartApiCall(
   return response.data;
 }
 
-// amazonq-ignore-next-line
 export async function uuid2UserApiCall(uuid: string) {
   return await apiClient.put(`/basket2User/${uuid}`);
 }

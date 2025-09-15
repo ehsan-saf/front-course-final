@@ -33,10 +33,8 @@ export function ModalContextProvider({ children }: Props) {
     const hash = window.location.hash.substring(1);
     if (hash.includes("-modal")) {
       const modalName = hash.split("-")[0] as ModalType;
-      console.log(modalName);
       setShowModal(modalName);
     }
-    console.log("window.location.hash");
   }, []);
 
   const openModal = (modalName: ModalType) => {
