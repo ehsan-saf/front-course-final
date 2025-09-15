@@ -17,7 +17,7 @@ export function useCart() {
 
   const uuid2UserMutation = useMutation({
     mutationFn: uuid2UserApiCall,
-    onSuccess: (response) => {
+    onSuccess: () => {
       window.localStorage.removeItem("uuid");
       queryClient.invalidateQueries({ queryKey: ["get-cart"] });
     },
