@@ -20,7 +20,7 @@ export async function registerApiCall(
   return response.data;
 }
 
-export async function LoginApiCall(
+export async function loginApiCall(
   data: LoginProps,
 ): Promise<AuthResponseType> {
   const response = await apiClient.post("/auth/local", data);

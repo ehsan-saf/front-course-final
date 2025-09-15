@@ -1,4 +1,4 @@
-import { LoginApiCall } from "@/api/auth";
+import { loginApiCall } from "@/api/auth";
 import { Input, Modal } from "@/components";
 import { useCart } from "@/hooks";
 import { useModal, useUser } from "@/store";
@@ -28,12 +28,11 @@ export function LoginModal() {
     resolver: zodResolver(schema),
   });
 
-  const loginMutation = useMutation({ mutationFn: LoginApiCall });
+  const loginMutation = useMutation({ mutationFn: loginApiCall });
 
   const onSubmit = (data: FormDataType) => {
     loginMutation.mutate(data, {
       onSuccess: (response) => {
-        console.log("response", response);
         login(response.jwt, response.user);
         uuid2User();
         closeModal();

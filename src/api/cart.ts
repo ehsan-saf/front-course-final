@@ -19,7 +19,7 @@ export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
       })
     ).data;
   }
-  return (await apiClient.get("my-basket")).data;
+  return (await apiClient.get("/my-basket")).data;
 }
 
 export async function updateCartApiCall(
@@ -29,7 +29,7 @@ export async function updateCartApiCall(
 
   if (uuid) {
     return await apiClient.put(
-      "my-basket",
+      "/my-basket",
       {
         data,
       },
@@ -46,6 +46,7 @@ export async function updateCartApiCall(
   return response.data;
 }
 
+// amazonq-ignore-next-line
 export async function uuid2UserApiCall(uuid: string) {
   return await apiClient.put(`/basket2User/${uuid}`);
 }
