@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 import { SimpleProductCard } from "@/components";
 import { Entity, ProductType } from "@/types";
 
@@ -12,7 +11,6 @@ export function OffersSlider({ sliderData, cardClassName }: Props) {
   return (
     <Swiper
       className="w-full"
-      modules={[Autoplay]}
       slidesPerView={2}
       spaceBetween={16}
       autoplay={true}

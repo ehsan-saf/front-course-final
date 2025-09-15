@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import { IconBox, SimpleProductCard } from "@/components";
 import { Entity, ProductType } from "@/types";
 
@@ -39,14 +39,9 @@ export function SimpleProductSlider({ sliderData, cardClassName = "" }: Props) {
       </div>
       <Swiper
         className="w-full"
-        modules={[Autoplay, Navigation]}
+        modules={[Navigation]}
         slidesPerView={2}
         spaceBetween={16}
-        autoplay={{
-          delay: 2000,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,

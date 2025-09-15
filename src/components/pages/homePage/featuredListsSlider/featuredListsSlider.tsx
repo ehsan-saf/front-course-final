@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 import { ProductVerticalList } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 import { getProductsApi } from "@/api/product";
@@ -44,13 +43,8 @@ export function FeaturedListsSlider() {
   return (
     <Swiper
       className="w-full"
-      modules={[Autoplay]}
       slidesPerView={1.1}
       spaceBetween={16}
-      autoplay={{
-        delay: 2000,
-        pauseOnMouseEnter: true,
-      }}
       breakpoints={{
         500: {
           slidesPerView: 1.2,
