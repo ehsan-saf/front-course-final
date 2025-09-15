@@ -51,7 +51,7 @@ export function QuantityInput({ showAddToCart = false, data }: Props) {
       </button>
       {/* <!-- Input number when added ---- --> */}
       <div
-        className="flex h-6 w-6 items-center justify-between rounded-sm border border-brand-1 md:h-7 md:w-16"
+        className="flex h-7 w-16 items-center justify-between rounded-sm border border-brand-1"
         style={{
           display: `${quantity > 0 ? "flex" : "none"}`,
         }}
@@ -59,7 +59,7 @@ export function QuantityInput({ showAddToCart = false, data }: Props) {
         <span className="flex-1 text-center text-sm text-brand-1">
           {quantity}
         </span>
-        <div className="hidden flex-col gap-1 pr-1.5 text-brand-1 md:flex">
+        <div className="flex flex-col gap-1 pr-1.5 text-brand-1">
           <button onClick={increment}>
             <IconBox icon="chevron-up" size={{ mobile: 10, nonMobile: 10 }} />
           </button>
