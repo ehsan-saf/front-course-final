@@ -24,21 +24,26 @@ export function FeaturedCategories() {
                 backgroundColor: item.attributes.color,
               }}
             >
-              <ImageView
-                src={item.attributes.thumbnail.data?.attributes.url ?? ""}
-                alt={item.attributes.thumbnail.data?.attributes.alternativeText}
-                width={120}
-                height={120}
-                placeholderStyle={{ backgroundColor: item.attributes.color }}
-              />
-              <div aria-label="category" className="text-center text-xs">
-                {item.attributes.title}
-              </div>
-              <div
-                aria-label="items"
-                className="font-lato text-xs text-text-muted"
-              >
-                {`${item.attributes.product_count} items`}
+              {item.attributes.thumbnail?.data && (
+                <ImageView
+                  src={item.attributes.thumbnail.data?.attributes.url ?? ""}
+                  alt={
+                    item.attributes.thumbnail.data?.attributes.alternativeText
+                  }
+                  width={120}
+                  height={120}
+                />
+              )}
+              <div className="mt-auto flex flex-col items-center">
+                <div aria-label="category" className="text-center text-xs">
+                  {item.attributes.title}
+                </div>
+                <div
+                  aria-label="items"
+                  className="font-lato text-xs text-text-muted"
+                >
+                  {`${item.attributes.product_count} items`}
+                </div>
               </div>
             </Link>
           );
