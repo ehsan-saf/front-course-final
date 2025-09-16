@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 import { getFeaturedCategories } from "@/api/category";
 import { ApiResponse, CategoryType } from "@/types";
+import { cp } from "fs";
 
 export function FeaturedCategories() {
   const { data: categories } = useQuery<ApiResponse<CategoryType>>({
@@ -28,6 +29,7 @@ export function FeaturedCategories() {
                 alt={item.attributes.thumbnail.data?.attributes.alternativeText}
                 width={120}
                 height={120}
+                placeholderStyle={{ backgroundColor: item.attributes.color }}
               />
               <div aria-label="category" className="text-center text-xs">
                 {item.attributes.title}

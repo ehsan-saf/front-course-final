@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { CSSProperties } from "react";
 
 interface Props {
   src?: string | null;
@@ -8,6 +9,7 @@ interface Props {
   fill?: boolean;
   imageClassName?: string;
   wrapperClassName?: string;
+  placeholderStyle?: CSSProperties;
 }
 
 export function ImageView({
@@ -18,6 +20,7 @@ export function ImageView({
   fill,
   imageClassName = "",
   wrapperClassName = "",
+  placeholderStyle = {},
 }: Props) {
   const hasValidSrc = src && src.trim().length > 0;
 
@@ -44,7 +47,7 @@ export function ImageView({
       ) : (
         <div
           className={`bg-gray-200 ${imageClassName}`}
-          style={{ width, height }}
+          style={{ width, height, ...placeholderStyle }}
         />
       )}
     </div>
