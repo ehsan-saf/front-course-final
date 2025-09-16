@@ -84,7 +84,6 @@ export function Header() {
                 <button onClick={accountHandler}>
                   <IconBox
                     icon="user"
-                    title={user ? user.username : "Log in"}
                     size={{
                       mobile: 24,
                       nonMobile: 24,
@@ -94,7 +93,6 @@ export function Header() {
                 <IconBox
                   icon="shopping-cart"
                   badge={cartQuantity}
-                  title="Cart"
                   size={{
                     mobile: 24,
                     nonMobile: 24,
