@@ -9,6 +9,7 @@ import { useQueryClient } from "@tanstack/react-query";
 
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
+  const [mobileSearchExpanded, setMobileSearchExpanded] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -78,7 +79,17 @@ export function Header() {
           <div className="container flex justify-between">
             <Menu expanded={menuExpanded} setExpanded={setMenuExpanded} />
             <div className="flex flex-1 justify-between lg:hidden">
-              <SearchForm />
+              {mobileSearchExpanded ? (
+                <SearchForm />
+              ) : (
+                <button onClick={() => setMobileSearchExpanded(true)}>
+                  <IconBox
+                    icon="search"
+                    size={{ mobile: 20, nonMobile: 20 }}
+                    className="text-body"
+                  />
+                </button>
+              )}
               {/* <!-- --------------------- --> */}
               <div className="flex items-center gap-2.5">
                 <button onClick={accountHandler}>

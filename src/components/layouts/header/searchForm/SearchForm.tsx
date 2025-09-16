@@ -14,6 +14,7 @@ interface formInputs {
 
 export function SearchForm({ containerClass }: { containerClass?: string }) {
   const [resultData, setResultData] = useState<Array<Entity<ProductType>>>([]);
+  const [isFocused, setIsFocused] = useState(false);
   const { register, handleSubmit, watch } = useForm<formInputs>();
 
   const mutation = useMutation({
@@ -22,7 +23,7 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
   });
 
   const searchText = watch("searchText");
-  const [debouncedSearchText] = useDebounce(searchText, 400);
+  const [debouncedSearchText] = useDebounce(searchText, 300);
   const searchByText = useCallback((text: string) => {
     mutation.mutate(
       { title: { $containsi: text } },
@@ -43,7 +44,9 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
   }, [debouncedSearchText, searchByText]);
 
   function onSubmit(data: formInputs) {
-    searchByText(data.searchText);
+    if (data.searchText.length >= 1) {
+      searchByText(data.searchText);
+    }
   }
 
   return (
@@ -60,7 +63,10 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
           id="search-bar"
           placeholder="Search for items"
           autoComplete="off"
-          {...register("searchText")}
+          onFocus={() => setIsFocused(true)}
+          {...register("searchText", {
+            onBlur: () => setTimeout(() => setIsFocused(false), 400),
+          })}
         />
         <button
           type="submit"
@@ -73,8 +79,8 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
           />
         </button>
       </form>
-      {resultData && (
-        <div className="absolute top-14 right-0 left-0 z-2 w-full rounded-xl bg-white p-2.5">
+      {isFocused && resultData.length > 0 && (
+        <div className="absolute top-14 right-0 left-0 z-2 max-h-40 w-full overflow-auto rounded-xl bg-white p-2.5 md:max-h-48 lg:max-h-52">
           <ul>
             {resultData.map((item, index) => (
               <li key={index}>{<SearchItem data={item} />}</li>
