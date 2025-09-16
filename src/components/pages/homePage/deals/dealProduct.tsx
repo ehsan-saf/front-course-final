@@ -13,12 +13,14 @@ interface Props {
 }
 
 export function DealProduct({ data }: Props) {
+  console.log(data);
   return (
     <div className="mx-auto w-fit">
       <ImageView
-        imageClassName="h-[200px] w-full rounded-2xl lg:h-[328px]"
-        width={data.attributes.thumbnail?.data?.attributes.width}
-        height={data.attributes.thumbnail?.data?.attributes.height}
+        wrapperClassName="h-[200px] rounded-2xl lg:h-[328px]"
+        imageClassName="w-full h-full"
+        width={data.attributes.thumbnail?.data?.attributes.width || 300}
+        height={data.attributes.thumbnail?.data?.attributes.height || 300}
         src={data.attributes.thumbnail?.data?.attributes.url}
         alt=""
       />

@@ -19,7 +19,9 @@ export function ImageView({
   imageClassName = "",
   wrapperClassName = "",
 }: Props) {
-  if (src === undefined || src === null || src.trim().length === 0) return null;
+  const hasValidSrc = src && src.trim().length > 0;
+
+  if (!hasValidSrc && !width && !height && !fill) return null;
 
   const getImageSrc = (src: string) => {
     if (src.startsWith("/uploads")) {
@@ -30,14 +32,21 @@ export function ImageView({
 
   return (
     <div className={wrapperClassName}>
-      <Image
-        className={imageClassName}
-        src={getImageSrc(src)}
-        alt={alt ? alt : ""}
-        width={width}
-        height={height}
-        fill={fill}
-      />
+      {hasValidSrc ? (
+        <Image
+          className={imageClassName}
+          src={getImageSrc(src)}
+          alt={alt ? alt : ""}
+          width={width}
+          height={height}
+          fill={fill}
+        />
+      ) : (
+        <div
+          className={`bg-gray-200 ${imageClassName}`}
+          style={{ width, height }}
+        />
+      )}
     </div>
   );
 }
