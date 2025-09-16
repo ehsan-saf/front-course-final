@@ -1,5 +1,4 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 import { DealProduct } from "@/components";
 import { Entity, ProductType } from "@/types";
 
@@ -10,14 +9,8 @@ interface Props {
 export function DealSlider({ sliderData }: Props) {
   return (
     <Swiper
-      modules={[Autoplay]}
       slidesPerView={1}
       spaceBetween={16}
-      // autoplay={{
-      //   delay: 2000,
-      //   disableOnInteraction: false,
-      //   pauseOnMouseEnter: true,
-      // }}
       breakpoints={{
         768: {
           slidesPerView: 2,
