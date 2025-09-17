@@ -40,7 +40,7 @@ export function SimpleProductSlider({ sliderData, cardClassName = "" }: Props) {
       <Swiper
         className="w-full"
         modules={[Navigation]}
-        slidesPerView={2}
+        slidesPerView={1.4}
         spaceBetween={16}
         navigation={{
           prevEl: prevRef.current,
@@ -73,7 +73,11 @@ export function SimpleProductSlider({ sliderData, cardClassName = "" }: Props) {
         {sliderData.map((item, index) => {
           return (
             <SwiperSlide key={index}>
-              <SimpleProductCard key={index} data={item} />
+              <SimpleProductCard
+                key={index}
+                data={item}
+                priceDirection="vertical"
+              />
             </SwiperSlide>
           );
         })}

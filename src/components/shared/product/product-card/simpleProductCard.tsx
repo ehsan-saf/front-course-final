@@ -15,12 +15,14 @@ interface Props {
   data: Entity<ProductType>;
   showSaveLabel?: boolean;
   className?: string;
+  priceDirection?: "vertical" | "horizontal";
 }
 
 export function SimpleProductCard({
   data,
   showSaveLabel = false,
   className,
+  priceDirection = "horizontal",
 }: Props) {
   return (
     <div
@@ -62,13 +64,16 @@ export function SimpleProductCard({
         aria-label="weight of the product"
         className="font-lato text-xs text-body"
       >
-        {`${data.attributes.weight} ${data.attributes.unit}s`}
+        {data.attributes.weight &&
+          data.attributes.unit &&
+          `${data.attributes.weight} ${data.attributes.unit}s`}
       </div>
       {!(data.attributes.total && data.attributes.sold) ? (
         <div className="mt-auto flex items-center justify-between">
           <ProductPrice
             price={data.attributes.price}
             sale_price={data.attributes.sell_price}
+            direction={priceDirection}
           />
           <QuantityInput data={data} />
         </div>
@@ -77,6 +82,7 @@ export function SimpleProductCard({
           <ProductPrice
             price={data.attributes.price}
             sale_price={data.attributes.sell_price}
+            direction={priceDirection}
           />
           <div className="flex w-full flex-col gap-3">
             <LinearBar
