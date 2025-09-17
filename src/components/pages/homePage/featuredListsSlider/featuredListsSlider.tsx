@@ -51,12 +51,12 @@ export function FeaturedListsSlider() {
         },
 
         900: {
-          slidesPerView: 2,
+          slidesPerView: 2.2,
           spaceBetween: 22,
         },
 
         1024: {
-          slidesPerView: 4,
+          slidesPerView: 4.2,
           spaceBetween: 24,
         },
       }}

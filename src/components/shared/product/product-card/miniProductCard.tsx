@@ -11,7 +11,7 @@ export function MiniProductCard({ data }: Props) {
     <div className="flex items-center gap-4 md:gap-6">
       <Link href={"#"}>
         <ImageView
-          wrapperClassName="max-[88px] max-[88px] rounded-xl md:h-[120px] md:w-[120px]"
+          wrapperClassName="max-w-[88px] max-w-[88px] rounded-xl md:h-[120px] md:w-[120px]"
           imageClassName="w-full"
           width={data.attributes.thumbnail?.data?.attributes?.height}
           height={data.attributes.thumbnail?.data?.attributes?.height}
