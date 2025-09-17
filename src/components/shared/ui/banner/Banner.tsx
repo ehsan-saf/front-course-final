@@ -18,7 +18,7 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
             {subtitle}
           </p>
           {/* <!-- ----- Desktop subscribe form ----- --> */}
-          <form action="" className="mt-14 hidden md:block">
+          <form action="" className="mt-14 hidden lg:block">
             <div className="flex rounded-4xl bg-white pl-3">
               <IconBox
                 icon="send"

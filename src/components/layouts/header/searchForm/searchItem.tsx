@@ -17,7 +17,9 @@ export function SearchItem({ data }: Props) {
         wrapperClassName="grid content-center w-[50px] h-[50px]"
         imageClassName="rounded-[6px] w-full"
       />
-      <p className="text-xs lg:text-base">{data.attributes.title}</p>
+      <p className="max-w-40 text-center text-xs md:max-w-60">
+        {data.attributes.title}
+      </p>
     </div>
   );
 }

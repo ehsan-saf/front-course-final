@@ -6,6 +6,7 @@ import { Menu } from "./menu";
 import { useModal, useUser } from "@/store";
 import { useCart } from "@/hooks";
 import { useQueryClient } from "@tanstack/react-query";
+import { MobileSearchForm } from "./mobileSearchForm";
 
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
@@ -79,17 +80,17 @@ export function Header() {
           <div className="container flex justify-between">
             <Menu expanded={menuExpanded} setExpanded={setMenuExpanded} />
             <div className="flex flex-1 justify-between lg:hidden">
-              {mobileSearchExpanded ? (
-                <SearchForm />
-              ) : (
-                <button onClick={() => setMobileSearchExpanded(true)}>
-                  <IconBox
-                    icon="search"
-                    size={{ mobile: 20, nonMobile: 20 }}
-                    className="text-body"
-                  />
-                </button>
-              )}
+              <button onClick={() => setMobileSearchExpanded(true)}>
+                <IconBox
+                  icon="search"
+                  size={{ mobile: 20, nonMobile: 20 }}
+                  className="text-body"
+                />
+              </button>
+              <MobileSearchForm
+                isExpanded={mobileSearchExpanded}
+                setIsExpanded={setMobileSearchExpanded}
+              />
               {/* <!-- --------------------- --> */}
               <div className="flex items-center gap-2.5">
                 <button onClick={accountHandler}>
