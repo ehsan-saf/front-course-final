@@ -11,7 +11,7 @@ export function MiniProductSlider() {
       modules={[Autoplay]}
       slidesPerView={1}
       spaceBetween={20}
-      autoplay={true}
+      autoplay={{ delay: 1500 }}
       breakpoints={{
         640: {
           slidesPerView: 2,
