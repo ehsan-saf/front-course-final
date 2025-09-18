@@ -135,7 +135,7 @@ export default function Home() {
           {bestSellerProducts && (
             <OffersSlider
               sliderData={bestSellerProducts.data}
-              cardClassName="h-[320px] md:h-[500px]"
+              // cardClassName="h-[320px] md:h-[500px]"
             />
           )}
         </div>
