@@ -1,3 +1,5 @@
+"use client";
+
 import { loginApiCall } from "@/api/auth";
 import { Input, Modal } from "@/components";
 import { useCart } from "@/hooks";

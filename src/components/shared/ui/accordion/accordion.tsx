@@ -1,3 +1,5 @@
+"use client";
+
 import { useMediaQuery } from "react-responsive";
 import { ArrowDown, ArrowUp } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";

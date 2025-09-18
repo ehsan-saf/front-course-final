@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { LoginModal, Logo, RegisterModal } from "@/components";
 import { SearchForm } from "./searchForm";

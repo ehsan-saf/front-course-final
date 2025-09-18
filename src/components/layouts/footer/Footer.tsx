@@ -1,3 +1,5 @@
+"use client";
+
 import { Accordion, IconBox, ImageView, Logo } from "@/components";
 import Link from "next/link";
 

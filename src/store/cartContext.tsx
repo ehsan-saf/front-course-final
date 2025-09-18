@@ -1,3 +1,5 @@
+"use client";
+
 import { CartItemType, Entity, ProductType } from "@/types";
 import { createContext, ReactNode, useContext, useReducer } from "react";
 import { produce } from "immer";

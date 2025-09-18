@@ -1,3 +1,5 @@
+"use client";
+
 import { useCallback } from "react";
 import { useRemainingTime } from "@/hooks";
 import { twMerge } from "tailwind-merge";

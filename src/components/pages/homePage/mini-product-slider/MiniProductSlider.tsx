@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { IconBox } from "@/components/shared";
 import { MiniProductSlide } from "@/types/MiniProductSlide";

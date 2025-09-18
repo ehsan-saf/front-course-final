@@ -1,9 +1,11 @@
+"use client";
+
 import { ImageView } from "@/components";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
+
 import { getFeaturedCategories } from "@/api/category";
 import { ApiResponse, CategoryType } from "@/types";
-import { cp } from "fs";
 
 export function FeaturedCategories() {
   const { data: categories } = useQuery<ApiResponse<CategoryType>>({

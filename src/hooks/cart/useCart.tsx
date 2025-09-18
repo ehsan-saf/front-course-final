@@ -1,3 +1,5 @@
+"use client";
+
 import { cartApiCall, updateCartApiCall, uuid2UserApiCall } from "@/api/cart";
 import { CartItemType, UpdateCartDataType } from "@/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";

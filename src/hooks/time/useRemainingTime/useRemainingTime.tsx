@@ -1,3 +1,5 @@
+"use client";
+
 import { timerHelper } from "@/utils/timer";
 import { useEffect, useState } from "react";
 

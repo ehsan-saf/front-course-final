@@ -1,3 +1,5 @@
+"use client";
+
 import { registerApiCall } from "@/api/auth";
 import { Input, Modal } from "@/components";
 import { useUser, useModal } from "@/store";

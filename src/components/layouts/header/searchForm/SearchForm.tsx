@@ -1,3 +1,5 @@
+"use client";
+
 import { getProductsApi } from "@/api/product";
 import { IconBox } from "@/components";
 import { Entity, ProductFilters, ProductType } from "@/types";

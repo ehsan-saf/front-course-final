@@ -1,3 +1,5 @@
+"use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SimpleProductCard } from "@/components";
 import { Entity, ProductType } from "@/types";

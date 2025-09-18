@@ -1,3 +1,5 @@
+"use client";
+
 import { getProductsApi } from "@/api/product";
 import { IconBox, Portal } from "@/components";
 import { Entity, ProductFilters, ProductType } from "@/types";
@@ -10,7 +12,6 @@ import {
   useState,
 } from "react";
 import { useForm } from "react-hook-form";
-import { twMerge } from "tailwind-merge";
 import { useDebounce } from "use-debounce";
 import { SearchItem } from "../searchForm";
 import { SearchModal } from "./searchModal";
