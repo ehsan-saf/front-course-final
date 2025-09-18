@@ -80,19 +80,23 @@ export function Header() {
           <div className="container flex justify-between">
             <Menu expanded={menuExpanded} setExpanded={setMenuExpanded} />
             <div className="flex flex-1 justify-between lg:hidden">
-              <button onClick={() => setMobileSearchExpanded(true)}>
+              <button
+                onClick={() => setMobileSearchExpanded(true)}
+                className="md:hidden"
+              >
                 <IconBox
                   icon="search"
                   size={{ mobile: 20, nonMobile: 20 }}
                   className="text-body"
                 />
               </button>
+              <SearchForm containerClass="hidden md:block lg:hidden" />
               <MobileSearchForm
                 isExpanded={mobileSearchExpanded}
                 setIsExpanded={setMobileSearchExpanded}
               />
               {/* <!-- --------------------- --> */}
-              <div className="flex items-center gap-2.5">
+              <div className="ml-auto flex items-center gap-2.5">
                 <button onClick={accountHandler}>
                   <IconBox
                     icon="user"

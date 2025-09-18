@@ -52,7 +52,7 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
   return (
     <div
       className={twMerge(
-        "relative ml-auto w-full lg:max-w-[400px] xl:max-w-[700px]",
+        "relative ml-auto w-full max-w-[600px] lg:max-w-[400px] xl:max-w-[700px]",
         containerClass,
       )}
     >

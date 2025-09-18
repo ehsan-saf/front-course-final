@@ -14,6 +14,7 @@ import { twMerge } from "tailwind-merge";
 import { useDebounce } from "use-debounce";
 import { SearchItem } from "../searchForm";
 import { SearchModal } from "./searchModal";
+import { useMediaQuery } from "react-responsive";
 
 interface formInputs {
   searchText: string;
@@ -29,7 +30,15 @@ export function MobileSearchForm({ isExpanded = false, setIsExpanded }: Props) {
   const [isFocused, setIsFocused] = useState(false);
   const { register, handleSubmit, watch } = useForm<formInputs>();
 
-  const closeModal = () => setIsExpanded(false);
+  const isDisplayLarge = useMediaQuery({ query: "(min-width: 48rem)" });
+
+  const closeModal = useCallback(() => setIsExpanded(false), [setIsExpanded]);
+
+  useEffect(() => {
+    if (isDisplayLarge) {
+      closeModal();
+    }
+  }, [isDisplayLarge, closeModal]);
 
   const mutation = useMutation({
     mutationFn: (data: ProductFilters) =>
