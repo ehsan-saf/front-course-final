@@ -24,6 +24,8 @@ export function SimpleProductCard({
   className,
   priceDirection = "horizontal",
 }: Props) {
+  const productPageLink = `product/${data.id}`;
+
   return (
     <div
       className={twMerge(
@@ -38,7 +40,7 @@ export function SimpleProductCard({
         showSaveText={showSaveLabel}
       />
       <div className="relative flex h-24 justify-center md:h-44">
-        <Link href="/">
+        <Link href={productPageLink}>
           <ImageView
             src={data.attributes.thumbnail?.data?.attributes.url}
             width={data.attributes.thumbnail?.data?.attributes.width}
@@ -54,7 +56,7 @@ export function SimpleProductCard({
           {data.attributes.categories?.data[0]?.attributes.title}
         </h3>
       )}
-      <Link href="/">
+      <Link href={productPageLink}>
         <h4 className="ellipsis-2 text-xs md:text-base">
           {data.attributes.title}
         </h4>
