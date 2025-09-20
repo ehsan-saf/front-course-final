@@ -1,6 +1,7 @@
 import apiClient from "@/api/config/apiClient";
 import {
   ApiResponse,
+  ApiResponseSingle,
   PaginationProp,
   ProductFilters,
   ProductSort,
@@ -26,6 +27,22 @@ export async function getProductsApi({
       filters: filters || {},
       sort: sort?.join(","),
       pagination,
+    },
+  });
+
+  return response.data;
+}
+
+interface SingleProductProps {
+  id: string;
+}
+
+export async function getSingleProductApi({
+  id,
+}: SingleProductProps): Promise<ApiResponseSingle<ProductType>> {
+  const response = await apiClient.get(`products/${id}`, {
+    params: {
+      populate: ["categories", "thumbnail"],
     },
   });
 

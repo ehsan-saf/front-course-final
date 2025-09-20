@@ -1,7 +1,11 @@
+import { ProductClient } from "../productClient";
+
 interface Props {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
-export default function Page({ params }: Props) {
-  return <div>The product id is {params.id}</div>;
+export default async function Page({ params }: Props) {
+  const { id } = await params;
+
+  return <ProductClient id={id} />;
 }
