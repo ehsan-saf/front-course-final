@@ -42,7 +42,7 @@ export async function getSingleProductApi({
 }: SingleProductProps): Promise<ApiResponseSingle<ProductType>> {
   const response = await apiClient.get(`products/${id}`, {
     params: {
-      populate: ["categories", "thumbnail"],
+      populate: ["categories", "thumbnail", "gallery"],
     },
   });
 

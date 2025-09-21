@@ -1,7 +1,6 @@
 import { IconBox } from "@/components";
 import { Entity, ProductType } from "@/types";
 import { useCart } from "@/hooks";
-import { twMerge } from "tailwind-merge";
 
 interface Props {
   className?: string;
@@ -9,11 +8,7 @@ interface Props {
   data: Entity<ProductType>;
 }
 
-export function QuantityInput({
-  className = "",
-  showAddToCart = false,
-  data,
-}: Props) {
+export function ProductQuantityInput({ showAddToCart = false, data }: Props) {
   const { getItem, addItem, updateItem } = useCart();
   const item = getItem(data.id);
   const quantity = item?.quantity || 0;
@@ -34,7 +29,7 @@ export function QuantityInput({
     <>
       {/* <!-- ----- Add Product button and Number input ----- --> */}
       <button
-        className={`flex items-center justify-center gap-2.5 rounded-sm ${showAddToCart ? "bg-brand-1 p-2.5 text-white" : "bg-[#DEF9EC] p-1.5 hover:text-white md:px-2.5 md:py-1"} text-brand-1 hover:bg-brand-2`}
+        className={`flex items-center justify-center gap-2.5 rounded-sm bg-brand-1 px-6 py-3.5 text-white hover:bg-brand-2`}
         style={{
           display: `${quantity < 1 ? "flex" : "none"}`,
         }}
@@ -47,25 +42,25 @@ export function QuantityInput({
           </>
         ) : (
           <>
-            <span className="hidden text-sm md:inline">Add To Cart</span>
             <IconBox
               icon="shopping-cart"
               size={{ mobile: 16, nonMobile: 16 }}
             ></IconBox>
+            <span className="hidden text-sm md:inline">Add To Cart</span>
           </>
         )}
       </button>
       {/* <!-- Input number when added ---- --> */}
       <div
-        className="flex h-7 w-16 items-center justify-between rounded-sm border border-brand-1"
+        className="flex h-12 w-28 items-center justify-between rounded-sm border border-brand-1"
         style={{
           display: `${quantity > 0 ? "flex" : "none"}`,
         }}
       >
-        <span className="flex-1 text-center text-sm text-brand-1">
+        <span className="flex-1 text-center text-xl text-brand-1">
           {quantity}
         </span>
-        <div className="flex flex-col gap-1 pr-1.5 text-brand-1">
+        <div className="flex h-full flex-col justify-between gap-1 p-1 pr-1.5 text-brand-1">
           <button onClick={increment}>
             <IconBox icon="chevron-up" size={{ mobile: 10, nonMobile: 10 }} />
           </button>

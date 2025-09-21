@@ -4,7 +4,11 @@ interface Props {
   direction?: "vertical" | "horizontal";
 }
 
-export function Price({ price, sale_price, direction = "horizontal" }: Props) {
+export function ProductPrice({
+  price,
+  sale_price,
+  direction = "horizontal",
+}: Props) {
   const formatNumber = (num: number) => {
     return num.toFixed(2);
   };
@@ -14,19 +18,17 @@ export function Price({ price, sale_price, direction = "horizontal" }: Props) {
       <div
         className={`flex ${direction === "vertical" ? "flex-col" : "flex-row"} items-center gap-1 md:flex-row`}
       >
-        <div className="text-xs text-body line-through">
+        <div className="text-[32px] text-body line-through">
           ${formatNumber(price)}
         </div>
-        <div className="text-sm text-brand-1 md:text-xl">
-          ${formatNumber(sale_price)}
-        </div>
+        <div className="text-7xl text-brand-1">${formatNumber(sale_price)}</div>
       </div>
     );
   } else {
     return price ? (
-      <div className="text-xs text-body">${formatNumber(price)}</div>
+      <div className="text-7xl text-brand-1">${formatNumber(price)}</div>
     ) : (
-      <div className="text-xs text-red-500">Out of stock</div>
+      <div className="text-2xl text-red-500">Out of stock</div>
     );
   }
 }

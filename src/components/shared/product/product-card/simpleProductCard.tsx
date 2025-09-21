@@ -3,9 +3,9 @@ import {
   ProductLabel,
   RatingStars,
   ImageView,
-  ProductPrice,
   ProductActions,
   LinearBar,
+  Price,
 } from "@/components";
 import { Entity, ProductType } from "@/types";
 import Link from "next/link";
@@ -72,7 +72,7 @@ export function SimpleProductCard({
       </div>
       {!(data.attributes.total && data.attributes.sold) ? (
         <div className="mt-auto flex items-center justify-between">
-          <ProductPrice
+          <Price
             price={data.attributes.price}
             sale_price={data.attributes.sell_price}
             direction={priceDirection}
@@ -81,7 +81,7 @@ export function SimpleProductCard({
         </div>
       ) : (
         <>
-          <ProductPrice
+          <Price
             price={data.attributes.price}
             sale_price={data.attributes.sell_price}
             direction={priceDirection}

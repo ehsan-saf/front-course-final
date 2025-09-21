@@ -1,11 +1,13 @@
 import { Star } from "lucide-react";
 
 interface Props {
-  rating: number;
+  rating?: number | null;
   showNumber?: boolean;
 }
 
 export function RatingStars({ rating, showNumber = false }: Props) {
+  if (!rating) return null;
+
   const stars = Array.from({ length: 5 }, (_, i) => {
     const fillPercentage = Math.min(Math.max(rating - i, 0), 1) * 100;
 

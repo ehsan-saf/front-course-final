@@ -1,5 +1,5 @@
-import { Entity, Populate, ProductType } from "@/types";
-import { ImageView, RatingStars, ProductPrice } from "@/components";
+import { Entity, ProductType } from "@/types";
+import { ImageView, RatingStars, Price } from "@/components";
 import Link from "next/link";
 
 interface Props {
@@ -26,7 +26,7 @@ export function MiniProductCard({ data }: Props) {
           </h4>
         </Link>
         <RatingStars rating={data.attributes.rate} />
-        <ProductPrice
+        <Price
           price={data.attributes.price}
           sale_price={data.attributes.sell_price}
         />
