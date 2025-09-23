@@ -1,9 +1,4 @@
-import {
-  ImageView,
-  ProductPrice,
-  QuantityInput,
-  RatingStars,
-} from "@/components";
+import { ImageView, Price, QuantityInput, RatingStars } from "@/components";
 import { CountDown } from "@/components";
 import { Entity, ProductType } from "@/types";
 import Link from "next/link";
@@ -43,7 +38,7 @@ export function DealProduct({ data }: Props) {
             {`${data.attributes.weight} ${data.attributes.unit}s`}
           </div>
           <div className="flex items-center justify-between">
-            <ProductPrice
+            <Price
               price={data.attributes.price}
               sale_price={data.attributes.sell_price}
             />

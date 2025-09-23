@@ -7,7 +7,6 @@ import {
   ProductQuantityInput,
   RatingStars,
 } from "@/components";
-import { Entity } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
