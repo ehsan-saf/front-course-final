@@ -2,6 +2,7 @@
 
 import { getSingleProductApi } from "@/api/product";
 import {
+  AvailabilityLabel,
   ImageView,
   ProductPrice,
   ProductQuantityInput,
@@ -20,10 +21,11 @@ export function ProductClient({ id }: Props) {
   });
   if (!data) return null;
   const product = data.data.attributes;
+  console.log(data);
 
   return (
     <div className="container">
-      <div className="flex">
+      <div className="mt-16 flex">
         <div>
           <ImageView
             src={product.thumbnail?.data.attributes.url}
@@ -31,7 +33,8 @@ export function ProductClient({ id }: Props) {
             height={product.thumbnail?.data.attributes.height}
           />
         </div>
-        <div className="flex flex-col gap-5">
+        <div className="flex max-w-[600px] flex-col gap-5">
+          <AvailabilityLabel totalNumber={product.quantity} />
           <h2 className="text-[40px]">{product?.title}</h2>
           <RatingStars rating={product?.rate} showNumber />
           <ProductPrice
@@ -39,7 +42,7 @@ export function ProductClient({ id }: Props) {
             sale_price={product?.sell_price}
             direction="horizontal"
           />
-          <p className="max-w-xl">
+          <p className="max-w-xl text-body">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cupiditate
             totam quo minima optio deleniti voluptatum ipsam, est veritatis
             autem voluptate repudiandae eos itaque. Libero ducimus soluta nihil

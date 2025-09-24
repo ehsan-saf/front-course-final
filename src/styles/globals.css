@@ -25,9 +25,13 @@
 
   /* --------------- */
 
-  --font-quicksand: var(--font-quicksand);
-  --font-montserrat: var(--font-montserrat);
-  --font-lato: var(--font-lato);
+  --font-quicksand: "Quicksand", sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-lato: "Lato", sans-serif;
+}
+
+p {
+  font-family: var(--font-montserrat);
 }
 
 @layer utilities {

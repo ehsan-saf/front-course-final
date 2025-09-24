@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="en"
       className={`${quicksand.variable} ${lato.variable} ${montserrat.variable}`}
     >
-      <body>
+      <body className="font-quicksand">
         <Providers>
           <div id="portal"></div>
           <Layout>{children}</Layout>
