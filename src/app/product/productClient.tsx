@@ -26,13 +26,12 @@ export function ProductClient({ id }: Props) {
   return (
     <div className="container">
       <div className="mt-16 flex">
-        <div>
-          <ImageView
-            src={product.thumbnail?.data.attributes.url}
-            width={product.thumbnail?.data.attributes.width}
-            height={product.thumbnail?.data.attributes.height}
-          />
-        </div>
+        <ImageView
+          src={product.thumbnail?.data.attributes.url}
+          width={product.thumbnail?.data.attributes.width}
+          height={product.thumbnail?.data.attributes.height}
+          wrapperClassName="h-fit"
+        />
         <div className="flex max-w-[600px] flex-col gap-5">
           <AvailabilityLabel totalNumber={product.quantity} />
           <h2 className="text-[40px]">{product?.title}</h2>
@@ -50,6 +49,9 @@ export function ProductClient({ id }: Props) {
           </p>
           <div className="">
             <ProductQuantityInput data={data.data} showAddToCart />
+          </div>
+          <div className="font-lato text-lg">
+            SKU: <span className="text-text-muted">{product.SKU}</span>
           </div>
         </div>
       </div>
