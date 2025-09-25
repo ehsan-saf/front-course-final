@@ -4,6 +4,7 @@ import { getSingleProductApi } from "@/api/product";
 import {
   AvailabilityLabel,
   ImageView,
+  ProductDescription,
   ProductPrice,
   ProductQuantityInput,
   RatingStars,
@@ -55,6 +56,9 @@ export function ProductClient({ id }: Props) {
           </div>
         </div>
       </div>
+
+      {/* --- Description --- */}
+      <ProductDescription product={product} />
     </div>
   );
 }
