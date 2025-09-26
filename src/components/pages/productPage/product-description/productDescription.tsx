@@ -5,6 +5,7 @@ import { useState } from "react";
 import clsx from "clsx";
 import { DescriptionTab } from "../description-tab";
 import { InfoTab } from "../additional-info";
+import { ReviewTab } from "../review-tab";
 
 interface Props {
   product: ProductType;
@@ -22,7 +23,7 @@ export function ProductDescription({ product }: Props) {
   ];
 
   return (
-    <div className="rounded-[30px] border border-grey-1 p-12">
+    <div className="mt-10 rounded-[30px] border border-grey-1 p-12">
       <div className="flex flex-col">
         <div className="mb-9 flex gap-6">
           {tabs.map((tab, index) => {
@@ -46,6 +47,7 @@ export function ProductDescription({ product }: Props) {
           <DescriptionTab data={product.description} />
         )}
         {activeTab === "info" && <InfoTab />}
+        {activeTab === "reviews" && <ReviewTab rating={product.rate} />}
       </div>
     </div>
   );
