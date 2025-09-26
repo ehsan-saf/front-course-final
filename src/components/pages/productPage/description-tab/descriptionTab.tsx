@@ -1,5 +1,5 @@
 interface Props {
-  data: string;
+  data?: string | null;
 }
 
 export function DescriptionTab({ data }: Props) {
@@ -25,36 +25,38 @@ export function DescriptionTab({ data }: Props) {
         exuberantly sheep goodness so where rat wry well concomitantly.
       </p>
       <table className="w-fit border-separate border-spacing-3 font-lato text-sm text-body">
-        <tr>
-          <th scope="row" className="text-left font-normal">
-            Type Of Packing
-          </th>
-          <td>Paper wrapping</td>
-        </tr>
-        <tr>
-          <th scope="row" className="text-left font-normal">
-            Color
-          </th>
-          <td>Green, Pink, Brown</td>
-        </tr>
-        <tr>
-          <th scope="row" className="text-left font-normal">
-            Quantity Per Case
-          </th>
-          <td>500g</td>
-        </tr>
-        <tr>
-          <th scope="row" className="text-left font-normal">
-            Fat percentage
-          </th>
-          <td>56%</td>
-        </tr>
-        <tr>
-          <th scope="row" className="text-left font-normal">
-            Piece In One
-          </th>
-          <td>Carton</td>
-        </tr>
+        <tbody>
+          <tr>
+            <th scope="row" className="text-left font-normal">
+              Type Of Packing
+            </th>
+            <td>Paper wrapping</td>
+          </tr>
+          <tr>
+            <th scope="row" className="text-left font-normal">
+              Color
+            </th>
+            <td>Green, Pink, Brown</td>
+          </tr>
+          <tr>
+            <th scope="row" className="text-left font-normal">
+              Quantity Per Case
+            </th>
+            <td>500g</td>
+          </tr>
+          <tr>
+            <th scope="row" className="text-left font-normal">
+              Fat percentage
+            </th>
+            <td>56%</td>
+          </tr>
+          <tr>
+            <th scope="row" className="text-left font-normal">
+              Piece In One
+            </th>
+            <td>Carton</td>
+          </tr>
+        </tbody>
       </table>
 
       <p className="text-body">

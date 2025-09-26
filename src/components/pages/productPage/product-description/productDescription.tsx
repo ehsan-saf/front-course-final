@@ -4,6 +4,7 @@ import { ProductType } from "@/types";
 import { useState } from "react";
 import clsx from "clsx";
 import { DescriptionTab } from "../description-tab";
+import { InfoTab } from "../additional-info";
 
 interface Props {
   product: ProductType;
@@ -44,6 +45,7 @@ export function ProductDescription({ product }: Props) {
         {activeTab === "description" && (
           <DescriptionTab data={product.description} />
         )}
+        {activeTab === "info" && <InfoTab />}
       </div>
     </div>
   );

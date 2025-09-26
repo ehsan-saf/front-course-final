@@ -22,11 +22,10 @@ export function ProductClient({ id }: Props) {
   });
   if (!data) return null;
   const product = data.data.attributes;
-  console.log(data);
 
   return (
     <div className="container">
-      <div className="mt-16 flex">
+      <div className="mt-16 flex justify-center">
         <ImageView
           src={product.thumbnail?.data.attributes.url}
           width={product.thumbnail?.data.attributes.width}
