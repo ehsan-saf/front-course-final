@@ -5,19 +5,30 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { IconBox, SimpleProductCard } from "@/components";
 import { Entity, ProductType } from "@/types";
+import clsx from "clsx";
 
 interface Props {
   sliderData: Array<Entity<ProductType>>;
   cardClassName?: string;
+  showButtons?: boolean;
 }
 
-export function SimpleProductSlider({ sliderData, cardClassName = "" }: Props) {
+export function SimpleProductSlider({
+  sliderData,
+  cardClassName = "",
+  showButtons = true,
+}: Props) {
   const prevRef = useRef<HTMLButtonElement>(null);
   const nextRef = useRef<HTMLButtonElement>(null);
 
   return (
     <div className="flex flex-col">
-      <div className="mb-8 hidden justify-end gap-2.5 lg:flex">
+      <div
+        className={clsx(
+          "mb-8 justify-end gap-2.5",
+          showButtons ? "lg:flex" : "hidden",
+        )}
+      >
         <button
           ref={prevRef}
           className="flex items-center justify-center rounded-full bg-grey-1 p-3"

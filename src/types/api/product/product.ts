@@ -72,6 +72,11 @@ export type ProductFilters = {
     $endsWithi?: string;
   };
 } & {
+  categories?: {
+    id?: { $eq?: number; $in?: number[] };
+    title?: { $eq?: string; $containsi?: string };
+    slug?: { $eq?: string; $in?: string[] };
+  };
   /** Joins the filters in an "or" expression */
   $or?: ProductFilters[];
   /** Joins the filters in an "and" expression */

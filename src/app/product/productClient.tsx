@@ -1,6 +1,6 @@
 "use client";
 
-import { getSingleProductApi } from "@/api/product";
+import { getProductsApi, getSingleProductApi } from "@/api/product";
 import {
   AvailabilityLabel,
   ImageView,
@@ -8,6 +8,8 @@ import {
   ProductPrice,
   ProductQuantityInput,
   RatingStars,
+  Section,
+  SimpleProductSlider,
 } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 
@@ -20,6 +22,23 @@ export function ProductClient({ id }: Props) {
     queryKey: [`product-${id}`],
     queryFn: () => getSingleProductApi({ id }),
   });
+
+  const { data: relatedProducts } = useQuery({
+    queryKey: [`related-${data?.data.attributes.title}`],
+    queryFn: () =>
+      getProductsApi({
+        filters: {
+          categories: {
+            id: {
+              $in: data?.data.attributes.categories?.data.map((cat) => cat.id),
+            },
+          },
+        },
+        populate: ["thumbnail", "categories"],
+      }),
+    enabled: !!data?.data.attributes.title,
+  });
+
   if (!data) return null;
   const product = data.data.attributes;
 
@@ -58,6 +77,16 @@ export function ProductClient({ id }: Props) {
 
       {/* --- Description --- */}
       <ProductDescription product={product} />
+
+      <Section className="mt-11 text-3xl">
+        <h2 className="mb-10 text-center">Related products</h2>
+        {relatedProducts && (
+          <SimpleProductSlider
+            sliderData={relatedProducts?.data}
+            showButtons={false}
+          />
+        )}
+      </Section>
     </div>
   );
 }
