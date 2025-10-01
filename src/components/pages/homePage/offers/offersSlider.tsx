@@ -1,7 +1,7 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { SimpleProductCard } from "@/components";
+import { OfferProductCard, SimpleProductCard } from "@/components";
 import { Entity, ProductType } from "@/types";
 
 interface Props {
@@ -13,24 +13,28 @@ export function OffersSlider({ sliderData, cardClassName }: Props) {
   return (
     <Swiper
       className="w-full"
-      slidesPerView={2}
-      spaceBetween={16}
+      slidesPerView={1.4}
+      spaceBetween={24}
       autoplay={true}
       breakpoints={{
         768: {
-          slidesPerView: 3,
+          slidesPerView: 2.5,
           spaceBetween: 18,
         },
         1024: {
-          slidesPerView: 4,
-          spaceBetween: 15,
+          slidesPerView: 3.5,
+          spaceBetween: 22,
+        },
+        1400: {
+          slidesPerView: 4.5,
+          spaceBetween: 24,
         },
       }}
     >
       {sliderData.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <SimpleProductCard
+            <OfferProductCard
               key={index}
               data={item}
               showSaveLabel={true}

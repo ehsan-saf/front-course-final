@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { IconBox, SimpleProductCard } from "@/components";
+import { IconBox, OfferProductCard, SimpleProductCard } from "@/components";
 import { Entity, ProductType } from "@/types";
 import clsx from "clsx";
 
@@ -54,7 +54,7 @@ export function SimpleProductSlider({
         className="w-full"
         modules={[Navigation]}
         slidesPerView={1.4}
-        spaceBetween={16}
+        spaceBetween={24}
         navigation={{
           prevEl: prevRef.current,
           nextEl: nextRef.current,
@@ -70,15 +70,15 @@ export function SimpleProductSlider({
         }}
         breakpoints={{
           768: {
-            slidesPerView: 3,
+            slidesPerView: 2.5,
             spaceBetween: 18,
           },
           1024: {
-            slidesPerView: 4,
+            slidesPerView: 3.5,
             spaceBetween: 22,
           },
           1400: {
-            slidesPerView: 5,
+            slidesPerView: 4.5,
             spaceBetween: 24,
           },
         }}

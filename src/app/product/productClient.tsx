@@ -33,10 +33,13 @@ export function ProductClient({ id }: Props) {
               $in: data?.data.attributes.categories?.data.map((cat) => cat.id),
             },
           },
+          id: {
+            $ne: data?.data.id,
+          },
         },
         populate: ["thumbnail", "categories"],
       }),
-    enabled: !!data?.data.attributes.title,
+    enabled: !!data?.data.attributes.categories?.data,
   });
 
   if (!data) return null;

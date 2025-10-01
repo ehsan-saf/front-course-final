@@ -18,13 +18,13 @@ interface Props {
   priceDirection?: "vertical" | "horizontal";
 }
 
-export function SimpleProductCard({
+export function OfferProductCard({
   data,
   showSaveLabel = false,
   className,
   priceDirection = "horizontal",
 }: Props) {
-  const productPageLink = `/product/${data.id}`;
+  const productPageLink = `product/${data.id}`;
 
   return (
     <div
@@ -70,7 +70,7 @@ export function SimpleProductCard({
           data.attributes.unit &&
           `${data.attributes.weight} ${data.attributes.unit}s`}
       </div>
-      {
+      {!(data.attributes.total && data.attributes.sold) ? (
         <div className="mt-auto flex items-center justify-between">
           <Price
             price={data.attributes.price}
@@ -79,7 +79,25 @@ export function SimpleProductCard({
           />
           <QuantityInput data={data} />
         </div>
-      }
+      ) : (
+        <>
+          <Price
+            price={data.attributes.price}
+            sale_price={data.attributes.sell_price}
+            direction={priceDirection}
+          />
+          <div className="flex w-full flex-col gap-3">
+            <LinearBar
+              current={data.attributes.sold}
+              total={data.attributes.total}
+            />
+            <div className="font-lato text-xs text-heading">
+              Sold: {`${data.attributes.sold}/${data.attributes.total}`}
+            </div>
+            <QuantityInput showAddToCart data={data} />
+          </div>
+        </>
+      )}
     </div>
   );
 }
