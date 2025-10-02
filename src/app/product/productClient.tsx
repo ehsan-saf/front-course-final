@@ -47,7 +47,7 @@ export function ProductClient({ id }: Props) {
 
   return (
     <div className="container">
-      <div className="mt-16 flex justify-center">
+      <div className="mt-16 flex flex-col items-center justify-center lg:flex-row">
         <ImageView
           src={product.thumbnail?.data.attributes.url}
           width={product.thumbnail?.data.attributes.width}
@@ -56,7 +56,7 @@ export function ProductClient({ id }: Props) {
         />
         <div className="flex max-w-[600px] flex-col gap-5">
           <AvailabilityLabel totalNumber={product.quantity} />
-          <h2 className="text-[40px]">{product?.title}</h2>
+          <h2 className="text-xl lg:text-[40px]">{product?.title}</h2>
           <RatingStars rating={product?.rate} showNumber />
           <ProductPrice
             price={product?.price}

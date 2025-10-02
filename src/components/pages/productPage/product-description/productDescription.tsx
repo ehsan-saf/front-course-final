@@ -25,13 +25,13 @@ export function ProductDescription({ product }: Props) {
   return (
     <div className="mt-10 rounded-[30px] border border-grey-1 p-12">
       <div className="flex flex-col">
-        <div className="mb-9 flex gap-6">
+        <div className="mb-9 flex flex-wrap gap-6">
           {tabs.map((tab, index) => {
             return (
               <button
                 key={index}
                 className={clsx(
-                  "cursor-pointer rounded-[30px] border border-grey-1 px-[30px] py-[15px]",
+                  "shrink-0 cursor-pointer rounded-[30px] border border-grey-1 px-3 py-2.5 lg:px-[30px] lg:py-[15px]",
                   activeTab === tab.id
                     ? "text-brand-1 shadow-md"
                     : "text-text-muted",
