@@ -26,7 +26,7 @@ export function SimpleProductSlider({
       <div
         className={clsx(
           "mb-8 justify-end gap-2.5",
-          showButtons ? "lg:flex" : "hidden",
+          showButtons ? "hidden md:flex" : "hidden",
         )}
       >
         <button
