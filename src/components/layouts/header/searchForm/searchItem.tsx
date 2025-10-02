@@ -1,14 +1,19 @@
 import { ImageView } from "@/components/shared";
 import { Entity, ProductType } from "@/types";
+import Link from "next/link";
 
 interface Props {
   data: Entity<ProductType>;
 }
 
 export function SearchItem({ data }: Props) {
-  console.log(data);
+  const productLink = `/product/${data.id}`;
+
   return (
-    <div className="flex cursor-pointer items-center justify-between hover:bg-gray-100">
+    <Link
+      href={productLink}
+      className="flex cursor-pointer items-center justify-between hover:bg-gray-100"
+    >
       <ImageView
         src={data.attributes.thumbnail?.data?.attributes.url}
         alt={data.attributes.thumbnail?.data?.attributes.alternativeText}
@@ -20,6 +25,6 @@ export function SearchItem({ data }: Props) {
       <p className="max-w-40 text-center text-xs md:max-w-60">
         {data.attributes.title}
       </p>
-    </div>
+    </Link>
   );
 }
