@@ -47,12 +47,12 @@ export function ProductClient({ id }: Props) {
 
   return (
     <div className="container">
-      <div className="mt-16 flex flex-col items-center justify-center lg:flex-row">
+      <div className="mt-16 flex flex-col items-center justify-center gap-10 lg:flex-row">
         <ImageView
           src={product.thumbnail?.data.attributes.url}
           width={product.thumbnail?.data.attributes.width}
           height={product.thumbnail?.data.attributes.height}
-          wrapperClassName="h-fit"
+          wrapperClassName="h-fit border p-4 border-border rounded-2xl"
         />
         <div className="flex max-w-[600px] flex-col gap-5">
           <AvailabilityLabel totalNumber={product.quantity} />
