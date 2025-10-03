@@ -23,6 +23,8 @@ export function ProductClient({ id }: Props) {
     queryFn: () => getSingleProductApi({ id }),
   });
 
+  console.log(data);
+
   const { data: relatedProducts } = useQuery({
     queryKey: [`related-${data?.data.attributes.title}`],
     queryFn: () =>

@@ -20,7 +20,7 @@ export function FeaturedCategories() {
           return (
             <Link
               key={index}
-              href={item.attributes.link}
+              href={`/category/${item.id}`}
               className="category-link flex flex-col items-center rounded-[10px] p-2.5 pt-0 transition-all duration-150 ease-out hover:scale-110 hover:shadow-md"
               style={{
                 backgroundColor: item.attributes.color,

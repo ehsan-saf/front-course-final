@@ -1,5 +1,10 @@
-import { ApiResponse, CategoryType } from "@/types";
-import apiClient from "./config/apiClient";
+import {
+  ApiResponse,
+  ApiResponseSingle,
+  CategoryFilters,
+  CategoryType,
+} from "@/types";
+import apiClient from "@/api/config/apiClient";
 
 export async function getFeaturedCategories(): Promise<
   ApiResponse<CategoryType>
@@ -15,5 +20,16 @@ export async function getFeaturedCategories(): Promise<
     },
   });
 
+  return response.data;
+}
+
+interface categoryProps {
+  id: number | string;
+}
+
+export async function getCategory({
+  id,
+}: categoryProps): Promise<ApiResponseSingle<CategoryType>> {
+  const response = await apiClient.get(`/categories/${id}`);
   return response.data;
 }
