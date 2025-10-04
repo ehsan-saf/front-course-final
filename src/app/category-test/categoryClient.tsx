@@ -2,6 +2,7 @@
 
 import { getCategory } from "@/api/category";
 import { getProductsApi } from "@/api/product";
+import { SimpleProductCard } from "@/components";
 import { useQuery } from "@tanstack/react-query";
 
 interface Props {
@@ -42,6 +43,14 @@ export function CategoryClient({ id }: Props) {
         <h1 className="mt-7 ml-7 text-2xl md:mt-16 md:ml-16 lg:text-5xl">
           {category?.data.attributes.title}
         </h1>
+      </div>
+      <div className="mt-8">
+        <div className="grid grid-cols-3 gap-2.5">
+          {products &&
+            products.map((item, index) => {
+              return <SimpleProductCard data={item} key={index} />;
+            })}
+        </div>
       </div>
     </div>
   );
