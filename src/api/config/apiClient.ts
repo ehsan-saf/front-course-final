@@ -18,7 +18,9 @@ export interface errorDataType {
 export default apiClient;
 
 apiClient.interceptors.request.use(function (config) {
-  const auth_token = window.localStorage.getItem("token");
+  const auth_token =
+    typeof window !== "undefined" ? window.localStorage.getItem("token") : null;
+
   if (auth_token) {
     config.headers.Authorization = `Bearer ${auth_token}`;
   }

@@ -1,49 +1,51 @@
-"use client";
-
 import { getProductsApi, getSingleProductApi } from "@/api/product";
 import {
   AvailabilityLabel,
   ImageView,
   ProductDescription,
   ProductPrice,
-  ProductQuantityInput,
   RatingStars,
   Section,
   SimpleProductSlider,
+  ProductQuantityInput,
 } from "@/components";
-import { useQuery } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { ApiResponse, ApiResponseSingle, ProductType } from "@/types";
+import { GetServerSideProps } from "next";
 
-export default function ProductClient() {
-  const router = useRouter();
-  const id = router.query.id as string;
+interface ProductPageProps {
+  productResponse: ApiResponseSingle<ProductType>;
+  product: ProductType;
+  relatedProducts: ApiResponse<ProductType>;
+}
 
-  const { data } = useQuery({
-    queryKey: [`product-${id}`],
-    queryFn: () => getSingleProductApi({ id }),
-  });
+export default function ProductPage({
+  productResponse,
+  product,
+  relatedProducts,
+}: ProductPageProps) {
+  //   const { data } = useQuery({
+  //     queryKey: [`product-${id}`],
+  //     queryFn: () => getSingleProductApi({ id }),
+  //   });
 
-  const { data: relatedProducts } = useQuery({
-    queryKey: [`related-${data?.data.attributes.title}`],
-    queryFn: () =>
-      getProductsApi({
-        filters: {
-          categories: {
-            id: {
-              $in: data?.data.attributes.categories?.data.map((cat) => cat.id),
-            },
-          },
-          id: {
-            $ne: data?.data.id,
-          },
-        },
-        populate: ["thumbnail", "categories"],
-      }),
-    enabled: !!data?.data.attributes.categories?.data,
-  });
-
-  if (!data) return null;
-  const product = data.data.attributes;
+  //   const { data: relatedProducts } = useQuery({
+  //     queryKey: [`related-${data?.data.attributes.title}`],
+  //     queryFn: () =>
+  //       getProductsApi({
+  //         filters: {
+  //           categories: {
+  //             id: {
+  //               $in: data?.data.attributes.categories?.data.map((cat) => cat.id),
+  //             },
+  //           },
+  //           id: {
+  //             $ne: data?.data.id,
+  //           },
+  //         },
+  //         populate: ["thumbnail", "categories"],
+  //       }),
+  //     enabled: !!data?.data.attributes.categories?.data,
+  //   });
 
   return (
     <div className="container">
@@ -70,7 +72,7 @@ export default function ProductClient() {
             laudantium itaque rerum.
           </p>
           <div className="">
-            <ProductQuantityInput data={data.data} showAddToCart />
+            <ProductQuantityInput data={productResponse.data} showAddToCart />
           </div>
           <div className="font-lato text-lg">
             SKU: <span className="text-text-muted">{product.SKU}</span>
@@ -93,3 +95,34 @@ export default function ProductClient() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { id } = context.params!;
+
+  const productResponse = await getSingleProductApi({ id: id as string });
+  const product = productResponse.data.attributes;
+
+  const relatedProducts = await getProductsApi({
+    filters: {
+      categories: {
+        id: {
+          $in: productResponse?.data.attributes.categories?.data.map(
+            (cat) => cat.id,
+          ),
+        },
+      },
+      id: {
+        $ne: productResponse?.data.id,
+      },
+    },
+    populate: ["thumbnail", "categories"],
+  });
+
+  return {
+    props: {
+      productResponse,
+      product,
+      relatedProducts,
+    },
+  };
+};
