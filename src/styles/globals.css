@@ -157,3 +157,12 @@ p {
 .accordion-body {
   overflow: hidden;
 }
+
+.range-slider .range-slider__range,
+.range-slider .range-slider__thumb {
+  background: var(--color-brand-1) !important;
+}
+
+.range-slider {
+  background: var(--color-grey-1) !important;
+}

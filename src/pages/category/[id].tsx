@@ -1,6 +1,7 @@
 import { getCategory } from "@/api/category";
 import { getProductsApi } from "@/api/product";
 import { SimpleProductCard } from "@/components";
+import { ItemFilter } from "@/components/pages/categoryPage";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
@@ -42,8 +43,11 @@ export default function CategoryClient() {
           {category?.data.attributes.title}
         </h1>
       </div>
-      <div className="mt-8">
-        <div className="grid grid-cols-3 gap-2.5">
+      <div className="mt-8 grid grid-cols-4 gap-5">
+        <div className="col-span-1">
+          <ItemFilter />
+        </div>
+        <div className="col-span-3 grid grid-cols-3 gap-2.5">
           {products &&
             products.map((item, index) => {
               return <SimpleProductCard data={item} key={index} />;
