@@ -7,7 +7,7 @@ export function ItemFilter({}: Props) {
   const [priceFilter, setPriceFilter] = useState<{
     minPrice: number;
     maxPrice: number;
-  }>({ minPrice: 0, maxPrice: 100 });
+  }>({ minPrice: 0, maxPrice: 10000 });
 
   return (
     <div className="rounded-2xl p-3.5 shadow">
@@ -20,7 +20,10 @@ export function ItemFilter({}: Props) {
               ${priceFilter.minPrice} - ${priceFilter.maxPrice}
             </span>
           </div>
-          <PriceRange setPriceFilter={setPriceFilter} />
+          <PriceRange
+            setPriceFilter={setPriceFilter}
+            defaultValues={{ min: 0, max: 10000 }}
+          />
         </div>
       </div>
     </div>

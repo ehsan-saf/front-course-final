@@ -47,7 +47,7 @@ export default function CategoryClient() {
         <div className="col-span-1">
           <ItemFilter />
         </div>
-        <div className="col-span-3 grid grid-cols-3 gap-2.5">
+        <div className="col-span-3 grid grid-cols-2 gap-2.5 lg:grid-cols-3">
           {products &&
             products.map((item, index) => {
               return <SimpleProductCard data={item} key={index} />;
