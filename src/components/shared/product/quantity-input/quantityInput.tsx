@@ -34,7 +34,7 @@ export function QuantityInput({
     <>
       {/* <!-- ----- Add Product button and Number input ----- --> */}
       <button
-        className={`flex items-center justify-center gap-2.5 rounded-sm ${showAddToCart ? "bg-brand-1 p-2.5 text-white" : "bg-[#DEF9EC] p-1.5 hover:text-white md:px-2.5 md:py-1"} text-brand-1 hover:bg-brand-2`}
+        className={`flex items-center justify-center gap-2.5 rounded-sm ${showAddToCart ? "bg-brand-1 p-2.5 text-white" : "bg-btn-green-bg p-1.5 hover:text-white md:px-2.5 md:py-1"} text-brand-1 hover:bg-brand-2`}
         style={{
           display: `${quantity < 1 ? "flex" : "none"}`,
         }}

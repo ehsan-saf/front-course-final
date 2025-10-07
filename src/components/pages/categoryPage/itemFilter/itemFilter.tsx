@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PriceRange } from "./priceRange";
+import { IconBox } from "@/components/shared";
 
 interface Props {}
 
@@ -25,6 +26,10 @@ export function ItemFilter({}: Props) {
             defaultValues={{ min: 0, max: 10000 }}
           />
         </div>
+        <button className="flex cursor-pointer items-center justify-items-center gap-1 self-start rounded-sm bg-btn-green-bg px-7 py-3 text-brand-1">
+          <IconBox icon="filter" />
+          <span>Filter</span>
+        </button>
       </div>
     </div>
   );
