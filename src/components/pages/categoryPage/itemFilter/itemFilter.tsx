@@ -1,14 +1,24 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { PriceRange } from "./priceRange";
 import { IconBox } from "@/components/shared";
+import { ProductFilters } from "@/types";
 
-interface Props {}
+interface Props {
+  setEnabledFilters: Dispatch<SetStateAction<ProductFilters>>;
+}
 
-export function ItemFilter({}: Props) {
-  const [priceFilter, setPriceFilter] = useState<{
-    minPrice: number;
-    maxPrice: number;
-  }>({ minPrice: 0, maxPrice: 10000 });
+export function ItemFilter({ setEnabledFilters }: Props) {
+  const [pendingFilters, setPendingFilters] = useState<ProductFilters>({
+    $or: [
+      { price: { $gte: 0, $lte: 50000 } },
+      { sell_price: { $gte: 0, $lte: 50000 } },
+    ],
+  });
+
+  const enablePendingFilters = () => {
+    console.log(pendingFilters);
+    setEnabledFilters({ ...pendingFilters });
+  };
 
   return (
     <div className="rounded-2xl p-3.5 shadow">
@@ -18,15 +28,19 @@ export function ItemFilter({}: Props) {
           <div className="flex gap-5 font-lato text-text-muted">
             <span>Price Range:</span>
             <span className="font-quicksand text-xl text-brand-1">
-              ${priceFilter.minPrice} - ${priceFilter.maxPrice}
+              ${pendingFilters.$or![0].price?.$gte} -{" "}
+              {pendingFilters.$or![0].price?.$lte}
             </span>
           </div>
           <PriceRange
-            setPriceFilter={setPriceFilter}
-            defaultValues={{ min: 0, max: 10000 }}
+            setPendingFilters={setPendingFilters}
+            defaultValues={{ min: 0, max: 50000 }}
           />
         </div>
-        <button className="flex cursor-pointer items-center justify-items-center gap-1 self-start rounded-sm bg-btn-green-bg px-7 py-3 text-brand-1">
+        <button
+          onClick={enablePendingFilters}
+          className="flex cursor-pointer items-center justify-items-center gap-1 self-start rounded-sm bg-btn-green-bg px-7 py-3 text-brand-1"
+        >
           <IconBox icon="filter" />
           <span>Filter</span>
         </button>

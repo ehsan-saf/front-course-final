@@ -2,19 +2,23 @@ import { getCategory } from "@/api/category";
 import { getProductsApi } from "@/api/product";
 import { SimpleProductCard } from "@/components";
 import { ItemFilter } from "@/components/pages/categoryPage";
+import { ProductFilters } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function CategoryClient() {
   const router = useRouter();
   const id = router.query.id as string;
+
+  const [enabledFilters, setEnabledFilters] = useState<ProductFilters>({});
 
   const { data: category } = useQuery({
     queryKey: [`category-${id}`],
     queryFn: () => getCategory({ id }),
   });
 
-  const { data } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: [`category-products-${id}`],
     queryFn: () =>
       getProductsApi({
@@ -24,15 +28,19 @@ export default function CategoryClient() {
               $eq: 12,
             },
           },
+          ...enabledFilters,
         },
         populate: ["thumbnail", "categories"],
       }),
   });
 
+  useEffect(() => {
+    console.log(enabledFilters);
+    refetch();
+  }, [enabledFilters]);
+
   if (!data) return null;
   const products = data.data;
-  console.log(category);
-  console.log(data);
 
   return (
     <div className="container mt-8">
@@ -45,7 +53,7 @@ export default function CategoryClient() {
       </div>
       <div className="mt-8 grid grid-cols-4 gap-5">
         <div className="col-span-1">
-          <ItemFilter />
+          <ItemFilter setEnabledFilters={setEnabledFilters} />
         </div>
         <div className="col-span-3 grid grid-cols-2 gap-2.5 lg:grid-cols-3">
           {products &&
