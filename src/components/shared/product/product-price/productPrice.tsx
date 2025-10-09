@@ -24,7 +24,7 @@ export function Price({ price, sale_price, direction = "horizontal" }: Props) {
     );
   } else {
     return price ? (
-      <div className="text-xs text-body">${formatNumber(price)}</div>
+      <div className="text-xl text-body">${formatNumber(price)}</div>
     ) : (
       <div className="text-xs text-red-500">Out of stock</div>
     );
