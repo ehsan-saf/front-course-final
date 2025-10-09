@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { Dispatch, SetStateAction } from "react";
 import { IconBox } from "../iconBox";
 
 interface Props {

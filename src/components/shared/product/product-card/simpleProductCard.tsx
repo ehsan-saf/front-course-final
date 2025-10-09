@@ -4,7 +4,6 @@ import {
   RatingStars,
   ImageView,
   ProductActions,
-  LinearBar,
   Price,
 } from "@/components";
 import { Entity, ProductType } from "@/types";
@@ -70,16 +69,15 @@ export function SimpleProductCard({
           data.attributes.unit &&
           `${data.attributes.weight} ${data.attributes.unit}s`}
       </div>
-      {
-        <div className="mt-auto flex items-center justify-between">
-          <Price
-            price={data.attributes.price}
-            sale_price={data.attributes.sell_price}
-            direction={priceDirection}
-          />
-          <QuantityInput data={data} />
-        </div>
-      }
+
+      <div className="mt-auto flex items-center justify-between">
+        <Price
+          price={data.attributes.price}
+          sale_price={data.attributes.sell_price}
+          direction={priceDirection}
+        />
+        <QuantityInput data={data} />
+      </div>
     </div>
   );
 }

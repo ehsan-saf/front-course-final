@@ -24,8 +24,8 @@ export function PriceRange({ defaultValues, setPendingFilters }: Props) {
   return (
     <div>
       <RangeSlider
-        min={0}
-        max={50000}
+        min={defaultValues.min}
+        max={defaultValues.max}
         defaultValue={[defaultValues.min, defaultValues.max]}
         onInput={changeHandler}
       />

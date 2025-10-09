@@ -16,11 +16,19 @@ const usedForCheckList = [
   { id: 4, name: "Smoothie", isChecked: false },
 ];
 
+const brandList = [
+  { id: 0, name: "Cobblestone", isChecked: false },
+  { id: 1, name: "McVitie's", isChecked: false },
+  { id: 2, name: "Tastykake", isChecked: false },
+  { id: 3, name: "Warburtons", isChecked: false },
+  { id: 4, name: "Wonder Bread", isChecked: false },
+];
+
 export function ItemFilter({ setEnabledFilters }: Props) {
   const [pendingFilters, setPendingFilters] = useState<ProductFilters>({
     $or: [
-      { price: { $gte: 0, $lte: 50000 } },
-      { sell_price: { $gte: 0, $lte: 50000 } },
+      { price: { $gte: 0, $lte: 10000 } },
+      { sell_price: { $gte: 0, $lte: 10000 } },
     ],
   });
 
@@ -43,12 +51,16 @@ export function ItemFilter({ setEnabledFilters }: Props) {
           </div>
           <PriceRange
             setPendingFilters={setPendingFilters}
-            defaultValues={{ min: 0, max: 50000 }}
+            defaultValues={{ min: 0, max: 10000 }}
           />
         </div>
         <div className="mb-7 flex flex-col gap-4">
           <h5 className="font-lato text-text-muted">Used for:</h5>
           <CheckList listItems={usedForCheckList} />
+        </div>
+        <div className="mb-7 flex flex-col gap-4">
+          <h5 className="font-lato text-text-muted">Brand</h5>
+          <CheckList listItems={brandList} />
         </div>
         <button
           onClick={enablePendingFilters}
