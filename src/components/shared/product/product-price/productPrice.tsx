@@ -12,7 +12,7 @@ export function Price({ price, sale_price, direction = "horizontal" }: Props) {
   if (sale_price && price) {
     return (
       <div
-        className={`flex ${direction === "vertical" ? "flex-col" : "flex-row"} items-center gap-1 md:flex-row`}
+        className={`flex ${direction === "vertical" ? "flex-col" : "flex-row-reverse"} items-center gap-1 md:flex-row-reverse`}
       >
         <div className="text-xs text-body line-through">
           ${formatNumber(price)}

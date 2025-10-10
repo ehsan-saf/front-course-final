@@ -1,8 +1,8 @@
 import { getCategory } from "@/api/category";
 import { getProductsApi } from "@/api/product";
-import { SimpleProductCard } from "@/components";
+import { ProductVerticalList, SimpleProductCard } from "@/components";
 import { ItemFilter } from "@/components/pages/categoryPage";
-import { ProductFilters } from "@/types";
+import { ApiResponse, ProductFilters, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -34,6 +34,15 @@ export default function CategoryClient() {
       }),
   });
 
+  const { data: popularProducts } = useQuery<ApiResponse<ProductType>>({
+    queryKey: [getProductsApi.name, "popular_products"],
+    queryFn: () =>
+      getProductsApi({
+        populate: ["thumbnail", "categories"],
+        filters: { is_popular: { $eq: true } },
+      }),
+  });
+
   useEffect(() => {
     console.log(enabledFilters);
     refetch();
@@ -52,8 +61,16 @@ export default function CategoryClient() {
         </h1>
       </div>
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-4">
-        <div className="col-span-1">
+        <div className="col-span-1 flex flex-col gap-14">
           <ItemFilter setEnabledFilters={setEnabledFilters} />
+          <div className="hidden max-h-[700px] flex-col gap-9 overflow-y-auto rounded-2xl p-6 shadow md:flex">
+            <h2 className="border-b-1 border-grey-1 pb-3.5 text-2xl">
+              Popular Items
+            </h2>
+            {popularProducts && (
+              <ProductVerticalList data={popularProducts?.data} />
+            )}
+          </div>
         </div>
         <div className="col-span-3 grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
           {products &&

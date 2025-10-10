@@ -3,6 +3,7 @@ import { PriceRange } from "./priceRange";
 import { IconBox, Modal } from "@/components/shared";
 import { ProductFilters } from "@/types";
 import { CheckList } from "./checkList";
+import { FilterModal } from "./filterModal";
 
 interface Props {
   setEnabledFilters: Dispatch<SetStateAction<ProductFilters>>;
@@ -96,9 +97,9 @@ export function ItemFilter({ setEnabledFilters }: Props) {
 
       {/* Modal for Mobile */}
       {isModalOpen && (
-        <Modal title="Filter items" onClose={() => setIsModalOpen(false)}>
+        <FilterModal title="Filter items" onClose={() => setIsModalOpen(false)}>
           {filterContent}
-        </Modal>
+        </FilterModal>
       )}
     </>
   );
