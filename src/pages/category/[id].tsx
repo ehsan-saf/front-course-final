@@ -51,11 +51,11 @@ export default function CategoryClient() {
           {category?.data.attributes.title}
         </h1>
       </div>
-      <div className="mt-8 grid grid-cols-4 gap-5">
+      <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-4">
         <div className="col-span-1">
           <ItemFilter setEnabledFilters={setEnabledFilters} />
         </div>
-        <div className="col-span-3 grid grid-cols-2 gap-2.5 lg:grid-cols-3">
+        <div className="col-span-3 grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
           {products &&
             products.map((item, index) => {
               return <SimpleProductCard data={item} key={index} />;

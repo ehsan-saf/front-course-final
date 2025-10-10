@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import { PriceRange } from "./priceRange";
-import { IconBox } from "@/components/shared";
+import { IconBox, Modal } from "@/components/shared";
 import { ProductFilters } from "@/types";
 import { CheckList } from "./checkList";
 
@@ -25,6 +25,7 @@ const brandList = [
 ];
 
 export function ItemFilter({ setEnabledFilters }: Props) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [pendingFilters, setPendingFilters] = useState<ProductFilters>({
     $or: [
       { price: { $gte: 0, $lte: 10000 } },
@@ -33,43 +34,72 @@ export function ItemFilter({ setEnabledFilters }: Props) {
   });
 
   const enablePendingFilters = () => {
-    console.log(pendingFilters);
     setEnabledFilters({ ...pendingFilters });
+    setIsModalOpen(false);
   };
 
+  const filterContent = (
+    <div className="flex flex-col">
+      <div className="mb-7 flex flex-col gap-6">
+        <div className="flex gap-5 font-lato text-text-muted">
+          <span>Price Range:</span>
+          <span className="font-quicksand text-xl text-brand-1">
+            ${pendingFilters.$or![0].price?.$gte} -{" "}
+            {pendingFilters.$or![0].price?.$lte}
+          </span>
+        </div>
+        <PriceRange
+          pendingFilters={pendingFilters}
+          setPendingFilters={setPendingFilters}
+        />
+      </div>
+      <div className="mb-7 flex flex-col gap-4">
+        <h5 className="font-lato text-text-muted">Used for:</h5>
+        <CheckList listItems={usedForCheckList} />
+      </div>
+      <div className="mb-7 flex flex-col gap-4">
+        <h5 className="font-lato text-text-muted">Brand</h5>
+        <CheckList listItems={brandList} />
+      </div>
+      <button
+        onClick={enablePendingFilters}
+        className="flex cursor-pointer items-center justify-items-center gap-1 self-start rounded-sm bg-btn-green-bg px-7 py-3 text-brand-1"
+      >
+        <IconBox icon="filter" />
+        <span>Filter</span>
+      </button>
+    </div>
+  );
+
   return (
-    <div className="rounded-2xl p-3.5 shadow">
-      <div className="flex flex-col">
-        <h4 className="mb-6 border-b-1 border-b-border pb-3.5">Filter items</h4>
-        <div className="mb-7 flex flex-col gap-6">
-          <div className="flex gap-5 font-lato text-text-muted">
-            <span>Price Range:</span>
-            <span className="font-quicksand text-xl text-brand-1">
-              ${pendingFilters.$or![0].price?.$gte} -{" "}
-              {pendingFilters.$or![0].price?.$lte}
-            </span>
-          </div>
-          <PriceRange
-            setPendingFilters={setPendingFilters}
-            defaultValues={{ min: 0, max: 10000 }}
-          />
-        </div>
-        <div className="mb-7 flex flex-col gap-4">
-          <h5 className="font-lato text-text-muted">Used for:</h5>
-          <CheckList listItems={usedForCheckList} />
-        </div>
-        <div className="mb-7 flex flex-col gap-4">
-          <h5 className="font-lato text-text-muted">Brand</h5>
-          <CheckList listItems={brandList} />
-        </div>
+    <>
+      {/* Mobile: Filter Button */}
+      <div className="block md:hidden">
         <button
-          onClick={enablePendingFilters}
-          className="flex cursor-pointer items-center justify-items-center gap-1 self-start rounded-sm bg-btn-green-bg px-7 py-3 text-brand-1"
+          onClick={() => setIsModalOpen(true)}
+          className="flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-btn-green-bg px-4 py-2 text-brand-1"
         >
           <IconBox icon="filter" />
           <span>Filter</span>
         </button>
       </div>
-    </div>
+
+      {/* Desktop: Original Filter Panel */}
+      <div className="hidden md:block">
+        <div className="rounded-2xl p-3.5 shadow">
+          <h4 className="mb-6 border-b-1 border-b-border pb-3.5">
+            Filter items
+          </h4>
+          {filterContent}
+        </div>
+      </div>
+
+      {/* Modal for Mobile */}
+      {isModalOpen && (
+        <Modal title="Filter items" onClose={() => setIsModalOpen(false)}>
+          {filterContent}
+        </Modal>
+      )}
+    </>
   );
 }
