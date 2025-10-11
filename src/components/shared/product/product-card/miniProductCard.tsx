@@ -21,7 +21,7 @@ export function MiniProductCard({ data }: Props) {
           alt=""
         />
       </Link>
-      <div className="flex max-w-40 flex-col gap-1 md:max-w-60">
+      <div className="flex max-w-40 flex-col items-start gap-1 md:max-w-60">
         <Link href={productLink}>
           <h4 className="ellipsis-2 overflow-hidden text-xs text-ellipsis whitespace-nowrap md:text-base md:whitespace-normal">
             {data.attributes.title}
