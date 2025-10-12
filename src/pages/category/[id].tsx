@@ -1,6 +1,6 @@
 import { getCategory } from "@/api/category";
 import { getProductsApi } from "@/api/product";
-import { ProductVerticalList, SimpleProductCard } from "@/components";
+import { IconBox, ProductVerticalList, SimpleProductCard } from "@/components";
 import { ItemFilter } from "@/components/pages/categoryPage";
 import { ApiResponse, ProductFilters, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
@@ -12,6 +12,8 @@ export default function CategoryClient() {
   const id = router.query.id as string;
 
   const [enabledFilters, setEnabledFilters] = useState<ProductFilters>({});
+  const [page, setPage] = useState(1);
+  const pageSize = 2;
 
   const { data: category } = useQuery({
     queryKey: [`category-${id}`],
@@ -31,6 +33,10 @@ export default function CategoryClient() {
           ...enabledFilters,
         },
         populate: ["thumbnail", "categories"],
+        pagination: {
+          page,
+          pageSize,
+        },
       }),
   });
 
@@ -42,6 +48,8 @@ export default function CategoryClient() {
         filters: { is_popular: { $eq: true } },
       }),
   });
+
+  const pagination = data?.meta?.pagination;
 
   useEffect(() => {
     console.log(enabledFilters);
@@ -78,6 +86,30 @@ export default function CategoryClient() {
               return <SimpleProductCard data={item} key={index} />;
             })}
         </div>
+      </div>
+      <div className="flex items-center gap-2.5">
+        <button className="flex h-7 w-7 items-center justify-center rounded-full bg-grey-1 lg:h-10 lg:w-10">
+          <IconBox icon="arrow-left" className="text-body" />
+        </button>
+        {pagination &&
+          Array.from({ length: pagination.pageCount }, (_, i) => i + 1).map(
+            (pageNum) => (
+              <button
+                key={pageNum}
+                onClick={() => setPage(pageNum)}
+                className={`flex h-7 w-7 items-center justify-center rounded-full lg:h-10 lg:w-10 ${
+                  page === pageNum
+                    ? "bg-brand-1 text-white"
+                    : "bg-grey-1 text-body"
+                }`}
+              >
+                {pageNum}
+              </button>
+            ),
+          )}
+        <button className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-1 lg:h-10 lg:w-10">
+          <IconBox icon="arrow-right" className="text-white" />
+        </button>
       </div>
     </div>
   );
