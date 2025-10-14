@@ -71,7 +71,7 @@ export default function CategoryClient() {
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-4">
         <div className="col-span-1 flex flex-col gap-14">
           <ItemFilter setEnabledFilters={setEnabledFilters} />
-          <div className="hidden max-h-[700px] flex-col gap-9 overflow-y-auto rounded-2xl p-6 shadow md:flex">
+          <div className="hidden max-h-[700px] flex-col gap-9 overflow-y-auto rounded-2xl p-6 shadow lg:flex">
             <h2 className="border-b-1 border-grey-1 pb-3.5 text-2xl">
               Popular Items
             </h2>
