@@ -100,6 +100,13 @@ export default function CategoryClient() {
           </div>
         </div>
         <div className="col-span-3">
+          <div className="mb-9 rounded-2xl bg-muted px-8 py-6">
+            <p className="text-body">
+              there are{" "}
+              <span className="text-brand-1">{pagination?.total}</span> products
+              in this category
+            </p>
+          </div>
           <div className="mb-7 grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:mb-11 lg:grid-cols-3">
             {products &&
               products.map((item, index) => {
