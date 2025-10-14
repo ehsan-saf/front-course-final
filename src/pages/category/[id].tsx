@@ -1,6 +1,11 @@
 import { getCategory } from "@/api/category";
 import { getProductsApi } from "@/api/product";
-import { IconBox, ProductVerticalList, SimpleProductCard } from "@/components";
+import {
+  IconBox,
+  PaginationButtons,
+  ProductVerticalList,
+  SimpleProductCard,
+} from "@/components";
 import { ItemFilter } from "@/components/pages/categoryPage";
 import { ApiResponse, ProductFilters, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
@@ -12,16 +17,17 @@ export default function CategoryClient() {
   const id = router.query.id as string;
 
   const [enabledFilters, setEnabledFilters] = useState<ProductFilters>({});
+
   const [page, setPage] = useState(1);
-  const pageSize = 2;
+  const pageSize = 1;
 
   const { data: category } = useQuery({
     queryKey: [`category-${id}`],
     queryFn: () => getCategory({ id }),
   });
 
-  const { data, refetch } = useQuery({
-    queryKey: [`category-products-${id}`],
+  const { data, refetch: refetchProducts } = useQuery({
+    queryKey: [`category-products-${id}`, page],
     queryFn: () =>
       getProductsApi({
         filters: {
@@ -51,9 +57,22 @@ export default function CategoryClient() {
 
   const pagination = data?.meta?.pagination;
 
+  const nextPage = () => {
+    if (pagination && page + 1 <= pagination?.pageCount) {
+      setPage(page + 1);
+      refetchProducts();
+    }
+  };
+
+  const prevPage = () => {
+    if (page - 1 > 0) {
+      setPage(page - 1);
+      refetchProducts();
+    }
+  };
+
   useEffect(() => {
-    console.log(enabledFilters);
-    refetch();
+    refetchProducts();
   }, [enabledFilters]);
 
   if (!data) return null;
@@ -80,36 +99,23 @@ export default function CategoryClient() {
             )}
           </div>
         </div>
-        <div className="col-span-3 grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:grid-cols-3">
-          {products &&
-            products.map((item, index) => {
-              return <SimpleProductCard data={item} key={index} />;
-            })}
-        </div>
-      </div>
-      <div className="flex items-center gap-2.5">
-        <button className="flex h-7 w-7 items-center justify-center rounded-full bg-grey-1 lg:h-10 lg:w-10">
-          <IconBox icon="arrow-left" className="text-body" />
-        </button>
-        {pagination &&
-          Array.from({ length: pagination.pageCount }, (_, i) => i + 1).map(
-            (pageNum) => (
-              <button
-                key={pageNum}
-                onClick={() => setPage(pageNum)}
-                className={`flex h-7 w-7 items-center justify-center rounded-full lg:h-10 lg:w-10 ${
-                  page === pageNum
-                    ? "bg-brand-1 text-white"
-                    : "bg-grey-1 text-body"
-                }`}
-              >
-                {pageNum}
-              </button>
-            ),
+        <div className="col-span-3">
+          <div className="mb-7 grid grid-cols-1 gap-2.5 md:grid-cols-2 lg:mb-11 lg:grid-cols-3">
+            {products &&
+              products.map((item, index) => {
+                return <SimpleProductCard data={item} key={index} />;
+              })}
+          </div>
+          {pagination && (
+            <PaginationButtons
+              pagination={pagination}
+              page={page}
+              setPage={setPage}
+              nextPage={nextPage}
+              prevPage={prevPage}
+            />
           )}
-        <button className="flex h-7 w-7 items-center justify-center rounded-full bg-brand-1 lg:h-10 lg:w-10">
-          <IconBox icon="arrow-right" className="text-white" />
-        </button>
+        </div>
       </div>
     </div>
   );

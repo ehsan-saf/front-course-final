@@ -10,3 +10,4 @@ export * from "./portal";
 export * from "./form";
 export * from "./indicators";
 export * from "./checkBox";
+export * from "./pagination";
