@@ -100,7 +100,7 @@ export default function CategoryClient() {
           </div>
         </div>
         <div className="col-span-3">
-          <div className="mb-9 rounded-2xl bg-muted px-8 py-6">
+          <div className="mb-9 rounded-2xl bg-muted px-3 py-1.5 md:px-8 md:py-6">
             <p className="text-body">
               there are{" "}
               <span className="text-brand-1">{pagination?.total}</span> products
