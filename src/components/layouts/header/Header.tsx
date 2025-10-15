@@ -9,6 +9,7 @@ import { useModal, useUser } from "@/store";
 import { useCart } from "@/hooks";
 import { useQueryClient } from "@tanstack/react-query";
 import { MobileSearchForm } from "./mobileSearchForm";
+import Link from "next/link";
 
 export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
@@ -33,8 +34,6 @@ export function Header() {
 
   return (
     <header>
-      {currentModal === "login" && <LoginModal />}
-      {currentModal === "register" && <RegisterModal />}
       <div className="flex flex-col">
         <div className="border-b border-border p-6">
           <div className="container flex justify-between">
@@ -43,7 +42,7 @@ export function Header() {
               <SearchForm containerClass="ml-auto" />
               {/* <!-- --------------------- --> */}
               <div className="ml-auto flex items-center gap-2.5">
-                <button onClick={accountHandler}>
+                <Link href="/account">
                   <IconBox
                     icon="user"
                     title={user ? user.username : "Log in"}
@@ -52,7 +51,7 @@ export function Header() {
                       nonMobile: 24,
                     }}
                   />
-                </button>
+                </Link>
 
                 <IconBox
                   icon="shopping-cart"
@@ -99,7 +98,7 @@ export function Header() {
               />
               {/* <!-- --------------------- --> */}
               <div className="ml-auto flex items-center gap-2.5">
-                <button onClick={accountHandler}>
+                <Link href="/account">
                   <IconBox
                     icon="user"
                     size={{
@@ -107,7 +106,7 @@ export function Header() {
                       nonMobile: 24,
                     }}
                   />
-                </button>
+                </Link>
                 <IconBox
                   icon="shopping-cart"
                   badge={cartQuantity}
