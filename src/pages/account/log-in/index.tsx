@@ -7,6 +7,8 @@ import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 const schema = z.object({
   identifier: z.string().min(1, "Please enter your username"),
@@ -16,6 +18,7 @@ const schema = z.object({
 type FormDataType = z.infer<typeof schema>;
 
 export default function Page() {
+  const router = useRouter();
   const { uuid2User } = useCart();
   const { login } = useUser();
 
@@ -34,6 +37,7 @@ export default function Page() {
       onSuccess: (response) => {
         login(response.jwt, response.user);
         uuid2User();
+        router.back();
       },
     });
   };
@@ -63,6 +67,13 @@ export default function Page() {
               placeholder="Your password *"
               error={errors.password}
             />
+
+            <Link
+              href="/account/forgot"
+              className="w-fit font-lato text-sm text-text-muted"
+            >
+              Forgot Password?
+            </Link>
             <button className="cursor-pointer self-stretch rounded-xl border-heading bg-heading px-7 py-2 text-white md:self-start md:py-3">
               Log in
             </button>
