@@ -1,5 +1,5 @@
 import { loginApiCall } from "@/api/auth";
-import { Input } from "@/components";
+import { ImageView, Input } from "@/components";
 import { useCart } from "@/hooks";
 import { useUser } from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -44,41 +44,49 @@ export default function Page() {
 
   return (
     <div className="container mt-10">
-      <div className="max-w-lg">
-        <div className="mb-4 md:mb-10">
-          <h1 className="mb-1 text-xl md:text-3xl lg:text-5xl">Login</h1>
-          <p className="font-lato text-sm text-text-muted">
-            Don't have an account?{" "}
-            <Link href="/account/sign-up" className="text-brand-1">
-              Create here
-            </Link>
-          </p>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-6">
-            <Input
-              register={register("identifier")}
-              placeholder="Username or Email *"
-              error={errors.identifier}
-            />
-            <Input
-              type="password"
-              register={register("password")}
-              placeholder="Your password *"
-              error={errors.password}
-            />
-
-            <Link
-              href="/account/forgot"
-              className="w-fit font-lato text-sm text-text-muted"
-            >
-              Forgot Password?
-            </Link>
-            <button className="cursor-pointer self-stretch rounded-xl border-heading bg-heading px-7 py-2 text-white md:self-start md:py-3">
-              Log in
-            </button>
+      <div className="flex justify-center gap-14">
+        <ImageView
+          src="/images/log-in-image.jpg"
+          wrapperClassName="hidden overflow-hidden rounded-2xl lg:block max-w-[500px] max-h-[590px]"
+          width={867}
+          height={1300}
+        />
+        <div className="max-w-lg flex-1 self-center">
+          <div className="mb-4 md:mb-10">
+            <h1 className="mb-1 text-xl md:text-3xl lg:text-5xl">Login</h1>
+            <p className="font-lato text-sm text-text-muted">
+              Don't have an account?{" "}
+              <Link href="/account/sign-up" className="text-brand-1">
+                Create here
+              </Link>
+            </p>
           </div>
-        </form>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="flex flex-col gap-6">
+              <Input
+                register={register("identifier")}
+                placeholder="Username or Email *"
+                error={errors.identifier}
+              />
+              <Input
+                type="password"
+                register={register("password")}
+                placeholder="Your password *"
+                error={errors.password}
+              />
+
+              <Link
+                href="/account/forgot"
+                className="w-fit font-lato text-sm text-text-muted"
+              >
+                Forgot Password?
+              </Link>
+              <button className="cursor-pointer self-stretch rounded-xl border-heading bg-heading px-7 py-2 text-white md:self-start md:py-3">
+                Log in
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   );

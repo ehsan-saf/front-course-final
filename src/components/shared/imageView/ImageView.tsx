@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { CSSProperties } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
   src?: string | null;
@@ -37,7 +38,10 @@ export function ImageView({
     <div className={wrapperClassName}>
       {hasValidSrc ? (
         <Image
-          className={imageClassName}
+          className={twMerge(
+            imageClassName,
+            "max-h-full max-w-full object-cover",
+          )}
           src={getImageSrc(src)}
           alt={alt ? alt : ""}
           width={width}
