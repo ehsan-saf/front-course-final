@@ -2,13 +2,13 @@ import { registerApiCall } from "@/api/auth";
 
 import { useMutation } from "@tanstack/react-query";
 import { useUser } from "@/store";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-toastify";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { Input } from "@/components";
+import { CheckBox, ErrorMessage, Input } from "@/components";
 
 const schema = z
   .object({
@@ -18,6 +18,9 @@ const schema = z
       .string("Please enter your password")
       .min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string().min(8, "Please confirm your password"),
+    agree: z
+      .boolean()
+      .refine((val) => val === true, "You must agree to continue"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
@@ -32,9 +35,11 @@ export default function Page() {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<FormDataType>({
     resolver: zodResolver(schema),
+    defaultValues: { agree: false },
   });
 
   const registerMutation = useMutation({ mutationFn: registerApiCall });
@@ -86,6 +91,20 @@ export default function Page() {
               placeholder="confirm your password"
               error={errors.confirmPassword}
             />
+            <div>
+              <Controller
+                name="agree"
+                control={control}
+                render={({ field }) => (
+                  <CheckBox
+                    name="I agree to terms & Policy"
+                    isChecked={field.value}
+                    changeChecked={() => field.onChange(!field.value)}
+                  />
+                )}
+              />
+              <ErrorMessage error={errors.agree} />
+            </div>
             <button className="cursor-pointer self-stretch rounded-xl border-heading bg-heading px-7 py-2 text-white md:self-start md:py-3">
               Sign up
             </button>
