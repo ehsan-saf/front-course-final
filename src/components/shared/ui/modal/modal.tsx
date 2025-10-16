@@ -32,7 +32,9 @@ export function Modal({ title, onClose, children }: ModalProps) {
         </div>
 
         {/* Gray content area */}
-        <div className="rounded-lg bg-gray-100 p-4">{children}</div>
+        <div className="max-h-[400px] overflow-y-scroll rounded-lg bg-gray-100 p-4">
+          {children}
+        </div>
       </div>
     </div>
   );

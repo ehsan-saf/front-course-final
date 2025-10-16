@@ -8,7 +8,8 @@ import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { CheckBox, ErrorMessage, Input } from "@/components";
+import { CheckBox, ErrorMessage, Input, Modal } from "@/components";
+import { useState } from "react";
 
 const schema = z
   .object({
@@ -30,6 +31,7 @@ const schema = z
 type FormDataType = z.infer<typeof schema>;
 
 export default function Page() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { login } = useUser();
 
   const {
@@ -92,17 +94,87 @@ export default function Page() {
               error={errors.confirmPassword}
             />
             <div>
-              <Controller
-                name="agree"
-                control={control}
-                render={({ field }) => (
-                  <CheckBox
-                    name="I agree to terms & Policy"
-                    isChecked={field.value}
-                    changeChecked={() => field.onChange(!field.value)}
-                  />
+              <div className="flex justify-between">
+                <Controller
+                  name="agree"
+                  control={control}
+                  render={({ field }) => (
+                    <CheckBox
+                      name="I agree to terms & Policy"
+                      isChecked={field.value}
+                      changeChecked={() => field.onChange(!field.value)}
+                    />
+                  )}
+                />
+                <button
+                  type="button"
+                  onClick={() => setIsModalOpen(true)}
+                  className="cursor-pointer font-lato text-text-muted"
+                >
+                  Learn more
+                </button>
+                {isModalOpen && (
+                  <Modal onClose={() => setIsModalOpen(false)}>
+                    <div className="font-lato">
+                      <h2 className="font-bold">Terms & Conditions</h2>
+                      <p>
+                        Welcome to our shop. By using this website you agree to
+                        these terms.
+                      </p>
+                      <ul className="list-disc pl-8">
+                        <li>
+                          We sell products online and may update listings or
+                          prices without notice.
+                        </li>
+                        <li>
+                          Orders are confirmed after full payment; we may cancel
+                          orders for any reason.
+                        </li>
+                        <li>
+                          Shipping times are estimates; we are not responsible
+                          for carrier delays or wrong addresses.
+                        </li>
+                        <li>
+                          Returns accepted within <code>7</code> days for unused
+                          items in original packaging.
+                        </li>
+                        <li>
+                          Website content and assets belong to we and may not be
+                          copied without permission.
+                        </li>
+                        <li>
+                          We are not liable for indirect or incidental damages
+                          arising from use of the site or products.
+                        </li>
+                        <li>
+                          These Terms are governed by the laws of United States
+                          Of America.
+                        </li>
+                      </ul>
+                      <h2 className="font-bold">Privacy Policy</h2>
+
+                      <ul className="list-disc pl-8">
+                        <li>
+                          We collect basic info (name, email, address, payment
+                          details) to process orders.
+                        </li>
+                        <li>
+                          Payment data is handled by our partners; we do not
+                          store full card numbers.
+                        </li>
+                        <li>
+                          Cookies may be used to improve browsing and shopping
+                          experience.
+                        </li>
+                        <li>
+                          We never sell personal data and only share it with
+                          partners necessary for fulfillment.
+                        </li>
+                      </ul>
+                    </div>
+                  </Modal>
                 )}
-              />
+              </div>
               <ErrorMessage error={errors.agree} />
             </div>
             <button className="cursor-pointer self-stretch rounded-xl border-heading bg-heading px-7 py-2 text-white md:self-start md:py-3">
