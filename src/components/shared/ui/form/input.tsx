@@ -21,7 +21,7 @@ export function Input({
   const id = useId();
 
   return (
-    <>
+    <div>
       <div className="flex flex-col gap-2">
         {label && <label htmlFor={id}>{label}</label>}
         <input
@@ -39,6 +39,6 @@ export function Input({
         />
       </div>
       <ErrorMessage error={error} />
-    </>
+    </div>
   );
 }
