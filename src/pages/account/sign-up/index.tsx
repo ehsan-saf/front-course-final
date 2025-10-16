@@ -10,6 +10,7 @@ import { z } from "zod";
 
 import { CheckBox, ErrorMessage, Input, Modal } from "@/components";
 import { useState } from "react";
+import Link from "next/link";
 
 const schema = z
   .object({
@@ -62,6 +63,7 @@ export default function Page() {
           <h1 className="mb-1 text-xl md:text-3xl lg:text-5xl">
             Create an Account
           </h1>
+
           <p className="font-lato text-xs text-text-muted">
             Your personal data will be used to support your experience
             throughout this website, to manage access to your account, and for
@@ -177,9 +179,20 @@ export default function Page() {
               </div>
               <ErrorMessage error={errors.agree} />
             </div>
-            <button className="cursor-pointer self-stretch rounded-xl border-heading bg-heading px-7 py-2 text-white md:self-start md:py-3">
-              Sign up
-            </button>
+            <div>
+              <p className="mb-3 text-sm">
+                Already have an account ?{" "}
+                <Link
+                  className="rounded-xl text-brand-1"
+                  href="/account/log-in"
+                >
+                  Log in
+                </Link>
+              </p>
+              <button className="cursor-pointer self-stretch rounded-xl border-heading bg-heading px-7 py-2 text-white md:self-start md:py-3">
+                Sign up
+              </button>
+            </div>
           </div>
         </form>
       </div>
