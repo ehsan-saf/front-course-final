@@ -37,7 +37,7 @@ export default function Page() {
       onSuccess: (response) => {
         login(response.jwt, response.user);
         uuid2User();
-        router.back();
+        router.replace("/account");
       },
     });
   };

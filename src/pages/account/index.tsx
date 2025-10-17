@@ -1,4 +1,4 @@
-import { AccountTabs, IconBox } from "@/components";
+import { AccountTabs, IconBox, OrdersList } from "@/components";
 import { useUser } from "@/store";
 import Link from "next/link";
 
@@ -37,36 +37,7 @@ export default function Page({}: Props) {
         {/* Orders List */}
         <div className="mt-3 flex-1">
           <h2 className="mb-5 text-2xl">Your Orders</h2>
-          <table>
-            <thead>
-              <tr className="bg-muted">
-                <th scope="col" className="rounded-l-2xl px-4 py-2 text-start">
-                  Order ID
-                </th>
-                <th scope="col" className="px-4 py-2 text-start">
-                  Date
-                </th>
-                <th scope="col" className="px-4 py-2 text-start">
-                  Status
-                </th>
-                <th scope="col" className="px-4 py-2 text-start">
-                  Total
-                </th>
-                <th scope="col" className="rounded-r-2xl px-4 py-2 text-start">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="font-lato">
-              <tr>
-                <td className="px-4 pt-[30px]">#1357</td>
-                <td className="px-4 pt-[30px]">March 15, 2021</td>
-                <td className="px-4 pt-[30px]">Processing</td>
-                <td className="px-4 pt-[30px]">Total</td>
-                <td className="px-4 pt-[30px]">View</td>
-              </tr>
-            </tbody>
-          </table>
+          <OrdersList />
         </div>
       </div>
     </div>
