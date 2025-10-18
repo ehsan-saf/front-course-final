@@ -7,7 +7,6 @@ import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 
 const schema = z.object({
@@ -76,7 +75,7 @@ export default function Page() {
               />
 
               <Link
-                href="/account/forgot"
+                href="/account/forget"
                 className="w-fit font-lato text-sm text-text-muted"
               >
                 Forgot Password?

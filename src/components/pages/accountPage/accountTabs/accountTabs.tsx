@@ -1,3 +1,4 @@
+"use client";
 import { IconBox } from "@/components";
 import { useUser } from "@/store";
 import clsx from "clsx";
