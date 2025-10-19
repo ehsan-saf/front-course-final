@@ -49,7 +49,7 @@ export default function CategoryClient() {
   });
 
   const { data, refetch: refetchProducts } = useQuery({
-    queryKey: [`category-products-${id}`, filters.page],
+    queryKey: [`category-products-${id}`, filters],
     queryFn: () =>
       getProductsApi({
         filters: {
@@ -100,10 +100,6 @@ export default function CategoryClient() {
       }
     }
   }, [pagination?.pageCount]);
-
-  useEffect(() => {
-    refetchProducts();
-  }, [enabledFilters]);
 
   if (!data) return null;
   const products = data.data;
