@@ -29,6 +29,10 @@ export default function CategoryClient() {
     page: parseAsInteger.withDefault(1),
   });
 
+  const handleFiltersChange = (newFilters: Partial<typeof filters>) => {
+    setFilters({ ...newFilters, page: 1 }); // Always reset to page 1 when filtering
+  };
+
   const enabledFilters: ProductFilters = {
     $or: [
       { price: { $gte: filters.minPrice, $lte: filters.maxPrice } },
@@ -90,6 +94,14 @@ export default function CategoryClient() {
   };
 
   useEffect(() => {
+    if (pagination) {
+      if (filters.page > pagination.pageCount) {
+        setFilters({ page: 1 });
+      }
+    }
+  }, [pagination?.pageCount]);
+
+  useEffect(() => {
     refetchProducts();
   }, [enabledFilters]);
 
@@ -107,7 +119,7 @@ export default function CategoryClient() {
       </div>
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-4">
         <div className="col-span-1 flex flex-col gap-14">
-          <ItemFilter setFilters={setFilters} filters={filters} />
+          <ItemFilter setFilters={handleFiltersChange} filters={filters} />
           <div className="hidden max-h-[700px] flex-col gap-9 overflow-y-auto rounded-2xl p-6 shadow lg:flex">
             <h2 className="border-b-1 border-grey-1 pb-3.5 text-2xl">
               Popular Items
