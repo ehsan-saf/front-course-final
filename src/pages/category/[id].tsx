@@ -41,6 +41,7 @@ export default function CategoryClient() {
   const { data: category } = useQuery({
     queryKey: [`category-${id}`],
     queryFn: () => getCategory({ id }),
+    enabled: !!id,
   });
 
   const { data, refetch: refetchProducts } = useQuery({
