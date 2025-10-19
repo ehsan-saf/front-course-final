@@ -1,7 +1,6 @@
 import { getCategory } from "@/api/category";
 import { getProductsApi } from "@/api/product";
 import {
-  IconBox,
   PaginationButtons,
   ProductVerticalList,
   SimpleProductCard,
@@ -11,14 +10,32 @@ import { ApiResponse, ProductFilters, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import {
+  useQueryStates,
+  parseAsInteger,
+  parseAsArrayOf,
+  parseAsString,
+} from "nuqs";
 
 export default function CategoryClient() {
   const router = useRouter();
   const id = router.query.id as string;
 
-  const [enabledFilters, setEnabledFilters] = useState<ProductFilters>({});
+  const [filters, setFilters] = useQueryStates({
+    minPrice: parseAsInteger.withDefault(0),
+    maxPrice: parseAsInteger.withDefault(10000),
+    brands: parseAsArrayOf(parseAsString).withDefault([]),
+    usedFor: parseAsArrayOf(parseAsString).withDefault([]),
+    page: parseAsInteger.withDefault(1),
+  });
 
-  const [page, setPage] = useState(1);
+  const enabledFilters: ProductFilters = {
+    $or: [
+      { price: { $gte: filters.minPrice, $lte: filters.maxPrice } },
+      { sell_price: { $gte: filters.minPrice, $lte: filters.maxPrice } },
+    ],
+  };
+
   const pageSize = 1;
 
   const { data: category } = useQuery({
@@ -27,7 +44,7 @@ export default function CategoryClient() {
   });
 
   const { data, refetch: refetchProducts } = useQuery({
-    queryKey: [`category-products-${id}`, page],
+    queryKey: [`category-products-${id}`, filters.page],
     queryFn: () =>
       getProductsApi({
         filters: {
@@ -40,7 +57,7 @@ export default function CategoryClient() {
         },
         populate: ["thumbnail", "categories"],
         pagination: {
-          page,
+          page: filters.page,
           pageSize,
         },
       }),
@@ -58,15 +75,15 @@ export default function CategoryClient() {
   const pagination = data?.meta?.pagination;
 
   const nextPage = () => {
-    if (pagination && page + 1 <= pagination?.pageCount) {
-      setPage(page + 1);
+    if (pagination && filters.page + 1 <= pagination?.pageCount) {
+      setFilters({ page: filters.page });
       refetchProducts();
     }
   };
 
   const prevPage = () => {
-    if (page - 1 > 0) {
-      setPage(page - 1);
+    if (filters.page - 1 > 0) {
+      setFilters({ page: filters.page });
       refetchProducts();
     }
   };
@@ -89,7 +106,7 @@ export default function CategoryClient() {
       </div>
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-4">
         <div className="col-span-1 flex flex-col gap-14">
-          <ItemFilter setEnabledFilters={setEnabledFilters} />
+          <ItemFilter setFilters={setFilters} filters={filters} />
           <div className="hidden max-h-[700px] flex-col gap-9 overflow-y-auto rounded-2xl p-6 shadow lg:flex">
             <h2 className="border-b-1 border-grey-1 pb-3.5 text-2xl">
               Popular Items
@@ -116,8 +133,8 @@ export default function CategoryClient() {
           {pagination && (
             <PaginationButtons
               pagination={pagination}
-              page={page}
-              setPage={setPage}
+              page={filters.page}
+              setPage={(page) => setFilters({ page })}
               nextPage={nextPage}
               prevPage={prevPage}
             />

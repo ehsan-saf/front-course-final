@@ -7,6 +7,7 @@ import "react-toastify/ReactToastify.css";
 import type { AppProps } from "next/app";
 import { Quicksand, Lato, Montserrat } from "next/font/google";
 import { Layout } from "@/components";
+import { NuqsAdapter } from "nuqs/adapters/next/pages";
 
 import {
   HydrationBoundary,
@@ -71,18 +72,20 @@ export default function App({ Component, pageProps }: AppProps) {
           <HydrationBoundary state={pageProps.dehydratedState}>
             <AuthContextProvider>
               <ModalContextProvider>
-                <div id="portal"></div>
-                <Layout>
-                  <Component {...pageProps} />
-                  <ToastContainer
-                    autoClose={4000}
-                    hideProgressBar={false}
-                    closeOnClick={true}
-                    draggable={false}
-                    theme="light"
-                    position="top-right"
-                  />
-                </Layout>
+                <NuqsAdapter>
+                  <div id="portal"></div>
+                  <Layout>
+                    <Component {...pageProps} />
+                    <ToastContainer
+                      autoClose={4000}
+                      hideProgressBar={false}
+                      closeOnClick={true}
+                      draggable={false}
+                      theme="light"
+                      position="top-right"
+                    />
+                  </Layout>
+                </NuqsAdapter>
               </ModalContextProvider>
             </AuthContextProvider>
           </HydrationBoundary>

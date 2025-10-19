@@ -1,28 +1,26 @@
-import { ProductFilters } from "@/types";
+import { ProductFiltersQuery } from "@/types";
 import { produce } from "immer";
 import { Dispatch, SetStateAction } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 
 interface Props {
-  pendingFilters: ProductFilters;
-  setPendingFilters: Dispatch<SetStateAction<ProductFilters>>;
+  pendingFilters: ProductFiltersQuery;
+  setPendingFilters: Dispatch<SetStateAction<ProductFiltersQuery>>;
 }
 
 export function PriceRange({ pendingFilters, setPendingFilters }: Props) {
   const SLIDER_MIN = 0;
   const SLIDER_MAX = 10000;
 
-  const currentMin = pendingFilters.$or?.[0]?.price?.$gte;
-  const currentMax = pendingFilters.$or?.[0]?.price?.$lte;
+  const currentMin = pendingFilters.minPrice;
+  const currentMax = pendingFilters.maxPrice;
 
   const changeHandler = (range: [number, number]) => {
     setPendingFilters(
       produce((draft) => {
-        draft.$or = [
-          { price: { $gte: range[0], $lte: range[1] } },
-          { sell_price: { $gte: range[0], $lte: range[1] } },
-        ];
+        draft.minPrice = range[0];
+        draft.maxPrice = range[1];
       }),
     );
   };

@@ -4,7 +4,7 @@ import { IconBox } from "../iconBox";
 
 interface Props {
   page: number;
-  setPage: Dispatch<SetStateAction<number>>;
+  setPage: (page: number) => void;
   pagination: Pagination;
   nextPage: () => void;
   prevPage: () => void;

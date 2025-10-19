@@ -1,12 +1,13 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from "react";
 import { PriceRange } from "./priceRange";
-import { IconBox, Modal } from "@/components/shared";
-import { ProductFilters } from "@/types";
+import { IconBox } from "@/components/shared";
+import { ProductFiltersQuery } from "@/types";
 import { CheckList } from "./checkList";
 import { FilterModal } from "./filterModal";
 
 interface Props {
-  setEnabledFilters: Dispatch<SetStateAction<ProductFilters>>;
+  filters: { minPrice: number; maxPrice: number; brands: string[] };
+  setFilters: (filters: ProductFiltersQuery) => void;
 }
 
 const usedForCheckList = [
@@ -25,19 +26,21 @@ const brandList = [
   { id: 4, name: "Wonder Bread", isChecked: false },
 ];
 
-export function ItemFilter({ setEnabledFilters }: Props) {
+export function ItemFilter({ filters, setFilters }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [pendingFilters, setPendingFilters] = useState<ProductFilters>({
-    $or: [
-      { price: { $gte: 0, $lte: 10000 } },
-      { sell_price: { $gte: 0, $lte: 10000 } },
-    ],
-  });
 
   const enablePendingFilters = () => {
-    setEnabledFilters({ ...pendingFilters });
+    setFilters({
+      minPrice: pendingFilters.minPrice,
+      maxPrice: pendingFilters.maxPrice,
+    });
     setIsModalOpen(false);
   };
+
+  const [pendingFilters, setPendingFilters] = useState<ProductFiltersQuery>({
+    minPrice: filters.minPrice,
+    maxPrice: filters.maxPrice,
+  });
 
   const filterContent = (
     <div className="flex flex-col">
@@ -45,8 +48,7 @@ export function ItemFilter({ setEnabledFilters }: Props) {
         <div className="flex gap-5 font-lato text-text-muted">
           <span>Price Range:</span>
           <span className="font-quicksand text-xl text-brand-1">
-            ${pendingFilters.$or![0].price?.$gte} -{" "}
-            {pendingFilters.$or![0].price?.$lte}
+            ${pendingFilters.minPrice} - {pendingFilters.maxPrice}
           </span>
         </div>
         <PriceRange
