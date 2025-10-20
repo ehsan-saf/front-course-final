@@ -106,7 +106,7 @@ export function Footer() {
         {/* <!-- ----------- --> */}
         <Accordion title="Company" className="mt-4" expandOnLargeDisplay>
           <div className="flex flex-col gap-2.5 pb-2 font-lato text-base">
-            <Link href="#">About Us</Link>
+            <Link href="/about">About Us</Link>
             <Link href="#">Delivery Information</Link>
             <Link href="#">Privacy Policy</Link>
             <Link href="#">Terms & Conditions</Link>
