@@ -1,4 +1,5 @@
-import { ImageView } from "@/components";
+import { IconBox, ImageView } from "@/components";
+import { Link } from "lucide-react";
 
 export default function Page() {
   return (
@@ -11,7 +12,7 @@ export default function Page() {
           wrapperClassName="max-w-[300px] lg:max-w-[646px] self-center md:self-start"
         />
         <div>
-          <h1 className="text-center text-[40px] lg:text-start">
+          <h1 className="text-center text-[40px] md:text-start">
             Welcome to NestMart
           </h1>
           <p className="mt-11 max-w-[600px] font-lato text-body md:p-0">
@@ -52,6 +53,153 @@ export default function Page() {
           </div>
         </div>
       </div>
+      {/* What We Provide Section */}
+      <section>
+        <div className="mt-16 flex flex-col items-center">
+          <div className="flex w-fit flex-col gap-3.5">
+            <h2 className="text-center text-4xl md:text-5xl">
+              What We Provide?
+            </h2>
+            <ImageView
+              src="/icons/wavy-line.svg"
+              width={150}
+              height={15}
+              wrapperClassName="self-center"
+            />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="flex flex-col items-center gap-7 rounded-2xl p-3 shadow lg:p-12">
+                <IconBox
+                  icon="badge-percent"
+                  size={{ mobile: 50, nonMobile: 100 }}
+                  className="text-brand-1"
+                />
+                <h3 className="text-center text-xl md:text-2xl">
+                  Best Prices & Offers
+                </h3>
+                <p className="text-center text-sm text-body lg:text-lg">
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered alteration in some
+                  form
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-7 rounded-2xl p-3 shadow lg:p-12">
+                <IconBox
+                  icon="vector-square"
+                  size={{ mobile: 50, nonMobile: 100 }}
+                  className="text-brand-1"
+                />
+                <h3 className="text-center text-xl md:text-2xl">
+                  Wide Assortment
+                </h3>
+                <p className="text-center text-sm text-body lg:text-lg">
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered alteration in some
+                  form
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-7 rounded-2xl p-3 shadow lg:p-12">
+                <IconBox
+                  icon="truck"
+                  size={{ mobile: 50, nonMobile: 100 }}
+                  className="text-brand-1"
+                />
+                <h3 className="text-center text-xl md:text-2xl">
+                  Free Delivery
+                </h3>
+                <p className="text-center text-sm text-body lg:text-lg">
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered alteration in some
+                  form
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-7 rounded-2xl p-3 shadow lg:p-12">
+                <IconBox
+                  icon="undo-2"
+                  size={{ mobile: 50, nonMobile: 100 }}
+                  className="text-brand-1"
+                />
+                <h3 className="text-center text-xl md:text-2xl">
+                  Easy Returns
+                </h3>
+                <p className="text-center text-sm text-body lg:text-lg">
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered alteration in some
+                  form
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-7 rounded-2xl p-3 shadow lg:p-12">
+                <IconBox
+                  icon="handshake"
+                  size={{ mobile: 50, nonMobile: 100 }}
+                  className="text-brand-1"
+                />
+                <h3 className="text-center text-xl md:text-2xl">
+                  100% Satisfaction
+                </h3>
+                <p className="text-center text-sm text-body lg:text-lg">
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered alteration in some
+                  form
+                </p>
+              </div>
+              <div className="flex flex-col items-center gap-7 rounded-2xl p-3 shadow lg:p-12">
+                <IconBox
+                  icon="percent"
+                  size={{ mobile: 50, nonMobile: 100 }}
+                  className="text-brand-1"
+                />
+                <h3 className="text-center text-xl md:text-2xl">
+                  Great Daily Deal
+                </h3>
+                <p className="text-center text-sm text-body lg:text-lg">
+                  There are many variations of passages of Lorem Ipsum
+                  available, but the majority have suffered alteration in some
+                  form
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* Our Performance */}
+      <section className="mt-16">
+        <div className="flex flex-col gap-14 lg:flex-row">
+          <div className="hidden items-center gap-6 md:flex">
+            <ImageView
+              src="/images/performance-1.png"
+              wrapperClassName="w-[325px] h-[438px]"
+              imageClassName="rounded-2xl"
+              width={1008}
+              height={1245}
+            />
+            <ImageView
+              src="/images/performance-2.jpg"
+              wrapperClassName="w-[426px] h-[575px]"
+              imageClassName="rounded-2xl"
+              width={1072}
+              height={1281}
+            />
+          </div>
+          <div className="flex max-w-[480px] flex-col gap-5 lg:mt-6">
+            <h2 className="text-2xl text-body">Our performance</h2>
+            <h3 className="text-2xl md:text-3xl">
+              Your Partner for e-commerce grocery solution
+            </h3>
+            <p className="text-body">
+              Ed ut perspiciatis unde omnis iste natus error sit voluptatem
+              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
+              quae ab illo inventore veritatis et quasi architecto beatae vitae
+              dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+              aspernatur aut odit aut fugit, sed quia
+            </p>
+            <p className="text-body">
+              Pitatis et quasi architecto beatae vitae dicta sunt explicabo.
+              Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+              aut fugit, sed quia
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
