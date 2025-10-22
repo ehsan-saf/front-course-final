@@ -1,7 +1,40 @@
 import { IconBox, ImageView } from "@/components";
-import { Link } from "lucide-react";
+import NumberFlow from "@number-flow/react";
+import { useEffect } from "react";
+import { useRef } from "react";
+import { useState } from "react";
+import { number } from "zod";
 
 export default function Page() {
+  const [numbers, setNumbers] = useState({
+    years: 0,
+    clients: 0,
+    projects: 0,
+    advisors: 0,
+    sale: 0,
+  });
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setNumbers({
+            years: 12,
+            clients: 360,
+            projects: 580,
+            advisors: 160,
+            sale: 48,
+          });
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="container mt-[70px]">
       <div className="flex flex-col gap-14 lg:flex-row lg:items-start">
@@ -163,7 +196,7 @@ export default function Page() {
       </section>
       {/* Our Performance */}
       <section className="mt-16">
-        <div className="flex flex-col gap-14 lg:flex-row">
+        <div className="flex flex-col gap-14 xl:flex-row">
           <div className="hidden items-center gap-6 md:flex">
             <ImageView
               src="/images/performance-1.png"
@@ -200,6 +233,65 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <div
+        className="mt-16 flex flex-col gap-10 rounded-[20px] bg-[#4B675A] p-8 md:flex-row lg:w-full lg:gap-20 lg:p-28"
+        ref={ref}
+      >
+        <div className="flex flex-col items-center gap-2.5 text-white">
+          <div className="flex items-center text-2xl md:text-4xl lg:text-5xl xl:text-7xl">
+            <NumberFlow
+              value={numbers.years}
+              transformTiming={{ duration: 1000 }}
+            />
+            <span>+</span>
+          </div>
+          <div className="text-center">Glorious years</div>
+        </div>
+        {/* ------------------------- */}
+        <div className="flex flex-col items-center gap-2.5 text-white">
+          <div className="flex items-center text-2xl md:text-4xl lg:text-5xl xl:text-7xl">
+            <NumberFlow
+              value={numbers.clients}
+              transformTiming={{ duration: 1500 }}
+            />
+            <span>+</span>
+          </div>
+          <div className="text-center">Happy clients</div>
+        </div>
+        {/* ------------------------ */}
+        <div className="flex flex-col items-center gap-2.5 text-white">
+          <div className="flex items-center text-2xl md:text-4xl lg:text-5xl xl:text-7xl">
+            <NumberFlow
+              value={numbers.projects}
+              transformTiming={{ duration: 1800 }}
+            />
+            <span>+</span>
+          </div>
+          <div className="text-center">Projects complete</div>
+        </div>
+        {/* ----------------------- */}
+        <div className="flex flex-col items-center gap-2.5 text-white">
+          <div className="flex items-center text-2xl md:text-4xl lg:text-5xl xl:text-7xl">
+            <NumberFlow
+              value={numbers.advisors}
+              transformTiming={{ duration: 1400 }}
+            />
+            <span>+</span>
+          </div>
+          <div className="text-center">Team advisor</div>
+        </div>
+        {/* ---------------------- */}
+        <div className="flex flex-col items-center gap-2.5 text-white">
+          <div className="flex items-center text-2xl md:text-4xl lg:text-5xl xl:text-7xl">
+            <NumberFlow
+              value={numbers.sale}
+              transformTiming={{ duration: 1000 }}
+            />
+            <span>+</span>
+          </div>
+          <div className="text-center">Products Sale</div>
+        </div>
+      </div>
     </div>
   );
 }
