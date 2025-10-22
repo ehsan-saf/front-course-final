@@ -292,6 +292,67 @@ export default function Page() {
           <div className="text-center">Products Sale</div>
         </div>
       </div>
+      <section className="mt-16">
+        <div className="mb-12 flex flex-col gap-3.5">
+          <h2 className="text-center text-4xl md:text-5xl">Our Team</h2>
+          <ImageView
+            src="/icons/wavy-line.svg"
+            width={150}
+            height={15}
+            wrapperClassName="self-center"
+          />
+        </div>
+        <div className="flex flex-col gap-5 md:flex-row">
+          <div className="flex max-w-[400px] flex-col">
+            <h2 className="text-xl text-brand-1">Our team</h2>
+            <h3 className="mt-2.5 text-2xl md:text-3xl">
+              Meet Our Expert Team
+            </h3>
+            <p className="mt-12 text-body">
+              Proin ullamcorper pretium orci. Donec necscele risque leo. Nam
+              massa dolor imperdiet neccon sequata congue idsem. Maecenas
+              malesuada faucibus finibus.
+            </p>
+            <p className="mt-6 text-body">
+              Proin ullamcorper pretium orci. Donec necscele risque leo. Nam
+              massa dolor imperdiet neccon sequata congue idsem. Maecenas
+              malesuada faucibus finibus.
+            </p>
+            <button className="mt-6 self-start rounded-sm bg-brand-1 px-7 py-3.5 text-white">
+              View All Members
+            </button>
+          </div>
+          <div className="flex gap-6">
+            <div className="flex flex-col items-center">
+              <ImageView
+                src="/images/ceo.jpg"
+                wrapperClassName="w-[200px] h-[250px] xl:w-[480px] xl:h-[571px]"
+                imageClassName="rounded-2xl"
+                width={1009}
+                height={1251}
+              />
+              <div className="flex w-[100px] flex-col items-center px-24 py-7 shadow">
+                <h3 className="text-2xl">H. Merinda</h3>
+                <h4 className="mt-1.5 text-body">CEO & Co-Founder</h4>
+                <div className="mt-6 flex gap-3.5 text-brand-1">
+                  <IconBox icon="twitter" />
+                  <IconBox icon="youtube" />
+                  <IconBox icon="instagram" />
+                </div>
+              </div>
+            </div>
+            <div>
+              <ImageView
+                src="/images/engineer.jpg"
+                wrapperClassName="w-[200px] h-[250px] xl:w-[480px] xl:h-[571px]"
+                imageClassName="rounded-2xl"
+                width={806}
+                height={1066}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
