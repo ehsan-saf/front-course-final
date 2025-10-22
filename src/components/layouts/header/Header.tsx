@@ -53,15 +53,17 @@ export function Header() {
                   />
                 </Link>
 
-                <IconBox
-                  icon="shopping-cart"
-                  badge={cartQuantity}
-                  title="Cart"
-                  size={{
-                    mobile: 24,
-                    nonMobile: 24,
-                  }}
-                />
+                <Link href="/cart">
+                  <IconBox
+                    icon="shopping-cart"
+                    badge={cartQuantity}
+                    title="Cart"
+                    size={{
+                      mobile: 24,
+                      nonMobile: 24,
+                    }}
+                  />
+                </Link>
               </div>
             </div>
             <button
@@ -107,14 +109,16 @@ export function Header() {
                     }}
                   />
                 </Link>
-                <IconBox
-                  icon="shopping-cart"
-                  badge={cartQuantity}
-                  size={{
-                    mobile: 24,
-                    nonMobile: 24,
-                  }}
-                />
+                <Link href="/cart">
+                  <IconBox
+                    icon="shopping-cart"
+                    badge={cartQuantity}
+                    size={{
+                      mobile: 24,
+                      nonMobile: 24,
+                    }}
+                  />
+                </Link>
               </div>
             </div>
 
