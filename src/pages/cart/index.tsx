@@ -13,6 +13,8 @@ export default function Page() {
   const { cartItems, removeItem } = useCart();
   const [isChecked, setIsChecked] = useState(false);
 
+  console.log(cartItems);
+
   const itemsCount = cartItems.length;
   const formatPrice = (price: number) => {
     return price.toFixed(2);

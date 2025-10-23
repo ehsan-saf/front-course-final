@@ -6,20 +6,32 @@ export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
   const uuid = window.localStorage.getItem("uuid");
   if (!token && !uuid) {
     const response: ApiResponseSingle<CartType> = (
-      await apiClient.post("/my-basket")
+      await apiClient.post("/my-basket", {
+        params: {
+          populate: ["thumbnail", "categories"],
+        },
+      })
     ).data;
     window.localStorage.setItem("uuid", response.data.attributes.uuid!);
+    return response;
   } else if (uuid) {
-    console.log("UUID is present !");
     return (
       await apiClient.get("/my-basket", {
         params: {
+          populate: ["thumbnail", "categories"],
           uuid,
         },
       })
     ).data;
   }
-  return (await apiClient.post("/my-basket")).data;
+
+  return (
+    await apiClient.post("/my-basket", {
+      params: {
+        populate: ["thumbnail", "categories"],
+      },
+    })
+  ).data;
 }
 
 export async function updateCartApiCall(
