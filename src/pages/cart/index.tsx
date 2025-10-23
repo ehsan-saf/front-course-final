@@ -7,13 +7,27 @@ import {
 import { useCart } from "@/hooks";
 import { CartItemType } from "@/types";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Page() {
   const { cartItems, removeItem } = useCart();
-  const [isChecked, setIsChecked] = useState(false);
+  const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
 
-  console.log(cartItems);
+  useEffect(() => {
+    const newCheckedItems = { ...checkedItems };
+    cartItems.forEach((item) => {
+      if (!(item.id in newCheckedItems)) {
+        newCheckedItems[item.id] = false;
+      }
+    });
+    setCheckedItems(newCheckedItems);
+  }, [cartItems]);
+
+  const handleChecked = (item: CartItemType) =>
+    setCheckedItems((prev) => ({
+      ...prev,
+      [item.id]: !prev[item.id],
+    }));
 
   const itemsCount = cartItems.length;
   const formatPrice = (price: number) => {
@@ -60,10 +74,10 @@ export default function Page() {
             <thead>
               <tr className="bg-muted pr-8 pl-6">
                 <th scope="col" className="rounded-l-2xl px-4">
-                  <CheckBox
+                  {/* <CheckBox
                     isChecked={isChecked}
                     changeChecked={() => setIsChecked((s) => !s)}
-                  />
+                  /> */}
                 </th>
                 <th scope="col" className="px-4 py-4">
                   Products
@@ -88,8 +102,8 @@ export default function Page() {
                   <tr key={index}>
                     <td className="pt-6 align-middle">
                       <CheckBox
-                        isChecked={isChecked}
-                        changeChecked={() => setIsChecked((s) => !s)}
+                        isChecked={checkedItems[item.id]}
+                        changeChecked={() => handleChecked(item)}
                       />
                     </td>
                     <td className="px-4 pt-6">
