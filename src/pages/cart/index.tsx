@@ -11,7 +11,18 @@ import { useEffect, useState } from "react";
 
 export default function Page() {
   const { cartItems, removeItem } = useCart();
+  const [isAllChecked, setIsAllChecked] = useState<boolean>(false);
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
+
+  useEffect(() => {
+    const newCheckedItems = { ...checkedItems };
+
+    cartItems.forEach((item) => {
+      newCheckedItems[item.id] = isAllChecked;
+    });
+
+    setCheckedItems(newCheckedItems);
+  }, [isAllChecked]);
 
   useEffect(() => {
     const newCheckedItems = { ...checkedItems };
@@ -49,7 +60,7 @@ export default function Page() {
 
   if (itemsCount < 1) {
     return (
-      <div className="mt-16 flex flex-col items-center gap-4">
+      <div className="mt-11 mt-16 flex flex-col items-center gap-4">
         <IconBox icon="frown" size={{ mobile: 24, nonMobile: 30 }} />
         <h1 className="text-3xl">You cart is empty</h1>
 
@@ -66,18 +77,18 @@ export default function Page() {
       <div className="flex">
         <div>
           <h1 className="text-3xl lg:text-[40px]">Your Cart</h1>
-          <div aria-label="number of products in your cart">
+          <div aria-label="number of products in your cart" className="mt-5">
             There are <span className="text-brand-1">{itemsCount}</span>{" "}
             products in your cart
           </div>
-          <table>
+          <table className="mt-12">
             <thead>
               <tr className="bg-muted pr-8 pl-6">
                 <th scope="col" className="rounded-l-2xl px-4">
-                  {/* <CheckBox
-                    isChecked={isChecked}
-                    changeChecked={() => setIsChecked((s) => !s)}
-                  /> */}
+                  <CheckBox
+                    isChecked={isAllChecked}
+                    changeChecked={() => setIsAllChecked((s) => !s)}
+                  />
                 </th>
                 <th scope="col" className="px-4 py-4">
                   Products
@@ -100,7 +111,7 @@ export default function Page() {
               {cartItems.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td className="pt-6 align-middle">
+                    <td className="px-4 pt-6 align-middle">
                       <CheckBox
                         isChecked={checkedItems[item.id]}
                         changeChecked={() => handleChecked(item)}
