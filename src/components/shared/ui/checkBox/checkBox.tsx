@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { IconBox } from "../iconBox";
 
 interface Props {
-  name: string;
+  name?: string;
   isChecked: boolean;
   changeChecked: () => void;
 }
@@ -29,14 +29,16 @@ export function CheckBox({ name, isChecked = false, changeChecked }: Props) {
           onChange={handleChange}
           className="hidden"
         />
-        <span
-          className={clsx(
-            "font-lato select-none",
-            isChecked ? "text-heading" : "text-text-muted",
-          )}
-        >
-          {name}
-        </span>
+        {name && (
+          <span
+            className={clsx(
+              "font-lato select-none",
+              isChecked ? "text-heading" : "text-text-muted",
+            )}
+          >
+            {name}
+          </span>
+        )}
       </label>
     </div>
   );

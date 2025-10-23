@@ -52,12 +52,12 @@ export function ProductQuantityInput({ showAddToCart = false, data }: Props) {
       </button>
       {/* <!-- Input number when added ---- --> */}
       <div
-        className="flex h-12 w-28 items-center justify-between rounded-sm border border-brand-1"
+        className="flex h-9 items-center justify-between rounded-sm border border-brand-1 lg:h-12 lg:w-28"
         style={{
           display: `${quantity > 0 ? "flex" : "none"}`,
         }}
       >
-        <span className="flex-1 text-center text-xl text-brand-1">
+        <span className="flex-1 text-center text-base text-brand-1 lg:text-xl">
           {quantity}
         </span>
         <div className="flex h-full flex-col justify-between gap-1 p-1 pr-1.5 text-brand-1">

@@ -57,19 +57,33 @@ export function useCart() {
 
   const updateItemHandler = (
     productId: number,
-    operation: "increment" | "decrement",
+    operation: "increment" | "decrement" | "remove",
   ) => {
+    const getNewQuantity = (
+      item: CartItemType,
+      productId: number,
+      operation: string,
+    ) => {
+      if (productId !== item.product.data.id) return item.quantity;
+      console.log(operation);
+      switch (operation) {
+        case "increment":
+          return item.quantity + 1;
+        case "decrement":
+          return item.quantity - 1;
+        default:
+          return 0;
+      }
+    };
+
     const prepareUpdateData = cartItems.map((item) => ({
       product: {
         connect: [{ id: item.product.data.id }],
       },
-      quantity:
-        productId === item.product.data.id
-          ? operation === "increment"
-            ? item.quantity + 1
-            : item.quantity - 1
-          : item.quantity,
+      quantity: getNewQuantity(item, productId, operation),
     }));
+
+    console.log(prepareUpdateData);
 
     const updatedData: UpdateCartDataType = {
       basket_items: prepareUpdateData,
@@ -80,6 +94,12 @@ export function useCart() {
         queryClient.invalidateQueries({ queryKey: ["get-cart"] });
       },
     });
+  };
+
+  // =============== Remove cart item ==============
+
+  const removeItemHandler = (productId: number) => {
+    updateItemHandler(productId, "remove");
   };
 
   // =============== Get cart item ==============
@@ -107,6 +127,7 @@ export function useCart() {
     getItem: getItemHandler,
     addItem: addItemHandler,
     updateItem: updateItemHandler,
+    removeItem: removeItemHandler,
     uuid2User: uuid2UserHandler,
   };
 }
