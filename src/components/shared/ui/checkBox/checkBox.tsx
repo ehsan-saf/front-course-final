@@ -18,10 +18,10 @@ export function CheckBox({ name, isChecked = false, changeChecked }: Props) {
         <div
           className={clsx(
             "flex h-[18px] w-[18px] items-center justify-center rounded-xs border-3 p-2",
-            isChecked ? "border-brand-1 bg-brand-1" : "border-grey-1",
+            isChecked ? "border-brand-1 bg-brand-1" : "border-text-muted",
           )}
         >
-          <IconBox icon="check" className="text-white" />
+          {isChecked && <IconBox icon="check" className="text-white" />}
         </div>
         <input
           type="checkbox"
