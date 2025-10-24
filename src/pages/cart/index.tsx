@@ -1,5 +1,6 @@
 import {
   CheckBox,
+  ClearCartButton,
   IconBox,
   ImageView,
   ProductQuantityInput,
@@ -40,6 +41,16 @@ export default function Page() {
       [item.id]: !prev[item.id],
     }));
 
+  const handleClearCart = () => {
+    const removeIdList = [];
+    console.log(checkedItems);
+    cartItems.forEach((item) => {
+      if (checkedItems[item.id]) {
+        removeIdList.push(item.product.data.id);
+      }
+    });
+  };
+
   const itemsCount = cartItems.length;
   const formatPrice = (price: number) => {
     return price.toFixed(2);
@@ -75,11 +86,14 @@ export default function Page() {
   return (
     <div className="container">
       <div className="flex">
-        <div>
+        <div className="mt-6 lg:mt-11">
           <h1 className="text-3xl lg:text-[40px]">Your Cart</h1>
-          <div aria-label="number of products in your cart" className="mt-5">
-            There are <span className="text-brand-1">{itemsCount}</span>{" "}
-            products in your cart
+          <div className="mt-5 flex justify-between">
+            <div aria-label="number of products in your cart">
+              There are <span className="text-brand-1">{itemsCount}</span>{" "}
+              products in your cart
+            </div>
+            <ClearCartButton onClick={handleClearCart} />
           </div>
           <table className="mt-12">
             <thead>
