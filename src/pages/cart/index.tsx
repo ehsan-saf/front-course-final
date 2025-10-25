@@ -14,6 +14,7 @@ export default function Page() {
   const { cartItems, removeItem } = useCart();
   const [isAllChecked, setIsAllChecked] = useState<boolean>(false);
   const [checkedItems, setCheckedItems] = useState<Record<number, boolean>>({});
+  const [cartSubtotal, setCartSubtotal] = useState<number>(0);
 
   useEffect(() => {
     const newCheckedItems = { ...checkedItems };
@@ -27,12 +28,15 @@ export default function Page() {
 
   useEffect(() => {
     const newCheckedItems = { ...checkedItems };
+    let newCartSubtotal = 0;
     cartItems.forEach((item) => {
       if (!(item.id in newCheckedItems)) {
         newCheckedItems[item.id] = false;
       }
+      newCartSubtotal += getSubtotalPrice(item, false) as number;
     });
     setCheckedItems(newCheckedItems);
+    setCartSubtotal(newCartSubtotal);
   }, [cartItems]);
 
   const handleChecked = (item: CartItemType) =>
@@ -61,17 +65,17 @@ export default function Page() {
       : item.product.data.attributes.price;
     return formatPrice(realPrice || 0);
   };
-  const getSubtotalPrice = (item: CartItemType) => {
+  const getSubtotalPrice = (item: CartItemType, isFormatted: boolean) => {
     const realPrice = item.product.data.attributes.sell_price
       ? item.product.data.attributes.sell_price
       : item.product.data.attributes.price;
     const subtotalPrice = (realPrice || 0) * item.quantity;
-    return formatPrice(subtotalPrice);
+    return isFormatted ? formatPrice(subtotalPrice) : subtotalPrice;
   };
 
   if (itemsCount < 1) {
     return (
-      <div className="mt-11 mt-16 flex flex-col items-center gap-4">
+      <div className="mt-11 flex flex-col items-center gap-4 lg:mt-16">
         <IconBox icon="frown" size={{ mobile: 24, nonMobile: 30 }} />
         <h1 className="text-3xl">You cart is empty</h1>
 
@@ -95,83 +99,91 @@ export default function Page() {
             </div>
             <ClearCartButton onClick={handleClearCart} />
           </div>
-          <table className="mt-12">
-            <thead>
-              <tr className="bg-muted pr-8 pl-6">
-                <th scope="col" className="rounded-l-2xl px-4">
-                  <CheckBox
-                    isChecked={isAllChecked}
-                    changeChecked={() => setIsAllChecked((s) => !s)}
-                  />
-                </th>
-                <th scope="col" className="px-4 py-4">
-                  Products
-                </th>
-                <th scope="col" className="px-4">
-                  Unit Price
-                </th>
-                <th scope="col" className="px-4">
-                  Quantity
-                </th>
-                <th scope="col" className="px-4">
-                  Subtotal
-                </th>
-                <th scope="col" className="rounded-r-2xl px-4">
-                  Remove
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td className="px-4 pt-6 align-middle">
-                      <CheckBox
-                        isChecked={checkedItems[item.id]}
-                        changeChecked={() => handleChecked(item)}
-                      />
-                    </td>
-                    <td className="px-4 pt-6">
-                      <ImageView
-                        src={
-                          item.product.data.attributes.thumbnail?.data
-                            .attributes.url
-                        }
-                        width={
-                          item.product.data.attributes.thumbnail?.data
-                            .attributes.width
-                        }
-                        height={
-                          item.product.data.attributes.thumbnail?.data
-                            .attributes.height
-                        }
-                      />
-                    </td>
-                    <td className="px-4 pt-6 text-sm text-body md:text-xl lg:text-2xl">
-                      ${getRealPrice(item)}
-                    </td>
-                    <td className="px-4 pt-6">
-                      <ProductQuantityInput data={item.product.data} />
-                    </td>
-                    <td className="px-4 pt-6 text-sm text-brand-1 md:text-xl lg:text-2xl">
-                      {getSubtotalPrice(item)}
-                    </td>
-                    <td className="flex justify-center px-4 pt-6">
-                      <button
-                        className="cursor-pointer text-text-muted"
-                        onClick={() => removeItem(item.product.data.id)}
-                      >
-                        <IconBox
-                          icon="circle-x"
-                          size={{ mobile: 20, nonMobile: 24 }}
+          <div className="flex">
+            <table className="mt-12">
+              <thead>
+                <tr className="bg-muted pr-8 pl-6">
+                  <th scope="col" className="rounded-l-2xl px-4">
+                    <CheckBox
+                      isChecked={isAllChecked}
+                      changeChecked={() => setIsAllChecked((s) => !s)}
+                    />
+                  </th>
+                  <th scope="col" className="px-4 py-4">
+                    Products
+                  </th>
+                  <th scope="col" className="px-4">
+                    Unit Price
+                  </th>
+                  <th scope="col" className="px-4">
+                    Quantity
+                  </th>
+                  <th scope="col" className="px-4">
+                    Subtotal
+                  </th>
+                  <th scope="col" className="rounded-r-2xl px-4">
+                    Remove
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td className="px-4 pt-6 align-middle">
+                        <CheckBox
+                          isChecked={checkedItems[item.id]}
+                          changeChecked={() => handleChecked(item)}
                         />
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                      </td>
+                      <td className="px-4 pt-6">
+                        <ImageView
+                          src={
+                            item.product.data.attributes.thumbnail?.data
+                              .attributes.url
+                          }
+                          width={
+                            item.product.data.attributes.thumbnail?.data
+                              .attributes.width
+                          }
+                          height={
+                            item.product.data.attributes.thumbnail?.data
+                              .attributes.height
+                          }
+                        />
+                      </td>
+                      <td className="px-4 pt-6 text-sm text-body md:text-xl lg:text-2xl">
+                        ${getRealPrice(item)}
+                      </td>
+                      <td className="px-4 pt-6">
+                        <ProductQuantityInput data={item.product.data} />
+                      </td>
+                      <td className="px-4 pt-6 text-sm text-brand-1 md:text-xl lg:text-2xl">
+                        {getSubtotalPrice(item, true)}
+                      </td>
+                      <td className="flex justify-center px-4 pt-6">
+                        <button
+                          className="cursor-pointer text-text-muted"
+                          onClick={() => removeItem(item.product.data.id)}
+                        >
+                          <IconBox
+                            icon="circle-x"
+                            size={{ mobile: 20, nonMobile: 24 }}
+                          />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <div className="flex flex-col px-10 py-11 shadow">
+              <div className="flex justify-between">
+                <div className="text-text-muted">Subtotal</div>
+                <div className="text-brand-1">{cartSubtotal}</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
