@@ -99,7 +99,7 @@ export default function Page() {
             </div>
             <ClearCartButton onClick={handleClearCart} />
           </div>
-          <table className="mt-12">
+          <table className="mt-12 mb-6">
             <thead>
               <tr className="bg-muted pr-8 pl-6">
                 <th scope="col" className="rounded-l-2xl px-4">
@@ -176,6 +176,19 @@ export default function Page() {
               })}
             </tbody>
           </table>
+          <div className="flex flex-col-reverse justify-between gap-3.5 border-t border-t-border pt-10 md:flex-row">
+            <Link
+              className="flex items-center justify-center gap-3.5 rounded-sm bg-brand-2 p-3.5 text-white"
+              href="/"
+            >
+              <IconBox icon="move-left" />
+              <span>Continue Shopping</span>
+            </Link>
+            <button className="flex items-center justify-center gap-3.5 rounded-sm bg-brand-1 p-3.5 text-white">
+              <IconBox icon="refresh-ccw" />
+              <span>Update Cart</span>
+            </button>
+          </div>
         </div>
         <div className="flex max-w-[480px] flex-1 flex-col rounded-[15px] px-4 py-6 shadow md:px-10 md:py-11">
           <div className="mb-9 flex items-center justify-between gap-3 border-b border-b-border pb-6">
