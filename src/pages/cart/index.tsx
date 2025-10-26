@@ -193,42 +193,61 @@ export default function Page() {
             </button>
           </div>
           {/* Calculate Shipping and Apply Coupon */}
-          <div className="mt-10 flex flex-col gap-4 rounded-[15px] border-1 border-border p-10">
-            <h2 className="text-xl text-heading md:text-2xl">
-              Calculate Shipping
-            </h2>
-            <div
-              aria-label="flat rate"
-              className="flex gap-1 font-lato text-body"
-            >
-              Flat rate:
-              <span className="text-brand-1">%5</span>
+          <div className="flex flex-col gap-10 lg:flex-row">
+            <div className="mt-10 flex flex-col gap-4 rounded-[15px] border-1 border-border p-10">
+              <h2 className="text-xl text-heading md:text-2xl">
+                Calculate Shipping
+              </h2>
+              <div
+                aria-label="flat rate"
+                className="flex gap-1 font-lato text-body"
+              >
+                Flat rate:
+                <span className="text-brand-1">%5</span>
+              </div>
+              <select
+                name="cities"
+                className="rounded-[10px] border border-border p-5 font-lato text-text-muted"
+              >
+                <option value="">Select your location</option>
+                <option value="uk">United Kingdom</option>
+                <option value="us">United States</option>
+                <option value="uae">United Arab Emirates</option>
+              </select>
+              <div className="flex flex-col justify-between gap-5 md:flex-row">
+                <input
+                  type="text"
+                  placeholder="State / City"
+                  className="flex-1 rounded-[10px] border border-border p-5 font-lato placeholder:text-text-muted"
+                />
+                <input
+                  type="text"
+                  placeholder="Postcode / ZIP"
+                  className="flex-3 rounded-[10px] border border-border p-5 font-lato placeholder:text-text-muted"
+                />
+              </div>
             </div>
-            <select
-              name="cities"
-              className="rounded-[10px] border border-border p-5 font-lato text-text-muted"
-            >
-              <option value="">Select your location</option>
-              <option value="uk">United Kingdom</option>
-              <option value="us">United States</option>
-              <option value="uae">United Arab Emirates</option>
-            </select>
-            <div className="flex flex-col justify-between gap-5 md:flex-row">
-              <input
-                type="text"
-                placeholder="State / City"
-                className="flex-1 rounded-[10px] border border-border p-5 font-lato placeholder:text-text-muted"
-              />
-              <input
-                type="text"
-                placeholder="Postcode / ZIP"
-                className="flex-3 rounded-[10px] border border-border p-5 font-lato placeholder:text-text-muted"
-              />
+            <div className="lg:mt-12">
+              <h2 className="text-xl text-heading md:text-2xl">
+                Calculate Shipping
+              </h2>
+              <div className="mt-3.5 mb-7 font-lato text-body">
+                Using A Promo Code?
+              </div>
+              <div className="flex">
+                <input
+                  placeholder="Coupon Code"
+                  className="rounded-l-[10px] border border-r-0 border-border px-6 py-3 placeholder:font-lato placeholder:text-text-muted"
+                />
+                <button className="rounded-r-[10px] bg-brand-1 px-6 py-3.5 text-white">
+                  Apply
+                </button>
+              </div>
             </div>
           </div>
         </div>
         {/* Checkout button */}
-        <div className="flex max-w-[480px] flex-1 flex-col rounded-[15px] px-4 py-6 shadow md:px-10 md:py-11">
+        <div className="flex h-fit max-w-[480px] flex-1 flex-col rounded-[15px] px-4 py-6 shadow md:px-10 md:py-11">
           <div className="mb-9 flex items-center justify-between gap-3 border-b border-b-border pb-6">
             <div className="text-text-muted">Subtotal</div>
             <div className="text-brand-1 md:text-2xl">
