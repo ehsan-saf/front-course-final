@@ -3,6 +3,7 @@ import {
   ClearCartButton,
   IconBox,
   ImageView,
+  Input,
   ProductQuantityInput,
 } from "@/components";
 import { useCart } from "@/hooks";
@@ -99,6 +100,7 @@ export default function Page() {
             </div>
             <ClearCartButton onClick={handleClearCart} />
           </div>
+          {/* Cart Items */}
           <table className="mt-12 mb-6">
             <thead>
               <tr className="bg-muted pr-8 pl-6">
@@ -176,6 +178,7 @@ export default function Page() {
               })}
             </tbody>
           </table>
+          {/* Continue shopping And Update Cart buttons  */}
           <div className="flex flex-col-reverse justify-between gap-3.5 border-t border-t-border pt-10 md:flex-row">
             <Link
               className="flex items-center justify-center gap-3.5 rounded-sm bg-brand-2 p-3.5 text-white"
@@ -184,12 +187,47 @@ export default function Page() {
               <IconBox icon="move-left" />
               <span>Continue Shopping</span>
             </Link>
-            <button className="flex items-center justify-center gap-3.5 rounded-sm bg-brand-1 p-3.5 text-white">
+            <button className="flex cursor-pointer items-center justify-center gap-3.5 rounded-sm bg-brand-1 p-3.5 text-white">
               <IconBox icon="refresh-ccw" />
               <span>Update Cart</span>
             </button>
           </div>
+          {/* Calculate Shipping and Apply Coupon */}
+          <div className="mt-10 flex flex-col gap-4 rounded-[15px] border-1 border-border p-10">
+            <h2 className="text-xl text-heading md:text-2xl">
+              Calculate Shipping
+            </h2>
+            <div
+              aria-label="flat rate"
+              className="flex gap-1 font-lato text-body"
+            >
+              Flat rate:
+              <span className="text-brand-1">%5</span>
+            </div>
+            <select
+              name="cities"
+              className="rounded-[10px] border border-border p-5 font-lato text-text-muted"
+            >
+              <option value="">Select your location</option>
+              <option value="uk">United Kingdom</option>
+              <option value="us">United States</option>
+              <option value="uae">United Arab Emirates</option>
+            </select>
+            <div className="flex flex-col justify-between gap-5 md:flex-row">
+              <input
+                type="text"
+                placeholder="State / City"
+                className="flex-1 rounded-[10px] border border-border p-5 font-lato placeholder:text-text-muted"
+              />
+              <input
+                type="text"
+                placeholder="Postcode / ZIP"
+                className="flex-3 rounded-[10px] border border-border p-5 font-lato placeholder:text-text-muted"
+              />
+            </div>
+          </div>
         </div>
+        {/* Checkout button */}
         <div className="flex max-w-[480px] flex-1 flex-col rounded-[15px] px-4 py-6 shadow md:px-10 md:py-11">
           <div className="mb-9 flex items-center justify-between gap-3 border-b border-b-border pb-6">
             <div className="text-text-muted">Subtotal</div>
