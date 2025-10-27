@@ -5,6 +5,7 @@ import {
   ImageView,
   Input,
   ProductQuantityInput,
+  QuantityInput,
 } from "@/components";
 import { useCart } from "@/hooks";
 import { CartItemType } from "@/types";
@@ -101,7 +102,7 @@ export default function Page() {
             <ClearCartButton onClick={handleClearCart} />
           </div>
           {/* Cart Items */}
-          <table className="mt-12 mb-6">
+          <table className="mt-12 mb-6 hidden md:block">
             <thead>
               <tr className="bg-muted pr-8 pl-6">
                 <th scope="col" className="rounded-l-2xl px-4">
@@ -178,6 +179,51 @@ export default function Page() {
               })}
             </tbody>
           </table>
+          {/* Cart Items Card (mobile) */}
+          <div className="mt-12 mb-6 flex flex-col gap-4 md:hidden">
+            {cartItems.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className="flex flex-col rounded-xl border border-border p-2.5"
+                >
+                  <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+                    <div>Product</div>
+                    <div className="text-right text-body">
+                      {item.product.data.attributes.title}
+                    </div>
+                  </div>
+                  <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+                    <div>Unit Price</div>
+                    <div className="text-body">${getRealPrice(item)}</div>
+                  </div>
+                  <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+                    <div>Quantity</div>
+                    <ProductQuantityInput
+                      data={item.product.data}
+                      className="max-w-[120px] flex-1"
+                    />
+                  </div>
+                  <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+                    <div>Subtotal</div>
+                    <div className="text-brand-1">
+                      ${getSubtotalPrice(item, true)}
+                    </div>
+                  </div>
+                  <button
+                    className="flex cursor-pointer items-center justify-center gap-2.5 text-danger"
+                    onClick={() => removeItem(item.product.data.id)}
+                  >
+                    Remove Item
+                    <IconBox
+                      icon="circle-x"
+                      size={{ mobile: 20, nonMobile: 24 }}
+                    />
+                  </button>
+                </div>
+              );
+            })}
+          </div>
           {/* Continue shopping And Update Cart buttons  */}
           <div className="flex flex-col-reverse justify-between gap-3.5 border-t border-t-border pt-10 md:flex-row">
             <Link

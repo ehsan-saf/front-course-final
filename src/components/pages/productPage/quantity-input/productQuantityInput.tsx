@@ -1,6 +1,7 @@
 import { IconBox } from "@/components";
 import { Entity, ProductType } from "@/types";
 import { useCart } from "@/hooks";
+import { twMerge } from "tailwind-merge";
 
 interface Props {
   className?: string;
@@ -8,7 +9,11 @@ interface Props {
   data: Entity<ProductType>;
 }
 
-export function ProductQuantityInput({ showAddToCart = false, data }: Props) {
+export function ProductQuantityInput({
+  showAddToCart = false,
+  data,
+  className = "",
+}: Props) {
   const { getItem, addItem, updateItem } = useCart();
   const item = getItem(data.id);
   const quantity = item?.quantity || 0;
@@ -29,7 +34,10 @@ export function ProductQuantityInput({ showAddToCart = false, data }: Props) {
     <>
       {/* <!-- ----- Add Product button and Number input ----- --> */}
       <button
-        className={`flex items-center justify-center gap-2.5 rounded-sm bg-brand-1 px-6 py-3.5 text-white hover:bg-brand-2`}
+        className={twMerge(
+          "flex items-center justify-center gap-2.5 rounded-sm bg-brand-1 px-6 py-3.5 text-white hover:bg-brand-2",
+          className,
+        )}
         style={{
           display: `${quantity < 1 ? "flex" : "none"}`,
         }}
@@ -52,7 +60,10 @@ export function ProductQuantityInput({ showAddToCart = false, data }: Props) {
       </button>
       {/* <!-- Input number when added ---- --> */}
       <div
-        className="flex h-9 items-center justify-between rounded-sm border border-brand-1 lg:h-12 lg:w-28"
+        className={twMerge(
+          "flex h-9 items-center justify-between rounded-sm border border-brand-1 lg:h-12 lg:w-28",
+          className,
+        )}
         style={{
           display: `${quantity > 0 ? "flex" : "none"}`,
         }}
