@@ -91,7 +91,7 @@ export default function Page() {
 
   return (
     <div className="container mt-6 lg:mt-11">
-      <div className="flex flex-col gap-10 md:flex-row md:justify-center">
+      <div className="flex flex-col gap-10 lg:flex-row lg:justify-center">
         <div className="flex max-w-[1000px] flex-1 flex-col">
           <h1 className="text-3xl lg:text-[40px]">Your Cart</h1>
           <div className="mt-5 hidden justify-between md:flex">
@@ -293,28 +293,28 @@ export default function Page() {
           </div>
         </div>
         {/* Checkout button */}
-        <div className="flex h-fit max-w-[480px] flex-1 flex-col rounded-[15px] px-4 py-6 shadow md:px-10 md:py-11">
+        <div className="flex h-fit max-w-[480px] flex-1 flex-col rounded-[15px] px-4 py-6 shadow lg:px-10 lg:py-11">
           <div className="mb-9 flex items-center justify-between gap-3 border-b border-b-border pb-6">
             <div className="text-text-muted">Subtotal</div>
-            <div className="text-brand-1 md:text-2xl">
+            <div className="text-xl text-brand-1">
               ${formatPrice(cartSubtotal)}
             </div>
           </div>
           <div className="mb-8 flex items-center justify-between gap-3">
             <div className="text-text-muted">Shipping</div>
-            <div className="text-base text-heading md:text-xl">
+            <div className="text-base text-heading lg:text-xl">
               Free Shipping
             </div>
           </div>
           <div className="mb-9 flex items-center justify-between gap-3 border-b border-b-border pb-6">
             <div className="text-text-muted">Estimate for</div>
-            <div className="text-base text-heading md:text-xl">
+            <div className="text-base text-heading lg:text-xl">
               United Kingdom
             </div>
           </div>
           <div className="mb-5 flex items-center justify-between gap-3">
             <div className="text-text-muted">Total</div>
-            <div className="text-brand-1 md:text-2xl">
+            <div className="text-xl text-brand-1 lg:text-2xl">
               ${formatPrice(cartSubtotal)}
             </div>
           </div>
