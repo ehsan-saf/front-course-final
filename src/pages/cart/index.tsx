@@ -94,7 +94,7 @@ export default function Page() {
       <div className="flex flex-col gap-10 md:flex-row md:justify-center">
         <div className="flex max-w-[1000px] flex-1 flex-col">
           <h1 className="text-3xl lg:text-[40px]">Your Cart</h1>
-          <div className="mt-5 flex justify-between">
+          <div className="mt-5 hidden justify-between md:flex">
             <div aria-label="number of products in your cart">
               There are <span className="text-brand-1">{itemsCount}</span>{" "}
               products in your cart
