@@ -91,7 +91,7 @@ export default function Page() {
 
   return (
     <div className="container mt-6 lg:mt-11">
-      <div className="flex flex-col gap-10 lg:flex-row lg:justify-center">
+      <div className="flex flex-col gap-10 xl:flex-row xl:justify-center">
         <div className="flex max-w-[1000px] flex-1 flex-col">
           <h1 className="text-3xl lg:text-[40px]">Your Cart</h1>
           <div className="mt-5 hidden justify-between md:flex">
