@@ -47,7 +47,7 @@ export default function Page() {
                 </div>
               )}
             </div>
-            <div className="flex h-12 flex-1">
+            <div className="flex flex-1">
               <input
                 placeholder="Coupon Code"
                 className="flex-2 rounded-l-[10px] border border-r-0 border-border p-2 placeholder:font-lato placeholder:text-text-muted md:px-6 md:py-3"
