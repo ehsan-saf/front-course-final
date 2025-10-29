@@ -18,7 +18,6 @@ import {
 } from "@/components";
 import { useState } from "react";
 import Link from "next/link";
-
 const schema = z
   .object({
     username: z.string().min(1, "Please enter your username"),

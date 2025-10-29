@@ -1,12 +1,37 @@
 import { IconBox, ImageView } from "@/components";
 import { useCart } from "@/hooks";
 import { useUser } from "@/store";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import z, { string } from "zod";
+
+const schema = z.object({
+  firstName: z.string().min(1, "Please enter your first name"),
+  lastName: z.string().min(1, "Please enter your last name"),
+  addressOne: z.string().min(10, "Please enter your address 1"),
+  addressTwo: z.string().min(10, "Please enter your address line 2"),
+  country: z.string().min(1, "Select a state / country"),
+  city: z.string().min(1, "Select a state / country"),
+  zipCode: z.string().min(4, "Postal / Zip code is required"),
+  phone: z
+    .string()
+    .regex(/^\+?[\d\s\-\(\)]+$/, "Please enter a valid phone number"),
+  email: z.email(),
+  company: z.string(),
+  information: z.string(),
+});
+
+type FormDataType = z.infer<typeof schema>;
 
 export default function Page() {
   const { user } = useUser();
   const { cartItems } = useCart();
+
+  const { register, handleSubmit } = useForm<FormDataType>({
+    resolver: zodResolver(schema),
+  });
 
   const [checkedMethod, setCheckedMethod] = useState<"direct" | "on-delivery">(
     "direct",
@@ -60,6 +85,12 @@ export default function Page() {
               <button className="flex-1 rounded-r-[10px] bg-heading p-2 text-white md:px-6 md:py-3.5">
                 Apply Coupon
               </button>
+            </div>
+          </div>
+          <div>
+            <h2>Billing Details</h2>
+            <div>
+              <form action=""></form>
             </div>
           </div>
         </div>
