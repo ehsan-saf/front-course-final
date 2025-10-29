@@ -54,7 +54,7 @@ export default function Page() {
           <div className="mb-4 md:mb-10">
             <h1 className="mb-1 text-xl md:text-3xl lg:text-5xl">Login</h1>
             <p className="font-lato text-sm text-text-muted">
-              Don't have an account?{" "}
+              {"Don't have an account?"}
               <Link href="/account/sign-up" className="text-brand-1">
                 Create here
               </Link>
