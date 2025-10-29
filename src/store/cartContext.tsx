@@ -44,9 +44,10 @@ function cartReducer(
     case "INCREMENT_ITEM":
       return produce(state, (draft) => {
         const item = draft.find((item) => item.id === action.id);
-        if (item && item.quantity < item.maxQuantity) {
-          item.quantity++;
-        }
+        if (item?.product.data.attributes.quantity)
+          if (item && item.quantity < item.product.data.attributes.quantity) {
+            item.quantity++;
+          }
       });
     case "DECREMENT_ITEM":
       return produce(state, (draft) => {
