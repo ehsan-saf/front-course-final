@@ -9,7 +9,7 @@ import { ItemFilter } from "@/components/pages/categoryPage";
 import { ApiResponse, ProductFilters, ProductType } from "@/types";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
   useQueryStates,
   parseAsInteger,
