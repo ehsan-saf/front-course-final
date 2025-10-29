@@ -1,4 +1,4 @@
-import { IconBox, ImageView } from "@/components";
+import { IconBox, ImageView, Input } from "@/components";
 import { useCart } from "@/hooks";
 import { useUser } from "@/store";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,8 +19,8 @@ const schema = z.object({
     .string()
     .regex(/^\+?[\d\s\-\(\)]+$/, "Please enter a valid phone number"),
   email: z.email(),
-  company: z.string(),
-  information: z.string(),
+  company: z.string().optional(),
+  information: z.string().optional(),
 });
 
 type FormDataType = z.infer<typeof schema>;
@@ -29,7 +29,11 @@ export default function Page() {
   const { user } = useUser();
   const { cartItems } = useCart();
 
-  const { register, handleSubmit } = useForm<FormDataType>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormDataType>({
     resolver: zodResolver(schema),
   });
 
@@ -88,9 +92,60 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h2>Billing Details</h2>
+            <h2 className="mt-7 mb-5 text-xl md:mt-16 md:mb-10 md:text-2xl">
+              Billing Details
+            </h2>
             <div>
-              <form action=""></form>
+              <form>
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                  <Input
+                    register={register("firstName")}
+                    placeholder="First name *"
+                    error={errors.firstName}
+                  />
+                  <Input
+                    register={register("lastName")}
+                    placeholder="Last name *"
+                    error={errors.lastName}
+                  />
+                  <Input
+                    register={register("firstName")}
+                    placeholder="Address 1 *"
+                    error={errors.addressOne}
+                  />
+                  <Input
+                    register={register("lastName")}
+                    placeholder="Address line 2 *"
+                    error={errors.addressTwo}
+                  />
+                  <select
+                    {...register("country")}
+                    className="rounded-md border-1 border-border bg-white p-3.5 font-lato text-text-muted"
+                  >
+                    <option value="">State / Country</option>
+                  </select>
+                  <Input
+                    register={register("city")}
+                    placeholder="City / Town *"
+                    error={errors.city}
+                  />
+                  <Input
+                    register={register("zipCode")}
+                    placeholder="Postcode / Zip *"
+                    error={errors.zipCode}
+                  />
+                  <Input
+                    register={register("company")}
+                    placeholder="Company"
+                    error={errors.zipCode}
+                  />
+                  <textarea
+                    placeholder="Additional information"
+                    maxLength={120}
+                    className="rounded-md border-1 border-border bg-white p-3.5 placeholder:font-lato placeholder:text-text-muted md:col-span-2"
+                  ></textarea>
+                </div>
+              </form>
             </div>
           </div>
         </div>
