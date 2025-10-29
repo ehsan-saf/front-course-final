@@ -1,11 +1,12 @@
 import { IconBox, ImageView, Input } from "@/components";
 import { useCart } from "@/hooks";
 import { useUser } from "@/store";
+import { CartItemType } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import z, { string } from "zod";
+import z from "zod";
 
 const schema = z.object({
   firstName: z.string().min(1, "Please enter your first name"),
