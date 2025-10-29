@@ -18,7 +18,6 @@ import { ToastContainer } from "react-toastify";
 import { useState } from "react";
 import { ModalContextProvider } from "@/store/modalContext";
 import { AuthContextProvider } from "@/store";
-import { CartContextProvider } from "@/store/cartContext";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -68,28 +67,26 @@ export default function App({ Component, pageProps }: AppProps) {
         }
       `}</style>
       <QueryClientProvider client={queryClient}>
-        <CartContextProvider>
-          <HydrationBoundary state={pageProps.dehydratedState}>
-            <AuthContextProvider>
-              <ModalContextProvider>
-                <NuqsAdapter>
-                  <div id="portal"></div>
-                  <Layout>
-                    <Component {...pageProps} />
-                    <ToastContainer
-                      autoClose={4000}
-                      hideProgressBar={false}
-                      closeOnClick={true}
-                      draggable={false}
-                      theme="light"
-                      position="top-right"
-                    />
-                  </Layout>
-                </NuqsAdapter>
-              </ModalContextProvider>
-            </AuthContextProvider>
-          </HydrationBoundary>
-        </CartContextProvider>
+        <HydrationBoundary state={pageProps.dehydratedState}>
+          <AuthContextProvider>
+            <ModalContextProvider>
+              <NuqsAdapter>
+                <div id="portal"></div>
+                <Layout>
+                  <Component {...pageProps} />
+                  <ToastContainer
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    closeOnClick={true}
+                    draggable={false}
+                    theme="light"
+                    position="top-right"
+                  />
+                </Layout>
+              </NuqsAdapter>
+            </ModalContextProvider>
+          </AuthContextProvider>
+        </HydrationBoundary>
       </QueryClientProvider>
     </>
   );
