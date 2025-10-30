@@ -3,9 +3,7 @@ import {
   ClearCartButton,
   IconBox,
   ImageView,
-  Input,
   ProductQuantityInput,
-  QuantityInput,
 } from "@/components";
 import { useCart } from "@/hooks";
 import { CartItemType } from "@/types";

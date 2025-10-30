@@ -15,9 +15,11 @@ import {
   QueryClientProvider,
 } from "@tanstack/react-query";
 import { ToastContainer } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalContextProvider } from "@/store/modalContext";
 import { AuthContextProvider } from "@/store";
+import { useRouter } from "next/router";
+import { LoadingScreen } from "@/components";
 
 const quicksand = Quicksand({
   subsets: ["latin"],
@@ -39,6 +41,8 @@ const montserrat = Montserrat({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -52,6 +56,29 @@ export default function App({ Component, pageProps }: AppProps) {
         },
       }),
   );
+
+  useEffect(() => {
+    const handleStart = (url: string) => {
+      if (url !== router.asPath) {
+        setLoading(true);
+      }
+    };
+
+    const handleComplete = () => {
+      setLoading(false);
+    };
+
+    router.events.on("routeChangeStart", handleStart);
+    router.events.on("routeChangeComplete", handleComplete);
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
+
   return (
     <>
       <style jsx global>{`
@@ -73,6 +100,7 @@ export default function App({ Component, pageProps }: AppProps) {
               <NuqsAdapter>
                 <div id="portal"></div>
                 <Layout>
+                  {loading && <LoadingScreen />}
                   <Component {...pageProps} />
                   <ToastContainer
                     autoClose={4000}
