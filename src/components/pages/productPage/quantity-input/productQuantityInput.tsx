@@ -61,24 +61,26 @@ export function ProductQuantityInput({
       {/* <!-- Input number when added ---- --> */}
       <div
         className={twMerge(
-          "flex h-9 items-center justify-between rounded-sm border border-brand-1 lg:h-12 lg:w-28",
+          "flex h-9 items-center justify-between rounded-sm border border-brand-1 px-2 lg:h-12 lg:w-28",
           className,
         )}
         style={{
           display: `${quantity > 0 ? "flex" : "none"}`,
         }}
       >
-        <span className="flex-1 text-center text-base text-brand-1 lg:text-xl">
+        <button onClick={decrement}>
+          {quantity === 1 ? (
+            <IconBox icon="trash-2" size={{ mobile: 16, nonMobile: 20 }} />
+          ) : (
+            <IconBox icon="minus" size={{ mobile: 16, nonMobile: 20 }} />
+          )}
+        </button>
+        <span className="flex-1 text-center text-xl text-brand-1 md:text-2xl lg:text-xl">
           {quantity}
         </span>
-        <div className="flex h-full flex-col justify-between gap-1 p-1 pr-1.5 text-brand-1">
-          <button onClick={increment}>
-            <IconBox icon="chevron-up" size={{ mobile: 10, nonMobile: 10 }} />
-          </button>
-          <button onClick={decrement}>
-            <IconBox icon="chevron-down" size={{ mobile: 10, nonMobile: 10 }} />
-          </button>
-        </div>
+        <button onClick={increment}>
+          <IconBox icon="plus" size={{ mobile: 16, nonMobile: 20 }} />
+        </button>
       </div>
     </>
   );
