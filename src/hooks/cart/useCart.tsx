@@ -7,7 +7,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 export function useCart() {
   const queryClient = useQueryClient();
 
-  const { data: cartData } = useQuery({
+  const { data: cartData, isLoading: isCartLoading } = useQuery({
     queryKey: ["get-cart"],
     queryFn: cartApiCall,
   });
@@ -124,6 +124,8 @@ export function useCart() {
 
   return {
     cartItems,
+    isCartLoading,
+    isCartUpdating: cartMutation.isPending,
     getItem: getItemHandler,
     addItem: addItemHandler,
     updateItem: updateItemHandler,

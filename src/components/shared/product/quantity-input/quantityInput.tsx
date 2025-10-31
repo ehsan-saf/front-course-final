@@ -1,6 +1,7 @@
 import { IconBox } from "@/components";
 import { Entity, ProductType } from "@/types";
 import { useCart } from "@/hooks";
+import PendingDots from "../../ui/indicators/pendingDots";
 
 interface Props {
   className?: string;
@@ -9,7 +10,8 @@ interface Props {
 }
 
 export function QuantityInput({ showAddToCart = false, data }: Props) {
-  const { getItem, addItem, updateItem } = useCart();
+  const { getItem, addItem, updateItem, isCartLoading, isCartUpdating } =
+    useCart();
   const item = getItem(data.id);
   const quantity = item?.quantity || 0;
 
@@ -57,19 +59,27 @@ export function QuantityInput({ showAddToCart = false, data }: Props) {
           display: `${quantity > 0 ? "flex" : "none"}`,
         }}
       >
-        <button onClick={decrement}>
-          {quantity === 1 ? (
-            <IconBox icon="trash-2" size={{ mobile: 16, nonMobile: 20 }} />
-          ) : (
-            <IconBox icon="minus" size={{ mobile: 16, nonMobile: 20 }} />
-          )}
-        </button>
-        <span className="flex-1 text-center text-base text-brand-1 md:text-xl">
-          {quantity}
-        </span>
-        <button onClick={increment}>
-          <IconBox icon="plus" size={{ mobile: 16, nonMobile: 20 }} />
-        </button>
+        {isCartLoading || isCartUpdating ? (
+          <div className="mx-auto">
+            <PendingDots />
+          </div>
+        ) : (
+          <>
+            <button onClick={decrement}>
+              {quantity === 1 ? (
+                <IconBox icon="trash-2" size={{ mobile: 16, nonMobile: 20 }} />
+              ) : (
+                <IconBox icon="minus" size={{ mobile: 16, nonMobile: 20 }} />
+              )}
+            </button>
+            <span className="flex-1 text-center text-base text-brand-1 md:text-xl">
+              {quantity}
+            </span>
+            <button onClick={increment}>
+              <IconBox icon="plus" size={{ mobile: 16, nonMobile: 20 }} />
+            </button>
+          </>
+        )}
       </div>
     </>
   );

@@ -6,7 +6,7 @@ export default function PendingDots() {
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}
-          className="h-3 w-3 rounded-full bg-blue-500"
+          className="h-3 w-3 rounded-full bg-brand-1"
           animate={{
             scale: [1, 1.5, 1],
             transition: {
