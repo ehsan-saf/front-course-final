@@ -159,7 +159,7 @@ export default function Page() {
                       <ProductQuantityInput data={item.product.data} />
                     </td>
                     <td className="px-4 pt-6 text-sm text-brand-1 md:text-xl lg:text-2xl">
-                      {getSubtotalPrice(item, true)}
+                      ${getSubtotalPrice(item, true)}
                     </td>
                     <td className="flex justify-center px-4 pt-6">
                       <button

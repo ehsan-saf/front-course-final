@@ -71,7 +71,7 @@ export function OfferProductCard({
           `${data.attributes.weight} ${data.attributes.unit}s`}
       </div>
       {!(data.attributes.total && data.attributes.sold) ? (
-        <div className="mt-auto flex items-center justify-between">
+        <div className="mt-auto flex flex-col items-center gap-3">
           <Price
             price={data.attributes.price}
             sale_price={data.attributes.sell_price}
