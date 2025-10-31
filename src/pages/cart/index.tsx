@@ -136,8 +136,11 @@ export default function Page() {
                         changeChecked={() => handleChecked(item)}
                       />
                     </td>
-                    <td className="px-4 pt-6">
-                      <ImageView
+                    <td className="ellipsis-2 px-4 pt-6">
+                      <Link href={`/product/${item.product.data.id}`}>
+                        {item.product.data.attributes.title}
+                      </Link>
+                      {/* <ImageView
                         src={
                           item.product.data.attributes.thumbnail?.data
                             .attributes.url
@@ -150,7 +153,7 @@ export default function Page() {
                           item.product.data.attributes.thumbnail?.data
                             .attributes.height
                         }
-                      />
+                      /> */}
                     </td>
                     <td className="px-4 pt-6 text-sm text-body md:text-xl lg:text-2xl">
                       ${getRealPrice(item)}
