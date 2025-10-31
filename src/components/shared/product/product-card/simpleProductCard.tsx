@@ -28,7 +28,7 @@ export function SimpleProductCard({
   return (
     <div
       className={twMerge(
-        "product-card group flex w-full flex-col justify-between gap-1.5 p-3 md:p-4 md:pt-14",
+        "product-card group flex w-full flex-col justify-between p-3 md:p-4 md:pt-14",
         className,
       )}
     >
@@ -38,7 +38,7 @@ export function SimpleProductCard({
         sale_price={data.attributes.sell_price}
         showSaveText={showSaveLabel}
       />
-      <div className="relative flex h-24 justify-center md:h-44">
+      <div className="relative flex justify-center">
         <Link href={productPageLink}>
           <ImageView
             src={data.attributes.thumbnail?.data?.attributes.url}
@@ -51,16 +51,18 @@ export function SimpleProductCard({
         <ProductActions />
       </div>
       {data.attributes.categories?.data[0] && (
-        <h3 className="font-lato text-xs text-body">
+        <h3 className="mb-1 font-lato text-xs text-body">
           {data.attributes.categories?.data[0]?.attributes.title}
         </h3>
       )}
-      <Link href={productPageLink}>
+      <Link href={productPageLink} className="mb-1">
         <h4 className="ellipsis-2 text-xs md:text-base">
           {data.attributes.title}
         </h4>
       </Link>
-      <RatingStars rating={data.attributes.rate} showNumber />
+      <div className="mb-1">
+        <RatingStars rating={data.attributes.rate} showNumber />
+      </div>
       <div
         aria-label="weight of the product"
         className="font-lato text-xs text-body"
@@ -70,7 +72,7 @@ export function SimpleProductCard({
           `${data.attributes.weight} ${data.attributes.unit}s`}
       </div>
 
-      <div className="mt-auto flex items-center justify-between">
+      <div className="mt-auto flex flex-col items-center justify-between gap-1">
         <Price
           price={data.attributes.price}
           sale_price={data.attributes.sell_price}

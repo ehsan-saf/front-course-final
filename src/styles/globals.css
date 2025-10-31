@@ -51,7 +51,7 @@ p {
   /* Popular Item */
 
   .product-card {
-    @apply relative h-[270px] rounded-[10px] shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] hover:border-brand-1 hover:shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] md:h-[400px] lg:border-[1px] lg:border-border lg:shadow-none;
+    @apply relative h-[330px] rounded-[10px] shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] hover:border-brand-1 hover:shadow-[5px_5px_15px_0px_rgba(24,24,24,0.05)] md:h-[380px] lg:h-[410px] lg:border-[1px] lg:border-border lg:shadow-none;
   }
 
   .product-label {
