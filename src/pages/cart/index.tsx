@@ -191,7 +191,9 @@ export default function Page() {
                   <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
                     <div>Product</div>
                     <div className="text-right text-body">
-                      {item.product.data.attributes.title}
+                      <Link href={`/product/${item.product.data.id}`}>
+                        {item.product.data.attributes.title}
+                      </Link>
                     </div>
                   </div>
                   <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
