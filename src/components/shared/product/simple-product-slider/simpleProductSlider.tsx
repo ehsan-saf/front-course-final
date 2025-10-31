@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { IconBox, OfferProductCard, SimpleProductCard } from "@/components";
+import { IconBox, SimpleProductCard } from "@/components";
 import { Entity, ProductType } from "@/types";
 import clsx from "clsx";
 
@@ -85,7 +85,7 @@ export function SimpleProductSlider({
       >
         {sliderData.map((item, index) => {
           return (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className="p-1">
               <SimpleProductCard
                 key={index}
                 data={item}

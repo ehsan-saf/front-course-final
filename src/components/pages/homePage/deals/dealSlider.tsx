@@ -34,7 +34,7 @@ export function DealSlider({ sliderData }: Props) {
     >
       {sliderData.map((item, index) => {
         return (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="p-2">
             <DealProduct data={item} />
           </SwiperSlide>
         );

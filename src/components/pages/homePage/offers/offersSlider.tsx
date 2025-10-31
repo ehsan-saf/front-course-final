@@ -33,7 +33,7 @@ export function OffersSlider({ sliderData, cardClassName }: Props) {
     >
       {sliderData.map((item, index) => {
         return (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="p-2">
             <OfferProductCard
               key={index}
               data={item}
