@@ -29,6 +29,7 @@ type FormDataType = z.infer<typeof schema>;
 export default function Page() {
   const { user } = useUser();
   const { cartItems } = useCart();
+  const itemsCount = cartItems.length;
 
   const {
     register,
@@ -61,8 +62,8 @@ export default function Page() {
           <div>
             <h1 className="text-2xl md:text-[40px]">Checkout</h1>
             <p>
-              There are <span className="mt-5 text-brand-1">3</span> products in
-              your cart
+              There are <span className="mt-5 text-brand-1">{itemsCount}</span>{" "}
+              products in your cart
             </p>
           </div>
           {/* Log in and Apply coupon */}
