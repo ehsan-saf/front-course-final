@@ -53,7 +53,7 @@ export default function Page() {
         <div className="max-w-lg flex-1 self-center">
           <div className="mb-4 md:mb-10">
             <h1 className="mb-1 text-xl md:text-3xl lg:text-5xl">Login</h1>
-            <p className="font-lato text-sm text-text-muted">
+            <p className="flex gap-1.5 font-lato text-sm text-text-muted">
               {"Don't have an account?"}
               <Link href="/account/sign-up" className="text-brand-1">
                 Create here
