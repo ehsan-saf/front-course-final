@@ -49,7 +49,7 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
       >
         <li>
           <Link
-            href="/deals"
+            href={"/category/6"}
             className="flex items-center gap-2 hover:text-brand-1"
           >
             <IconBox
@@ -66,14 +66,14 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
           </Link>
         </li>
         <li>
-          <Link href="/vegetables" className="hover:text-brand-1">
+          <Link href={"/category/6"} className="hover:text-brand-1">
             Vegetables
-          </Link>{" "}
+          </Link>
         </li>
         <li>
-          <Link href="/drink" className="hover:text-brand-1">
+          <Link href={"/category/6"} className="hover:text-brand-1">
             Drink
-          </Link>{" "}
+          </Link>
         </li>
       </ul>
     </>

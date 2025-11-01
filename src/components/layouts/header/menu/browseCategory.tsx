@@ -57,7 +57,7 @@ export function BrowseCategory({ isDisplayLarge }: Props) {
                 return (
                   <Link
                     key={index}
-                    href={`${cat.path}`}
+                    href={"/category/6"}
                     className="flex items-center justify-start gap-2.5 rounded-md border-1 border-greenBorder p-3.5 hover:bg-green-100"
                   >
                     <div className="h-8 w-12 flex-shrink-0">
@@ -73,7 +73,7 @@ export function BrowseCategory({ isDisplayLarge }: Props) {
               })}
             </ul>
             <Link
-              href={"/categories"}
+              href={"/category/6"}
               className="flex items-center gap-3.5 self-center"
             >
               <IconBox
@@ -113,7 +113,7 @@ export function BrowseCategory({ isDisplayLarge }: Props) {
                 return (
                   <Link
                     key={index}
-                    href={`${cat.path}`}
+                    href={"/category/6"}
                     className="flex items-center justify-start gap-2.5"
                   >
                     <div className="h-8 w-12 flex-shrink-0">
