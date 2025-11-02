@@ -16,6 +16,7 @@ import {
   parseAsArrayOf,
   parseAsString,
 } from "nuqs";
+import PendingDots from "@/components/shared/ui/indicators/pendingDots";
 
 export default function CategoryClient() {
   const router = useRouter();
@@ -48,7 +49,11 @@ export default function CategoryClient() {
     enabled: !!id,
   });
 
-  const { data, refetch: refetchProducts } = useQuery({
+  const {
+    data,
+    refetch: refetchProducts,
+    isPending: isProductsPending,
+  } = useQuery({
     queryKey: [`category-products-${id}`, filters],
     queryFn: () =>
       getProductsApi({
@@ -68,7 +73,9 @@ export default function CategoryClient() {
       }),
   });
 
-  const { data: popularProducts } = useQuery<ApiResponse<ProductType>>({
+  const { data: popularProducts, isPending: isPopularPending } = useQuery<
+    ApiResponse<ProductType>
+  >({
     queryKey: [getProductsApi.name, "popular_products"],
     queryFn: () =>
       getProductsApi({
@@ -113,6 +120,11 @@ export default function CategoryClient() {
           {category?.data.attributes.title}
         </h1>
       </div>
+      {isProductsPending && (
+        <div className="mx-auto mt-4">
+          <PendingDots />
+        </div>
+      )}
       <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-4">
         <div className="col-span-1 flex flex-col gap-14">
           <ItemFilter setFilters={handleFiltersChange} filters={filters} />
@@ -120,6 +132,11 @@ export default function CategoryClient() {
             <h2 className="border-b-1 border-grey-1 pb-3.5 text-2xl">
               Popular Items
             </h2>
+            {isPopularPending && (
+              <div className="mx mt-2.5">
+                <PendingDots />
+              </div>
+            )}
             {popularProducts && (
               <ProductVerticalList data={popularProducts?.data} />
             )}
