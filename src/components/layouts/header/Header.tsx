@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { LoginModal, Logo, RegisterModal } from "@/components";
+import { Logo } from "@/components";
 import { SearchForm } from "./searchForm";
 import { IconBox } from "@/components";
 import { Menu } from "./menu";
-import { useModal, useUser } from "@/store";
+import { useUser } from "@/store";
 import { useCart } from "@/hooks";
-import { useQueryClient } from "@tanstack/react-query";
 import { MobileSearchForm } from "./mobileSearchForm";
 import Link from "next/link";
 
@@ -15,22 +14,10 @@ export function Header() {
   const [menuExpanded, setMenuExpanded] = useState(false);
   const [mobileSearchExpanded, setMobileSearchExpanded] = useState(false);
 
-  const queryClient = useQueryClient();
-
-  const { user, logout } = useUser();
+  const { user } = useUser();
   const { cartItems } = useCart();
-  const { currentModal, openModal } = useModal();
 
   const cartQuantity = cartItems.length === 0 ? undefined : cartItems.length;
-
-  const accountHandler = () => {
-    if (user) {
-      logout();
-      queryClient.invalidateQueries({ queryKey: ["get-cart"] });
-    } else {
-      openModal("login");
-    }
-  };
 
   return (
     <header>

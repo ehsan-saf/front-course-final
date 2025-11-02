@@ -17,6 +17,7 @@ import { SearchItem } from "../searchForm";
 import { SearchModal } from "./searchModal";
 import { useMediaQuery } from "react-responsive";
 import PendingDots from "@/components/shared/ui/indicators/pendingDots";
+import { MobileSearchItem } from "./mobileSearchItem";
 
 interface formInputs {
   searchText: string;
@@ -109,7 +110,7 @@ export function MobileSearchForm({ isExpanded = false, setIsExpanded }: Props) {
           <ul>
             {resultData.map((item, index) => (
               <li key={index} className="border-b border-gray-300 p-2">
-                {<SearchItem data={item} closeModal={closeModal} />}
+                {<MobileSearchItem data={item} closeModal={closeModal} />}
               </li>
             ))}
           </ul>

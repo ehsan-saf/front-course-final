@@ -4,14 +4,18 @@ import Link from "next/link";
 
 interface Props {
   data: Entity<ProductType>;
+  closeModal: () => void;
 }
 
-export function SearchItem({ data }: Props) {
+export function MobileSearchItem({ data, closeModal }: Props) {
   const productLink = `/product/${data.id}`;
 
   return (
     <Link
       href={productLink}
+      onClick={() => {
+        closeModal();
+      }}
       className="flex cursor-pointer items-center justify-between hover:bg-gray-100"
     >
       <ImageView
