@@ -2,7 +2,7 @@ import * as motion from "motion/react-client";
 
 export default function PendingDots() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex w-fit items-center gap-2">
       {[0, 1, 2].map((i) => (
         <motion.div
           key={i}

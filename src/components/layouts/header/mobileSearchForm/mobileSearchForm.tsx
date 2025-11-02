@@ -16,6 +16,7 @@ import { useDebounce } from "use-debounce";
 import { SearchItem } from "../searchForm";
 import { SearchModal } from "./searchModal";
 import { useMediaQuery } from "react-responsive";
+import PendingDots from "@/components/shared/ui/indicators/pendingDots";
 
 interface formInputs {
   searchText: string;
@@ -41,7 +42,7 @@ export function MobileSearchForm({ isExpanded = false, setIsExpanded }: Props) {
     }
   }, [isDisplayLarge, closeModal]);
 
-  const mutation = useMutation({
+  const { mutate: mutateSearch, isPending } = useMutation({
     mutationFn: (data: ProductFilters) =>
       getProductsApi({ filters: data, populate: ["thumbnail"] }),
   });
@@ -49,7 +50,7 @@ export function MobileSearchForm({ isExpanded = false, setIsExpanded }: Props) {
   const searchText = watch("searchText");
   const [debouncedSearchText] = useDebounce(searchText, 300);
   const searchByText = useCallback((text: string) => {
-    mutation.mutate(
+    mutateSearch(
       { title: { $containsi: text } },
       {
         onSuccess: (response) => {
@@ -98,12 +99,17 @@ export function MobileSearchForm({ isExpanded = false, setIsExpanded }: Props) {
           />
         </button>
       </form>
+      {isPending && (
+        <div className="mx-auto mt-5 w-fit">
+          <PendingDots />
+        </div>
+      )}
       {isFocused && resultData.length > 0 && (
         <div className="absolute top-14 right-0 left-0 z-2 w-full overflow-auto rounded-xl bg-white p-2.5">
           <ul>
             {resultData.map((item, index) => (
               <li key={index} className="border-b border-gray-300 p-2">
-                {<SearchItem data={item} />}
+                {<SearchItem data={item} closeModal={closeModal} />}
               </li>
             ))}
           </ul>
