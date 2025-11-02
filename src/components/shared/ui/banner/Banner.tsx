@@ -1,5 +1,6 @@
 import { IconBox, Section } from "@/components";
 import { ImageView } from "@/components";
+import { FormEvent } from "react";
 
 interface Props {
   title: string;
@@ -9,6 +10,10 @@ interface Props {
 }
 
 export function Banner({ title, subtitle, bgImage, image }: Props) {
+  const handleSubscribe = (e: FormEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <>
       <div className="relative flex items-center justify-between overflow-hidden rounded-lg pt-5 pb-4 pl-2 md:pb-16 md:pl-24">
@@ -32,7 +37,10 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
                 placeholder="Your email address"
                 className="flex-3 rounded-4xl border-none p-2.5 font-lato"
               />
-              <button className="ml-auto flex-1 rounded-4xl bg-brand-1 px-2 text-sm text-white">
+              <button
+                onClick={handleSubscribe}
+                className="ml-auto flex-1 rounded-4xl bg-brand-1 px-2 text-sm text-white"
+              >
                 Subscribe
               </button>
             </div>
@@ -68,7 +76,10 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
             placeholder="Your email address"
             className="w-[50%] rounded-4xl border-none p-1.5 font-lato placeholder:text-xs md:w-full md:p-2.5 md:placeholder:text-base"
           />
-          <button className="ml-auto w-[25%] rounded-4xl bg-brand-1 px-1 text-xs text-white md:px-2 md:text-sm">
+          <button
+            onClick={handleSubscribe}
+            className="ml-auto w-[25%] rounded-4xl bg-brand-1 px-1 text-xs text-white md:px-2 md:text-sm"
+          >
             Subscribe
           </button>
         </div>

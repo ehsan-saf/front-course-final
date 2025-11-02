@@ -37,7 +37,7 @@ export function DealProduct({ data }: Props) {
           >
             {`${data.attributes.weight} ${data.attributes.unit}s`}
           </div>
-          <div className="flex items-center justify-between">
+          <div className="mt-2.5 flex flex-col items-center justify-between gap-1">
             <Price
               price={data.attributes.price}
               sale_price={data.attributes.sell_price}
