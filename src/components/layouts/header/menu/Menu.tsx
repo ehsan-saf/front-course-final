@@ -41,7 +41,10 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
 
   const content = (
     <>
-      <BrowseCategory isDisplayLarge={isDisplayLarge} />
+      <BrowseCategory
+        isDisplayLarge={isDisplayLarge}
+        closeOffcanvas={() => setExpanded(false)}
+      />
       <ul
         className={`flex ${
           isDisplayLarge ? "flex-row items-center" : "flex-col items-start"
@@ -50,6 +53,7 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
         <li>
           <Link
             href={"/category/6"}
+            onClick={() => setExpanded(false)}
             className="flex items-center gap-2 hover:text-brand-1"
           >
             <IconBox
@@ -61,17 +65,29 @@ export function MenuComponent({ expanded, setExpanded }: Props) {
           </Link>
         </li>
         <li>
-          <Link href={"/"} className="hover:text-brand-1">
+          <Link
+            href={"/"}
+            onClick={() => setExpanded(false)}
+            className="hover:text-brand-1"
+          >
             Home
           </Link>
         </li>
         <li>
-          <Link href={"/category/6"} className="hover:text-brand-1">
+          <Link
+            onClick={() => setExpanded(false)}
+            href={"/category/6"}
+            className="hover:text-brand-1"
+          >
             Vegetables
           </Link>
         </li>
         <li>
-          <Link href={"/category/6"} className="hover:text-brand-1">
+          <Link
+            href={"/category/6"}
+            onClick={() => setExpanded(false)}
+            className="hover:text-brand-1"
+          >
             Drink
           </Link>
         </li>

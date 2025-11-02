@@ -2,13 +2,14 @@ import { IconBox, ImageView } from "@/components";
 import { useOverlay } from "@/hooks";
 import { BrowseCategoryMock } from "@/mock/browseCategory";
 import Link from "next/link";
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent, Dispatch, SetStateAction } from "react";
 
 interface Props {
   isDisplayLarge: boolean;
+  closeOffcanvas: () => void;
 }
 
-export function BrowseCategory({ isDisplayLarge }: Props) {
+export function BrowseCategory({ isDisplayLarge, closeOffcanvas }: Props) {
   const [expanded, setExpanded] = useState(false);
 
   useOverlay({
@@ -58,6 +59,9 @@ export function BrowseCategory({ isDisplayLarge }: Props) {
                   <Link
                     key={index}
                     href={"/category/6"}
+                    onClick={() => {
+                      setExpanded(false);
+                    }}
                     className="flex items-center justify-start gap-2.5 rounded-md border-1 border-greenBorder p-3.5 hover:bg-green-100"
                   >
                     <div className="h-8 w-12 flex-shrink-0">
@@ -114,6 +118,9 @@ export function BrowseCategory({ isDisplayLarge }: Props) {
                   <Link
                     key={index}
                     href={"/category/6"}
+                    onClick={() => {
+                      closeOffcanvas();
+                    }}
                     className="flex items-center justify-start gap-2.5"
                   >
                     <div className="h-8 w-12 flex-shrink-0">
