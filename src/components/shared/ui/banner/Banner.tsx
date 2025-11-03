@@ -1,6 +1,10 @@
-import { IconBox, Section } from "@/components";
+import { ErrorMessage, IconBox } from "@/components";
 import { ImageView } from "@/components";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FormEvent } from "react";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { z } from "zod";
 
 interface Props {
   title: string;
@@ -9,9 +13,27 @@ interface Props {
   image: string;
 }
 
+const scheme = z.object({
+  email: z.email("Enter a valid email !"),
+});
+
+type FormDataType = z.infer<typeof scheme>;
+
 export function Banner({ title, subtitle, bgImage, image }: Props) {
-  const handleSubscribe = (e: FormEvent) => {
-    e.preventDefault();
+  const desktopForm = useForm<FormDataType>({
+    mode: "onChange",
+    resolver: zodResolver(scheme),
+  });
+
+  const mobileForm = useForm<FormDataType>({
+    mode: "onChange",
+    resolver: zodResolver(scheme),
+  });
+
+  const handleSubscribe = (data: FormDataType) => {
+    desktopForm.reset();
+    mobileForm.reset();
+    toast.success("Subscribed !");
   };
 
   return (
@@ -23,7 +45,11 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
             {subtitle}
           </p>
           {/* <!-- ----- Desktop subscribe form ----- --> */}
-          <form action="" className="mt-14 hidden lg:block">
+          <form
+            action=""
+            onSubmit={desktopForm.handleSubmit(handleSubscribe)}
+            className="mt-14 hidden lg:block"
+          >
             <div className="flex rounded-4xl bg-white pl-3">
               <IconBox
                 icon="send"
@@ -32,17 +58,25 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
               />
               <input
                 type="text"
-                name=""
-                id=""
+                {...desktopForm.register("email")}
                 placeholder="Your email address"
                 className="flex-3 rounded-4xl border-none p-2.5 font-lato"
               />
-              <button
-                onClick={handleSubscribe}
-                className="ml-auto flex-1 rounded-4xl bg-brand-1 px-2 text-sm text-white"
-              >
+              <button className="ml-auto flex-1 rounded-4xl bg-brand-1 px-2 text-sm text-white">
                 Subscribe
               </button>
+            </div>
+            <div className="h-4">
+              {
+                <ErrorMessage
+                  error={
+                    desktopForm.formState.errors.email &&
+                    desktopForm.watch("email")
+                      ? desktopForm.formState.errors.email
+                      : undefined
+                  }
+                />
+              }
             </div>
           </form>
         </div>
@@ -62,7 +96,10 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
         />
       </div>
       {/* Mobile subscribe form  */}
-      <form className="mt-4 lg:hidden">
+      <form
+        onSubmit={mobileForm.handleSubmit(handleSubscribe)}
+        className="mt-4 lg:hidden"
+      >
         <div className="flex rounded-4xl bg-muted pl-3">
           <IconBox
             icon="send"
@@ -71,17 +108,22 @@ export function Banner({ title, subtitle, bgImage, image }: Props) {
           />
           <input
             type="text"
-            name=""
-            id=""
+            {...mobileForm.register("email")}
             placeholder="Your email address"
             className="w-[50%] rounded-4xl border-none p-1.5 font-lato placeholder:text-xs md:w-full md:p-2.5 md:placeholder:text-base"
           />
-          <button
-            onClick={handleSubscribe}
-            className="ml-auto w-[25%] rounded-4xl bg-brand-1 px-1 text-xs text-white md:px-2 md:text-sm"
-          >
+          <button className="ml-auto w-[25%] rounded-4xl bg-brand-1 px-1 text-xs text-white md:px-2 md:text-sm">
             Subscribe
           </button>
+        </div>
+        <div className="h-4">
+          <ErrorMessage
+            error={
+              mobileForm.formState.errors.email && mobileForm.watch("email")
+                ? mobileForm.formState.errors.email
+                : undefined
+            }
+          />
         </div>
       </form>
     </>
