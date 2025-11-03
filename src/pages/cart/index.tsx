@@ -2,7 +2,6 @@ import {
   CheckBox,
   ClearCartButton,
   IconBox,
-  ImageView,
   ProductQuantityInput,
 } from "@/components";
 import { useCart } from "@/hooks";
