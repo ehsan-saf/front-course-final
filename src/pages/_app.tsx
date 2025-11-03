@@ -17,7 +17,6 @@ import {
 import { ToastContainer } from "react-toastify";
 import { useEffect, useState } from "react";
 import { ModalContextProvider } from "@/store/modalContext";
-import { AuthContextProvider } from "@/store";
 import { useRouter } from "next/router";
 import { LoadingScreen } from "@/components";
 
@@ -95,25 +94,23 @@ export default function App({ Component, pageProps }: AppProps) {
       `}</style>
       <QueryClientProvider client={queryClient}>
         <HydrationBoundary state={pageProps.dehydratedState}>
-          <AuthContextProvider>
-            <ModalContextProvider>
-              <NuqsAdapter>
-                <div id="portal"></div>
-                <Layout>
-                  {loading && <LoadingScreen />}
-                  <Component {...pageProps} />
-                  <ToastContainer
-                    autoClose={4000}
-                    hideProgressBar={false}
-                    closeOnClick={true}
-                    draggable={false}
-                    theme="light"
-                    position="top-right"
-                  />
-                </Layout>
-              </NuqsAdapter>
-            </ModalContextProvider>
-          </AuthContextProvider>
+          <ModalContextProvider>
+            <NuqsAdapter>
+              <div id="portal"></div>
+              <Layout>
+                {loading && <LoadingScreen />}
+                <Component {...pageProps} />
+                <ToastContainer
+                  autoClose={4000}
+                  hideProgressBar={false}
+                  closeOnClick={true}
+                  draggable={false}
+                  theme="light"
+                  position="top-right"
+                />
+              </Layout>
+            </NuqsAdapter>
+          </ModalContextProvider>
         </HydrationBoundary>
       </QueryClientProvider>
     </>
