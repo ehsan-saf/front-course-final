@@ -1,7 +1,7 @@
 export function OrdersList() {
   return (
     <>
-      <table className="">
+      <table className="hidden md:table">
         <thead>
           <tr className="bg-muted">
             <th scope="col" className="rounded-l-2xl px-4 py-2 text-start">
@@ -31,6 +31,30 @@ export function OrdersList() {
           </tr>
         </tbody>
       </table>
+      <div className="md:hidden">
+        <div className="flex flex-col rounded-xl border border-border p-2.5">
+          <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+            <div>Order ID</div>
+            <div>#1357</div>
+          </div>
+          <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+            <div>Date</div>
+            <div>March 15, 2021</div>
+          </div>
+          <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+            <div>Order ID</div>
+            <div>Processing</div>
+          </div>
+          <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+            <div> Total</div>
+            <div>Total</div>
+          </div>
+          <div className="mb-2.5 flex justify-between gap-4 border-b border-b-border pb-2">
+            <div>Actions</div>
+            <div>View</div>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
