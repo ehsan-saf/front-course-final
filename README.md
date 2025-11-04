@@ -68,11 +68,3 @@ A full-featured, responsive e-commerce platform for grocery shopping built with 
 
 - Node.js 18+
 - pnpm (recommended) or npm
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yourusername/net-shop.git
-   cd net-shop
-   ```
