@@ -1,40 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# 🛒 NetShop - Modern E-commerce Grocery Store
 
-## Getting Started
+A full-featured, responsive e-commerce platform for grocery shopping built with Next.js 15, TypeScript, and modern web technologies.
 
-First, run the development server:
+## 🚀 Live Demo
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[View Live Demo](https://net-shop-ehsan.netlify.app/) | [View Source Code](https://github.com/ehsan-saf/front-course-final)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📋 Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### 🛍️ Core E-commerce Functionality
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- **Product Catalog** - Browse products by categories with advanced filtering
+- **Shopping Cart** - Add, remove, and manage items with real-time updates
+- **Product Search** - Smart search with autocomplete and suggestions
+- **User Authentication** - Secure login/register system
+- **Checkout Process** - Streamlined multi-step checkout flow
+- **Order Management** - Track and manage customer orders
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### 🎨 User Experience
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Responsive Design** - Optimized for desktop, tablet, and mobile devices
+- **Interactive UI** - Smooth animations and micro-interactions
+- **Product Sliders** - Featured products, deals, and category showcases
+- **Real-time Updates** - Dynamic cart updates and inventory management
+- **Toast Notifications** - User feedback for actions and errors
 
-## Learn More
+### 🔧 Technical Features
 
-To learn more about Next.js, take a look at the following resources:
+- **Server-Side Rendering** - SEO-optimized with Next.js SSR
+- **State Management** - Zustand for efficient global state
+- **API Integration** - RESTful API with React Query for data fetching
+- **Form Validation** - React Hook Form with Zod schema validation
+- **Performance Optimized** - Image optimization and lazy loading
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## 🛠️ Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Frontend
 
-## Deploy on Vercel
+- **Framework:** Next.js 15 (Pages Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4
+- **State Management:** Zustand
+- **Data Fetching:** TanStack React Query (React Query)
+- **Forms:** React Hook Form + Zod validation
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Development Tools
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+- **Package Manager:** pnpm
+- **Linting:** ESLint
+- **Code Formatting:** Prettier
+- **Build Tool:** Turbopack (Next.js)
+
+### Key Libraries
+
+- **UI Components:** Custom component library
+- **Carousel/Sliders:** Swiper.js
+- **Notifications:** React Toastify
+- **HTTP Client:** Axios
+- **Responsive Design:** React Responsive
+- **Debouncing:** use-debounce
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/yourusername/net-shop.git
+   cd net-shop
+   ```
