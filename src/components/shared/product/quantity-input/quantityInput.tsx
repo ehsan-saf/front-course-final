@@ -31,7 +31,7 @@ export function QuantityInput({ showAddToCart = false, data }: Props) {
     <>
       {/* <!-- ----- Add Product button and Number input ----- --> */}
       <button
-        className={`flex w-full items-center justify-center gap-2.5 rounded-sm ${showAddToCart ? "bg-brand-1 p-2.5 text-white" : "bg-btn-green-bg p-1.5 hover:text-white md:px-2.5 md:py-1"} text-brand-1 hover:bg-brand-2`}
+        className={`flex h-8 w-full items-center justify-center gap-2.5 rounded-sm ${showAddToCart ? "bg-brand-1 p-2.5 text-white" : "bg-btn-green-bg p-1.5 hover:text-white md:px-2.5 md:py-1"} text-brand-1 hover:bg-brand-2`}
         style={{
           display: `${quantity < 1 ? "flex" : "none"}`,
         }}
@@ -40,14 +40,14 @@ export function QuantityInput({ showAddToCart = false, data }: Props) {
         {!showAddToCart ? (
           <>
             <span className="hidden text-sm md:inline">Add</span>
-            <IconBox icon="plus" size={{ mobile: 10, nonMobile: 14 }}></IconBox>
+            <IconBox icon="plus" size={{ mobile: 16, nonMobile: 20 }}></IconBox>
           </>
         ) : (
           <>
             <span className="hidden text-sm md:inline">Add To Cart</span>
             <IconBox
               icon="shopping-cart"
-              size={{ mobile: 16, nonMobile: 16 }}
+              size={{ mobile: 16, nonMobile: 20 }}
             ></IconBox>
           </>
         )}

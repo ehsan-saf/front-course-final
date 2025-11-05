@@ -37,7 +37,7 @@ export function ProductQuantityInput({
       {/* <!-- ----- Add Product button and Number input ----- --> */}
       <button
         className={twMerge(
-          "flex items-center justify-center gap-2.5 rounded-sm bg-brand-1 px-6 py-3.5 text-white hover:bg-brand-2",
+          "flex h-10 items-center justify-center gap-2.5 rounded-sm bg-brand-1 px-6 py-3.5 text-white hover:bg-brand-2",
           className,
         )}
         style={{
@@ -63,7 +63,7 @@ export function ProductQuantityInput({
       {/* <!-- Input number when added ---- --> */}
       <div
         className={twMerge(
-          "flex h-9 items-center justify-between rounded-sm border border-brand-1 px-2 lg:h-12 lg:w-28",
+          "flex h-10 items-center justify-between rounded-sm border border-brand-1 px-2 lg:h-12 lg:w-28",
           className,
         )}
         style={{
