@@ -9,16 +9,23 @@ export function useCart() {
 
   const { data: cartData, isLoading: isCartLoading } = useQuery({
     queryKey: ["get-cart"],
-    queryFn: cartApiCall,
+    queryFn: ({ signal }: { signal?: AbortSignal }) => cartApiCall({ signal }),
   });
 
   const cartMutation = useMutation({
     mutationKey: ["update-cart"],
-    mutationFn: updateCartApiCall,
+    mutationFn: ({
+      data,
+      signal,
+    }: {
+      data: UpdateCartDataType;
+      signal?: AbortSignal;
+    }) => updateCartApiCall(data, signal),
   });
 
   const uuid2UserMutation = useMutation({
-    mutationFn: uuid2UserApiCall,
+    mutationFn: ({ uuid, signal }: { uuid: string; signal?: AbortSignal }) =>
+      uuid2UserApiCall(uuid, signal),
     onSuccess: () => {
       window.localStorage.removeItem("uuid");
       queryClient.invalidateQueries({ queryKey: ["get-cart"] });
@@ -46,11 +53,14 @@ export function useCart() {
       basket_items: prepareUpdateData,
     };
 
-    cartMutation.mutate(updatedData, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+    cartMutation.mutate(
+      { data: updatedData },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+        },
       },
-    });
+    );
   };
 
   // =========== Update item quantity ===========
@@ -89,11 +99,14 @@ export function useCart() {
       basket_items: prepareUpdateData,
     };
 
-    cartMutation.mutate(updatedData, {
-      onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+    cartMutation.mutate(
+      { data: updatedData },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["get-cart"] });
+        },
       },
-    });
+    );
   };
 
   // =============== Remove cart item ==============
@@ -114,7 +127,7 @@ export function useCart() {
 
     if (token && uuid) {
       if (cartItems.length > 0) {
-        uuid2UserMutation.mutate(uuid);
+        uuid2UserMutation.mutate({ uuid });
       } else {
         window.localStorage.removeItem("uuid");
         queryClient.invalidateQueries({ queryKey: ["get-cart"] });

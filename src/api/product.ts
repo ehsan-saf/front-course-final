@@ -13,6 +13,7 @@ interface Props {
   filters?: ProductFilters;
   sort?: ProductSort;
   pagination?: PaginationProp;
+  signal?: AbortSignal;
 }
 
 export async function getProductsApi({
@@ -20,7 +21,8 @@ export async function getProductsApi({
   filters,
   sort,
   pagination,
-}: Props = {}): Promise<ApiResponse<ProductType>> {
+  signal,
+}: Props): Promise<ApiResponse<ProductType>> {
   const response = await apiClient.get("/products", {
     params: {
       populate: populate?.join(","),
@@ -28,6 +30,7 @@ export async function getProductsApi({
       sort: sort?.join(","),
       pagination,
     },
+    signal,
   });
 
   return response.data;
@@ -35,15 +38,18 @@ export async function getProductsApi({
 
 interface SingleProductProps {
   id: string;
+  signal: AbortSignal;
 }
 
 export async function getSingleProductApi({
   id,
+  signal,
 }: SingleProductProps): Promise<ApiResponseSingle<ProductType>> {
   const response = await apiClient.get(`products/${id}`, {
     params: {
       populate: ["categories", "thumbnail", "gallery"],
     },
+    signal,
   });
 
   return response.data;
