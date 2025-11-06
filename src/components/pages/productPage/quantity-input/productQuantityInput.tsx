@@ -45,7 +45,11 @@ export function ProductQuantityInput({
         }}
         onClick={add}
       >
-        {!showAddToCart ? (
+        {isCartLoading || isCartUpdating ? (
+          <div className="mx-auto">
+            <PendingDots />
+          </div>
+        ) : !showAddToCart ? (
           <>
             <span className="hidden text-sm md:inline">Add</span>
             <IconBox icon="plus" size={{ mobile: 10, nonMobile: 14 }}></IconBox>

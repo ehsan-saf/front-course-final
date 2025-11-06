@@ -37,7 +37,11 @@ export function QuantityInput({ showAddToCart = false, data }: Props) {
         }}
         onClick={add}
       >
-        {!showAddToCart ? (
+        {isCartLoading || isCartUpdating ? (
+          <div className="mx-auto">
+            <PendingDots className={showAddToCart ? "bg-white" : ""} />
+          </div>
+        ) : !showAddToCart ? (
           <>
             <span className="hidden text-sm md:inline">Add</span>
             <IconBox icon="plus" size={{ mobile: 16, nonMobile: 20 }}></IconBox>
