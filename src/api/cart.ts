@@ -1,7 +1,11 @@
 import { ApiResponseSingle, CartType, UpdateCartDataType } from "@/types";
 import apiClient from "./config/apiClient";
 
-export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
+export async function cartApiCall({
+  signal,
+}: {
+  signal?: AbortSignal;
+}): Promise<ApiResponseSingle<CartType>> {
   const token = window.localStorage.getItem("token");
   const uuid = window.localStorage.getItem("uuid");
   if (!token && !uuid) {
@@ -10,6 +14,7 @@ export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
         params: {
           populate: ["thumbnail", "categories"],
         },
+        signal,
       })
     ).data;
     window.localStorage.setItem("uuid", response.data.attributes.uuid!);
@@ -21,6 +26,7 @@ export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
           populate: ["thumbnail", "categories"],
           uuid,
         },
+        signal,
       })
     ).data;
   }
@@ -30,12 +36,14 @@ export async function cartApiCall(): Promise<ApiResponseSingle<CartType>> {
       params: {
         populate: ["thumbnail", "categories"],
       },
+      signal,
     })
   ).data;
 }
 
 export async function updateCartApiCall(
   data: UpdateCartDataType,
+  signal?: AbortSignal,
 ): Promise<ApiResponseSingle<CartType>> {
   const uuid = window.localStorage.getItem("uuid");
 
@@ -53,11 +61,11 @@ export async function updateCartApiCall(
     );
   }
 
-  const response = await apiClient.put("/my-basket", { data });
+  const response = await apiClient.put("/my-basket", { data }, { signal });
 
   return response.data;
 }
 
-export async function uuid2UserApiCall(uuid: string) {
-  return await apiClient.put(`/basket2User/${uuid}`);
+export async function uuid2UserApiCall(uuid: string, signal?: AbortSignal) {
+  return await apiClient.put(`/basket2User/${uuid}`, {}, { signal });
 }

@@ -33,7 +33,6 @@ export default function Page() {
 
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<FormDataType>({
     resolver: zodResolver(schema),
