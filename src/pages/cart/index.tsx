@@ -157,7 +157,7 @@ export default function Page() {
                     <td className="px-4 pt-6 text-sm text-body md:text-xl lg:text-2xl">
                       ${getRealPrice(item)}
                     </td>
-                    <td className="px-4 pt-6">
+                    <td className="pt-6 lg:px-2">
                       <ProductQuantityInput data={item.product.data} />
                     </td>
                     <td className="px-4 pt-6 text-sm text-brand-1 md:text-xl lg:text-2xl">

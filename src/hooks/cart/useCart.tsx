@@ -28,7 +28,6 @@ export function useCart() {
   const cartItems = cartData?.data.attributes.basket_items ?? [];
 
   const addItemHandler = (productId: number) => {
-    console.log(cartMutation);
     const prepareUpdateData = cartItems.map((item) => ({
       product: {
         connect: [{ id: item.product.data.id }],
