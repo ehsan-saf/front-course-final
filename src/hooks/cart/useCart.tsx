@@ -83,8 +83,6 @@ export function useCart() {
       quantity: getNewQuantity(item, productId, operation),
     }));
 
-    console.log(prepareUpdateData);
-
     const updatedData: UpdateCartDataType = {
       basket_items: prepareUpdateData,
     };

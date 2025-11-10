@@ -47,10 +47,10 @@ export default function App({ Component, pageProps }: AppProps) {
       new QueryClient({
         defaultOptions: {
           queries: {
-            refetchOnWindowFocus: false,
+            refetchOnWindowFocus: true,
             refetchIntervalInBackground: false,
             retry: 0,
-            staleTime: 60 * 1000,
+            staleTime: 0,
           },
         },
       }),
