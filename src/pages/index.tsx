@@ -17,41 +17,37 @@ import Link from "next/link";
 export default function Home() {
   const { data: popularProducts } = useQuery<ApiResponse<ProductType>>({
     queryKey: [getProductsApi.name, "popular_products"],
-    queryFn: ({ signal }) =>
+    queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
         filters: { is_popular: { $eq: true } },
-        signal,
       }),
   });
 
   const { data: popularFruits } = useQuery<ApiResponse<ProductType>>({
     queryKey: [getProductsApi.name, "popular_fruits"],
-    queryFn: ({ signal }) =>
+    queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
         filters: { is_popular_fruit: { $eq: true } },
-        signal,
       }),
   });
 
   const { data: bestSellerProducts } = useQuery<ApiResponse<ProductType>>({
     queryKey: [getProductsApi.name, "best_seller_products"],
-    queryFn: ({ signal }) =>
+    queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
         filters: { is_best_seller: { $eq: true } },
-        signal,
       }),
   });
 
   const { data: dealsOfDayProducts } = useQuery<ApiResponse<ProductType>>({
     queryKey: [getProductsApi.name, "deal_products"],
-    queryFn: ({ signal }) =>
+    queryFn: () =>
       getProductsApi({
         populate: ["thumbnail", "categories"],
         filters: { discount_expire_date: { $notNull: true } },
-        signal,
       }),
   });
 

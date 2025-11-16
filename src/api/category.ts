@@ -1,4 +1,9 @@
-import { ApiResponse, ApiResponseSingle, CategoryType } from "@/types";
+import {
+  ApiResponse,
+  ApiResponseSingle,
+  CategoryFilters,
+  CategoryType,
+} from "@/types";
 import apiClient from "@/api/config/apiClient";
 
 export async function getFeaturedCategories(): Promise<
@@ -20,13 +25,11 @@ export async function getFeaturedCategories(): Promise<
 
 interface categoryProps {
   id: number | string;
-  signal?: AbortSignal;
 }
 
 export async function getCategory({
   id,
-  signal,
 }: categoryProps): Promise<ApiResponseSingle<CategoryType>> {
-  const response = await apiClient.get(`/categories/${id}`, { signal });
+  const response = await apiClient.get(`/categories/${id}`);
   return response.data;
 }

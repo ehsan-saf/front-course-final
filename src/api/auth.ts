@@ -14,20 +14,16 @@ interface LoginProps {
 
 export async function registerApiCall(
   data: RegisterProps,
-  signal?: AbortSignal,
 ): Promise<AuthResponseType> {
-  const response = await apiClient.post("/auth/local/register", data, {
-    signal,
-  });
+  const response = await apiClient.post("/auth/local/register", data);
 
   return response.data;
 }
 
 export async function loginApiCall(
   data: LoginProps,
-  signal?: AbortSignal,
 ): Promise<AuthResponseType> {
-  const response = await apiClient.post("/auth/local", data, { signal });
+  const response = await apiClient.post("/auth/local", data);
 
   return response.data;
 }
