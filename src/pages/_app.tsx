@@ -14,8 +14,8 @@ import {
   QueryClient,
   QueryClientProvider,
 } from "@tanstack/react-query";
-import { ToastContainer } from "react-toastify";
-import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { useEffect, useState, useRef } from "react";
 import { ModalContextProvider } from "@/store/modalContext";
 import { useRouter } from "next/router";
 import { LoadingScreen } from "@/components";
@@ -42,6 +42,7 @@ const montserrat = Montserrat({
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const [queryClient] = useState(
     () =>
       new QueryClient({
@@ -60,11 +61,18 @@ export default function App({ Component, pageProps }: AppProps) {
     const handleStart = (url: string) => {
       if (url !== router.asPath) {
         setLoading(true);
+        timeoutRef.current = setTimeout(() => {
+          toast.warn("Navigation is taking longer than expected");
+        }, 10000);
       }
     };
 
     const handleComplete = () => {
       setLoading(false);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+        timeoutRef.current = null;
+      }
     };
 
     router.events.on("routeChangeStart", handleStart);
