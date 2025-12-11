@@ -97,32 +97,38 @@ export default function ProductPage({
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.params!;
+  try {
+    const { id } = context.params!;
 
-  const productResponse = await getSingleProductApi({ id: id as string });
-  const product = productResponse.data.attributes;
+    const productResponse = await getSingleProductApi({ id: id as string });
+    const product = productResponse.data.attributes;
 
-  const relatedProducts = await getProductsApi({
-    filters: {
-      categories: {
+    const relatedProducts = await getProductsApi({
+      filters: {
+        categories: {
+          id: {
+            $in: productResponse?.data.attributes.categories?.data.map(
+              (cat) => cat.id,
+            ),
+          },
+        },
         id: {
-          $in: productResponse?.data.attributes.categories?.data.map(
-            (cat) => cat.id,
-          ),
+          $ne: productResponse?.data.id,
         },
       },
-      id: {
-        $ne: productResponse?.data.id,
-      },
-    },
-    populate: ["thumbnail", "categories"],
-  });
+      populate: ["thumbnail", "categories"],
+    });
 
-  return {
-    props: {
-      productResponse,
-      product,
-      relatedProducts,
-    },
-  };
+    return {
+      props: {
+        productResponse,
+        product,
+        relatedProducts,
+      },
+    };
+  } catch (error) {
+    return {
+      notFound: true,
+    };
+  }
 };
