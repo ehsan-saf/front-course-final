@@ -1,9 +1,4 @@
-import {
-  ApiResponse,
-  ApiResponseSingle,
-  CategoryFilters,
-  CategoryType,
-} from "@/types";
+import { ApiResponse, ApiResponseSingle, CategoryType } from "@/types";
 import apiClient from "@/api/config/apiClient";
 
 export async function getFeaturedCategories(): Promise<
