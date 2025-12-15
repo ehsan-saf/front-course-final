@@ -17,7 +17,12 @@ interface formInputs {
 export function SearchForm({ containerClass }: { containerClass?: string }) {
   const [resultData, setResultData] = useState<Array<Entity<ProductType>>>([]);
   const [isFocused, setIsFocused] = useState(false);
-  const { register, handleSubmit, watch } = useForm<formInputs>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset: resetForm,
+  } = useForm<formInputs>();
 
   const mutation = useMutation({
     mutationFn: (data: ProductFilters) =>
