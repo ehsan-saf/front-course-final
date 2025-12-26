@@ -4,7 +4,7 @@ import { getErrorMessage } from "@/utils";
 
 const apiClient = axios.create({
   baseURL: "https://nest.navaxcollege.com/api",
-  timeout: 12000,
+  timeout: 120000,
 });
 
 export interface errorDataType {

@@ -17,7 +17,12 @@ interface formInputs {
 export function SearchForm({ containerClass }: { containerClass?: string }) {
   const [resultData, setResultData] = useState<Array<Entity<ProductType>>>([]);
   const [isFocused, setIsFocused] = useState(false);
-  const { register, handleSubmit, watch } = useForm<formInputs>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset: resetForm,
+  } = useForm<formInputs>();
 
   const mutation = useMutation({
     mutationFn: (data: ProductFilters) =>
@@ -85,7 +90,9 @@ export function SearchForm({ containerClass }: { containerClass?: string }) {
         <div className="absolute top-14 right-0 left-0 z-2 max-h-40 w-full overflow-auto rounded-xl bg-white p-2.5 md:max-h-48 lg:max-h-52">
           <ul>
             {resultData.map((item, index) => (
-              <li key={index}>{<SearchItem data={item} />}</li>
+              <li key={index}>
+                {<SearchItem resetForm={resetForm} data={item} />}
+              </li>
             ))}
           </ul>
         </div>

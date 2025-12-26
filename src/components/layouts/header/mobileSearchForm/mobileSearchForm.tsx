@@ -13,7 +13,6 @@ import {
 } from "react";
 import { useForm } from "react-hook-form";
 import { useDebounce } from "use-debounce";
-import { SearchItem } from "../searchForm";
 import { SearchModal } from "./searchModal";
 import { useMediaQuery } from "react-responsive";
 import PendingDots from "@/components/shared/ui/indicators/pendingDots";
@@ -31,7 +30,12 @@ interface Props {
 export function MobileSearchForm({ isExpanded = false, setIsExpanded }: Props) {
   const [resultData, setResultData] = useState<Array<Entity<ProductType>>>([]);
   const [isFocused, setIsFocused] = useState(false);
-  const { register, handleSubmit, watch } = useForm<formInputs>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset: resetForm,
+  } = useForm<formInputs>();
 
   const isDisplayLarge = useMediaQuery({ query: "(min-width: 48rem)" });
 
@@ -110,7 +114,13 @@ export function MobileSearchForm({ isExpanded = false, setIsExpanded }: Props) {
           <ul>
             {resultData.map((item, index) => (
               <li key={index} className="border-b border-gray-300 p-2">
-                {<MobileSearchItem data={item} closeModal={closeModal} />}
+                {
+                  <MobileSearchItem
+                    resetForm={resetForm}
+                    data={item}
+                    closeModal={closeModal}
+                  />
+                }
               </li>
             ))}
           </ul>

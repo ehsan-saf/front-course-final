@@ -8,7 +8,6 @@ interface Props {
 }
 
 export function DealProduct({ data }: Props) {
-  console.log(data);
   return (
     <div className="mx-auto w-fit">
       <ImageView

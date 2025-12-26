@@ -4,14 +4,16 @@ import Link from "next/link";
 
 interface Props {
   data: Entity<ProductType>;
+  resetForm: () => void;
 }
 
-export function SearchItem({ data }: Props) {
+export function SearchItem({ data, resetForm }: Props) {
   const productLink = `/product/${data.id}`;
 
   return (
     <Link
       href={productLink}
+      onClick={() => resetForm()}
       className="flex cursor-pointer items-center justify-between hover:bg-gray-100"
     >
       <ImageView

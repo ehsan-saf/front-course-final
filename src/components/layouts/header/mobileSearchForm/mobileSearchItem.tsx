@@ -5,15 +5,17 @@ import Link from "next/link";
 interface Props {
   data: Entity<ProductType>;
   closeModal: () => void;
+  resetForm: () => void;
 }
 
-export function MobileSearchItem({ data, closeModal }: Props) {
+export function MobileSearchItem({ data, closeModal, resetForm }: Props) {
   const productLink = `/product/${data.id}`;
 
   return (
     <Link
       href={productLink}
       onClick={() => {
+        resetForm();
         closeModal();
       }}
       className="flex cursor-pointer items-center justify-between hover:bg-gray-100"
