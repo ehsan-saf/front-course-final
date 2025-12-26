@@ -19,7 +19,7 @@ type FormDataType = z.infer<typeof schema>;
 export default function Page() {
   const router = useRouter();
   const { uuid2User } = useCart();
-  const { login } = useUser();
+  const login = useUser((s) => s.login);
 
   const {
     register,
